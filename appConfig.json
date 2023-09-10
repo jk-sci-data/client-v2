@@ -1,0 +1,86 @@
+{
+    "sideNavSettings": {
+        "lineImg": "/img/line-4@2x.png",
+        "activeClass": "",
+        "groups": [
+            {
+                "group": "account-settings",
+                "label": "账户设置",
+                "items": [
+                    {
+                        "path": "/account-info",
+                        "label": "账户信息",
+                        "iconGray": "/img/component-1@2x.png",
+                        "iconRed": "/img/icon-regular-2@2x.png"
+                    },
+                    {
+                        "path": "/vendor-info",
+                        "label": "供应商信息",
+                        "iconGray": "/img/component-1-5@2x.png",
+                        "iconRed": "/img/component-1-1@2x.png"
+                    },
+                    {
+                        "path": "/certificate",
+                        "label": "资质证照",
+                        "iconGray": "/img/icons8-warranty-48_gray.png",
+                        "iconRed": "/img/icons8-warranty-48_red.png"
+                    }
+                ]
+            },
+            {
+                "group": "product-management",
+                "label": "产品管理",
+                "items": [
+                    {
+                        "path": "/product-search",
+                        "label": "搜索产品",
+                        "iconGray": "/img/icons8-search-64_gray.png",
+                        "iconRed": "/img/icons8-search-64_red.png"
+                    },
+                    {
+                        "path": "/product-info-edit-add-product",
+                        "label": "编辑产品信息",
+                        "iconGray": "/img/subtract-1@2x.png",
+                        "iconRed": "/img/subtract-10@2x.png"
+                    },
+                    {
+                        "path": "/upload-multiples",
+                        "label": "产品批量上传",
+                        "iconGray": "/img/icons8-upload-64_gray.png",
+                        "iconRed": "/img/icons8-upload-64_red.png"
+                    },
+                    {
+                        "path": "/history",
+                        "label": "历史记录",
+                        "iconGray": "/img/icons8-history-48_gray.png",
+                        "iconRed": "/img/icons8-history-48_red.png"
+                    }
+                ]
+            },
+            {
+                "group": "product-inquiury",
+                "label": "产品询价",
+                "items": [
+                    {
+                        "path": "/inquiry",
+                        "label": "在线报价",
+                        "iconGray": "/img/icons8-purchase-order-48_gray.png",
+                        "iconRed": "/img/icons8-purchase-order-48_red.png"
+                    },
+                    {
+                        "path": "/product-certificate-upload",
+                        "label": "产品证书上传",
+                        "iconGray": "/img/subtract@2x.png",
+                        "iconRed": "/img/subtract-20@2x.png"
+                    },
+                    {
+                        "path": "/inquiry-item",
+                        "label": "询报价记录查询",
+                        "iconGray": "/img/icons8-order-history-48_gray.png",
+                        "iconRed": "/img/icons8-order-history-48_red.png"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,1 @@
+export {default as ReportTable} from "./ReportTable.jsx";

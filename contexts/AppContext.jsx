@@ -1,11 +1,12 @@
-import { createContext } from "react";
+import { createContext, useState, useEffect } from "react";
 import { SideNavProvider } from "./SideNavContext";
 import { LoginProvider } from "./LoginContext";
+import jwt from 'jsonwebtoken';
 
 const AppContext = createContext();
 
 function AppProvider({ children }) {
-    const value = (() => {
+    let constants = (() => {
         const logoContainer1Data = {
             jK: "/img/j-k-1@2x.png",
         };
@@ -6124,8 +6125,53 @@ function AppProvider({ children }) {
         }
     })();
 
-    return (
-        <AppContext.Provider value={value}>
+    const [ready, setReady] = useState(false);
+    const [account, setAccount] = useState(null);
+    const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
+
+    const _setAccessToken = (tok) => {
+        if (tok)
+            localStorage.setItem("accessToken", tok); 
+        else
+            localStorage.removeItem("accessToken");
+        setAccessToken(tok);
+    }
+
+    const loggedIn = () => {
+        if (!accessToken) {
+            console.log("no access token")
+            return false;
+        }
+
+        const decodedToken = jwt.decode(accessToken);
+        if (!decodedToken) {
+            console.log("accessToken invalid format");
+            return false;
+        }
+
+        // if (decodedToken.exp > (Date.now() / 1000)) {
+        //     console.log("accessToken expired", decodedToken.exp);
+        //     return false;
+        // }
+        console.log("valid accessToken")
+        return true;
+    }
+
+    useEffect(() => {
+        console.log("accessToken state change: ", accessToken); 
+        setReady(true);
+    }, [accessToken]);
+
+    return (ready &&
+        <AppContext.Provider value={{
+            ...constants, 
+            ready,
+            account, setAccount,
+            setAccessToken: _setAccessToken,
+            loggedIn: loggedIn(),
+            account: (accessToken) ? jwt.decode(accessToken) : null,
+            username: (accessToken) ? jwt.decode(accessToken)?.username : null
+        }}>
             <LoginProvider>
                 <SideNavProvider>{children}</SideNavProvider>
             </LoginProvider>

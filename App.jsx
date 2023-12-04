@@ -1,25 +1,24 @@
 import "./App.sass";
 import React, { useContext } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Login from "./components/Login";
-import InquiryHistory from "./components/InquiryHistory";
-import ProductCertificateUpload from "./components/ProductCertificateUpload";
-import InquiryInquieyItem from "./components/InquiryInquieyItem";
-import Inquiry from "./components/Inquiry";
-import History from "./components/History";
-import UploadMultiples from "./components/UploadMultiples";
-import ProductInfoEditaddProduct from "./components/ProductInfoEditaddProduct";
-import ProductInfo from "./components/ProductInfo";
-import Certificate from "./components/Certificate";
-import VenderInfo from "./components/VenderInfo";
-import AccountInfo from "./components/AccountInfo";
-import { ProductEditProvider, AppContext, AppProvider, FormProvider } from "./contexts";
-
-//import ProductSearch from "./components/ProductSearch"
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import Login from "pages/Login";
+import InquiryHistory from "pages/InquiryHistory";
+import ProductCertificateUpload from "pages/ProductCertificateUpload";
+import InquiryInquieyItem from "pages/InquiryInquieyItem";
+import Inquiry from "pages/Inquiry";
+import History from "pages/History";
+import UploadMultiples from "pages/UploadMultiples";
+import ProductInfoEditaddProduct from "pages/ProductInfoEditaddProduct";
+import ProductInfo from "pages/ProductInfo";
+import Certificate from "pages/Certificate";
+import VenderInfo from "pages/VenderInfo";
+import AccountInfo from "pages/AccountInfo";
+import { AppContext, AppProvider, FormProvider } from "contexts";
 
 function AppRouter() {
-    const ctx = useContext(AppContext);
-    return ( ctx &&
+    const ctx = useContext(AppContext) || {};
+
+    return (ctx &&
         <Router>
             <Switch>
                 <Route path="/login">
@@ -62,11 +61,7 @@ function AppRouter() {
                     <FormProvider>
                         <VenderInfo {...ctx.venderInfoData} />
                     </FormProvider>
-                </Route>{
-                    // <Route path="/product-search">
-                    //     <ProductSearch />
-                    // </Route>
-                }
+                </Route>
                 <Route path="/:path(|account-info)">
                     <AccountInfo {...ctx.accountInfoData} />
                 </Route>
@@ -76,7 +71,6 @@ function AppRouter() {
 }
 
 function App() {
-
     return (
         <AppProvider>
             <AppRouter />

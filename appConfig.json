@@ -32,7 +32,7 @@
                 "label": "产品管理",
                 "items": [
                     {
-                        "path": "/product-search",
+                        "path": "/product-info",
                         "label": "搜索产品",
                         "iconGray": "/img/icons8-search-64_gray.png",
                         "iconRed": "/img/icons8-search-64_red.png"

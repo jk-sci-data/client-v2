@@ -29,9 +29,7 @@ function ProductEditProvider({ children }) {
     }
 
     return <ProductEditContext.Provider value={value}>
-        <FormProvider>
             <div className="product-edit-provider">{children}</div>
-        </FormProvider>
     </ProductEditContext.Provider>
 }
 

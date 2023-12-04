@@ -5,18 +5,41 @@ import "./Header3.sass";
 import { LoginContext } from "../../contexts";
 import Login from "../Login";
 
-function Header3(props) {
-  const { username141, logoContainerProps } = props;
+function LoggedIn({ username }) {
+  return (
+    <div style={{ display: "flex", flexFlow: "row nowrap", alignItems: "flex-end", marginRight: "0.5em" }}>
+      <div className="username141 notosanssc-normal-black-16px" style={{ width: "8em" }}>
+        {"Logout"}
+      </div>
+      <div className="username141 notosanssc-normal-black-16px" style={{ width: "15em" }}>
+        {username}
+      </div>
+      <img className="vector" src="/img/vector@2x.png" alt="Vector" />
+    </div>);
+}
 
-  const {account} = React.useContext(LoginContext) || {};
+function LoggedOut() {
+  return (
+    <div style={{ display: "flex", flexFlow: "row nowrap", alignItems: "flex-end", marginRight: "0.5em" }}>
+      <div className="username141 notosanssc-normal-black-16px">
+        {"Not logged in"}
+      </div>
+    </div>
+  );
+}
+
+function Header3(props) {
+  const { logoContainerProps } = props;
+
+  const { account, authorized } = React.useContext(LoginContext) || {};
 
   return (
-    <header className="header-1">
+    <header className="header-1" style={{ width: "100%" }}>
       <LogoContainer jK={logoContainerProps.jK} className={logoContainerProps.className} />
-      <div className="username_container">
-        <div className="username141 notosanssc-normal-black-16px">{account?.username || username141}</div>
-        <img className="vector" src="/img/vector@2x.png" alt="Vector" />
-      </div>
+      {(authorized) ? <LoggedIn username={account?.username ?? "Unknown username"} />
+        : (authorized === false) ? <LoggedOut />
+          : "Authenticating..."
+      }
     </header>
   );
 }

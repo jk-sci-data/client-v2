@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/assets/img/Logo-1.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/assets/img/Logo-1.svg" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <!-- Google Fonts -->
+  <link href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&amp;display=swap"
+    rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="%PUBLIC_URL%/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel='stylesheet' href='https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css'>
+  <!-- Main CSS File -->
+  <link href="%PUBLIC_URL%/assets/css/style.css" rel="stylesheet">
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    section {
+      padding: 0.7em;
+    }
+
+    .page-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      justify-content: space-between;
+    }
+
+    .page-container main {
+      flex: 1;
+    }
+
+    .footer {
+      position: relative;
+      bottom: 0px;
+    }
+
+    td.changed {
+      background-color: lightyellow;
+    }
+
+    .filters-sidebar {
+      min-width:10em;
+    }
+    .k-grid-toolbar {
+      text-align: right;
+    }
+  </style>
+  <title>J&K Scientific</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <link href="%PUBLIC_URL%/assets/kendo/css/kendo.common.min.css" rel="stylesheet" />
+  <link href="%PUBLIC_URL%/assets/kendo/css/kendo.default.min.css" rel="stylesheet" />
+  <script src="%PUBLIC_URL%/assets/kendo/lib/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <div class="page-container" style="width:100%">
+    <main id="root"></main>
+    <!-- ======= Footer ======= -->
+    <div class="footer">
+      <div class="footer-bottom mt-2">
+        <div class="container">
+          <div class="text-center">
+            <div class="col-lg-12">
+              严禁在未经同意的情况下使用本网站所有信息
+              | <a href="/user-agreement" target="_blank">用户使用服务协议</a>
+              | <a href="/legal">法律声明</a>
+              | <a href="/privacy-cn">隐私政策</a>
+              | <a href="/terms-conditions" target="_blank">销售通用条款及条件</a>
+            </div>
+            <div class="col-lg-12">
+              <img class="align-top" src="https://web.jkchemical.com/images/gongan.png" alt="">
+              <a href="" target="_blank">京公网安备 11010502044888号</a>&nbsp;
+              | <a href="" target="_blank">京ICP备09071033号-3</a>&nbsp;
+              | <a href="" target="_blank">上海工商</a>&nbsp;
+              | <a href="" target="_blank">危险化学品经营许可证</a>
+              | <a href="" target="_blank"> 营业执照(三证合一)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<!-- End Footer -->
+
+</html>

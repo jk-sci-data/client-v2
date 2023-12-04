@@ -1,7 +1,7 @@
 import React from "react";
 import "./SideNavMenu.sass";
 
-import { SideNavContext } from "../../contexts";
+import { SideNavContext } from "contexts";
 
 function NavItem(props) {
   const activeClass = "nav_item_active";
@@ -37,7 +37,7 @@ function SideNavMenu() {
   const { sideNavSettings } = React.useContext(SideNavContext);
 
   return (
-    <div className="nav-6">{
+    <div className="nav-6" style={{justifyContent:"start"}}>{
       sideNavSettings['groups'].map((g, i) => <SubNavContainer key={i} {...g} />)
     }
     </div>

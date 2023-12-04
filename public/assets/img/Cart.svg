@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <filter id="Union_2" x="38.999" y="68" width="422.412" height="369.986" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-Cart">
+      <rect width="500" height="500"/>
+    </clipPath>
+  </defs>
+  <g id="Cart" clip-path="url(#clip-Cart)">
+    <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Union_2)">
+      <path id="Union_2-2" data-name="Union 2" d="M-14495.527-2507.991a43.9,43.9,0,0,1,14.264-32.441h-155.521a43.9,43.9,0,0,1,14.262,32.441,43.977,43.977,0,0,1-43.957,44,43.98,43.98,0,0,1-43.961-44,43.931,43.931,0,0,1,16.857-34.643v-6.886q-.062-.218-.111-.435l-52.34-226.913h-64.986a1,1,0,0,1-1-1v-37.11a1,1,0,0,1,1-1h95.688a1,1,0,0,1,1,1v5.026a9.7,9.7,0,0,1,1.576,3.5l18.513,80.25h263.428a1,1,0,0,1,1,1v37.11a1,1,0,0,1-1,1h-254.406l24.81,107.55h249.124a1,1,0,0,1,1,1v37.11a1,1,0,0,1-1,1h-10.582a43.9,43.9,0,0,1,14.263,32.441,43.978,43.978,0,0,1-43.962,44A43.979,43.979,0,0,1-14495.527-2507.991Z" transform="translate(14860.02 2889.98)" fill="#414a6e"/>
+    </g>
+  </g>
+</svg>

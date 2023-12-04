@@ -1,0 +1,89 @@
+/* ------------------------------------
+   lot details
+--------------------------------------*/
+	p.label {
+		display:block;
+		float:left;
+		width: 8em;
+		margin-right: 0.5em;
+	}
+	p.information {  
+		/*display:inline;
+		float: left;  
+		clear: left;  
+		width: 75%; */
+		margin-left:8.5em;   
+	} 
+	
+	p.title { 
+		float:left; 
+		width: 30%; 
+		text-align:right; 
+		padding-right: 1em;
+		font-style:italic;
+	}
+	p.data { 
+		padding-bottom:0.5em; 
+	}
+
+	/* For Scrap action and lot's Content tab */
+	.scrap, tr.scrap td, .scrapped, tr.scrapped td {
+		color:#FF0000;
+	}
+	tr.present td { color:#42a047; }
+	
+	.show_on_index { display:none; }
+
+
+/* ------------------------------------
+   lot states
+--------------------------------------*/
+	.HOLD::before { color: #F44336; }
+    .INPROCESS::before { color: #4CAF50; }
+    .READY::before { color: #FF9800; }
+    .AVAIL::before { color: #546e7a; }
+
+/* ------------------------------------
+   lot priorities
+--------------------------------------*/
+	.priority1::before { color: #01579B; }
+    .priority2::before { color: #81D4FA; }
+    .priority3::before { color: #09AF00; }
+    .priority4::before { color: #FF9100; }
+    .priority5::before { color: #FF3D00; }    
+    
+/* ------------------------------------
+Structure partial
+-------------------------------------*/
+	#structure_of_lot span.structure_desc_col { position:absolute; left:50%; }
+	
+	#structure_of_lot span.PRODUCT::before { content: url("../images/op_icons/icon_product.png"); }
+	#structure_of_lot span.STEP::before { content: url("../images/op_icons/icon_step.png"); padding-right: 0.5em; }
+	
+	#structure_of_lot li { list-style-type: none; }
+	#structure_of_lot li.expanded { background:url("../images/gui/notch_down_000.png") 5px 50% no-repeat; padding-left: 1.25em; }
+	#structure_of_lot li.expanded:hover { background:url("../images/gui/notch_down_orange.png") 5px 50% no-repeat; padding-left: 1.25em; }
+	#structure_of_lot li.collapsed { background:url("../images/gui/notch_right_000.png") 5px 50% no-repeat; padding-left: 1.25em; }
+	#structure_of_lot li.collapsed:hover { background:url("../images/gui/notch_right_orange.png") 5px 50% no-repeat; padding-left: 1.25em; }
+	
+	/* Remove from OPERATIONS */
+	#structure_of_lot li.OPERATION { background:none; }
+	#structure_of_lot li.OPERATION:hover { background:none;}
+	
+
+	#structure_of_lot ul { margin: 0.5em 0 0 2.5em; }
+	/* it's getting the first of EVERY level    #structure_of_lot ul:first-of-type  { margin-left: 0; } */
+	#structure_of_lot li.OPERATION { margin-left: 2.5em; }
+	/* #structure_of_lot li:first-of-type  { margin-left: 0; } */
+
+	#structure_of_lot li.current_position:not(.expanded) { background-color: #65b6e1; }
+	#structure_of_lot li.current_position:hover:not(.expanded) { background-color: #65b6e1; }
+	#structure_of_lot ul.step_entry_not_met { background: #eeefef; }
+	
+	
+/* ------------------------------------
+Content partial
+-------------------------------------*/
+	tr.split, td.split {
+		color:#999999;
+	}

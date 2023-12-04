@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import QrcodeContainer from "../QrcodeContainer";
 import JkInfo from "../JkInfo";
 import ReadmoreInfo from "../ReadmoreInfo";
 import BtnText22 from "../BtnText22";
 import "./Footer.sass";
+import { AppContext } from "../../contexts";
 
 function Footer(props) {
+  const { footer8Data } = useContext(AppContext);
   const {
     className,
     qrcodeContainerProps,
@@ -15,10 +17,10 @@ function Footer(props) {
     btnText22Props,
     btnText23Props,
     btnText24Props,
-  } = props;
+  } = footer8Data;
 
   return (
-    <footer className={`footer ${className || ""}`}>
+    <footer className={`footer ${className || ""}`} style={{width:"100%"}}>
       <div className="footer_container">
         <div className="footer_content">
           <QrcodeContainer rectangle={qrcodeContainerProps.rectangle} />

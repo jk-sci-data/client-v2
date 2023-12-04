@@ -1,0 +1,148 @@
+/* styles.module.css */
+
+.AccountInfoBox1 {
+    border-radius: 10px;
+    background: #FFF;
+
+    /* SpreadShadow */
+    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.10);
+
+    width: 282px;
+    height: 388px;
+}
+
+.Q, .Q1 {
+    color: var(--, #686868);
+
+    /* 正文小 */
+    font-family: Noto Sans SC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+}
+
+.Username141 {
+    color: #000;
+
+    /* 正文小 */
+    font-family: Noto Sans SC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+}
+
+.Btn {
+    display: inline-flex;
+    padding: 8px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 21px;
+    border: 1px solid var(--, #A6A7AA);
+    background: var(--, #F2F3F4);
+}
+
+.Line8 {
+    background: #D8EAEF;
+    width: 232px;
+    height: 2px;
+}
+
+.Frame436 {
+    /* Add styles for Frame436 */
+}
+
+.DropdownItem {
+    background: #FFF;
+    display: flex;
+    width: 174px;
+    padding: 2px 16px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.IconRegular {
+    display: inline-flex;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.OptionBoxContianer {
+    display: flex;
+    width: 250px;
+    padding: 4px;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    border-radius: 10px;
+    background: var(--, #F2F3F4);
+    
+    /* black2 */
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.OptionBox, .OptionBox1 {
+    display: flex;
+    height: 28px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 94px;
+}
+
+.ExpandInfo {
+    /* Add styles for ExpandInfo */
+}
+
+.IconRegular1, .IconRegular2 {
+    /* Add styles for IconRegular1 */
+}
+
+
+.AccountBox {
+    /* Add styles for AccountBox */
+}
+
+.CompanyAccount {
+    /* Add styles for CompanyAccount */
+}
+
+.CompanyName {
+    /* Add styles for CompanyName */
+}
+
+.AccountName {
+    /* Add styles for AccountName */
+}
+
+.Btn1 {
+    /* Add styles for Btn1 */
+}
+
+.AccountBox1 {
+    /* Add styles for AccountBox1 */
+}
+
+.CompanyAccount1 {
+    /* Add styles for CompanyAccount1 */
+}
+
+.JK {
+    /* Add styles for JK */
+}
+
+.UserName13541 {
+    /* Add styles for UserName13541 */
+}
+
+.Btn2 {
+    /* Add styles for Btn2 */
+}

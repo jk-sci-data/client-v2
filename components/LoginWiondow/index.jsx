@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import InputBoxRegular42 from "../InputBoxRegular42";
 import BtnCheckbox22 from "../BtnCheckbox22";
 import BtnText from "../BtnText";
@@ -6,13 +6,13 @@ import Btn82 from "../Btn82";
 import BtnText2 from "../BtnText2";
 import "./LoginWiondow.sass";
 
-import { InputProvider } from "../../contexts";
-import { LoginContext, FormContext } from "../../contexts";
+import { LoginContext, FormContext, InputProvider } from "contexts";
 
 function LoginWiondow(props) {
-  const { handleLogin } = React.useContext(LoginContext) || {};
-  const { formData } = React.useContext(FormContext) || {};
+  const { handleLogin, handleSignUp } = useContext(LoginContext) || {};
+  const { formData } = useContext(FormContext) || {};
 
+  
   const {
     text7,
     text8,
@@ -30,10 +30,18 @@ function LoginWiondow(props) {
     evt.preventDefault();
 
     const { username, password } = formData;
-    handleLogin(username, password);
+    handleLogin(username, password).then((success) => {
+      if (!success)
+        return;
+      
+      // const redirectedFrom = sessionStorage.getItem('redirectedFrom');
+      // sessionStorage.removeItem('redirectedFrom');
+      // window.location.href = redirectedFrom || '/';
+    });
   }
 
-  return (
+
+  return ( 
     <div className="login-wiondow">
       <div className="login_container">
         <div className="upper">
@@ -80,6 +88,7 @@ function LoginWiondow(props) {
         src={ofjfkpofghh4Esmwcdjkd0Nj1}
         alt="OFJFkPofGhH4esMWcDJKd0nj 1"
       />
+      
     </div>
   );
 }

@@ -1,0 +1,46 @@
+	#sub_menus {
+ 		border-bottom: rgba(0, 0, 0, 0.7) solid 3px;
+ 		padding-bottom: 3px;
+	}
+	.make_lowercase {
+		text-transform: lowercase;
+	}
+
+
+/* ------------------------------------
+   tool details
+--------------------------------------*/
+	span.title { 
+		padding-right: 0.5em;
+		font-style:italic;
+	}
+	p.data { 
+		padding-bottom:0.25em; 
+	}
+	
+	h4.top_spacing { padding-top: 2em; }
+	
+	.show_on_index { display:none; }
+	
+
+/* ------------------------------------
+   tool states
+--------------------------------------*/
+	.UP:before, .PRODUCTION:before, .IN_USE:before {
+    	color: #4CAF50;
+    }
+    .DOWN:before, .MAINT:before, .UNAVAIL:before, .UDOWN:before {
+    	color: #F44336;
+    }
+	.BUSY:before { 
+		color: #9C27B0;
+	}
+	.IDLE:before { 
+		color: #2196F3;
+	}
+	.FAULT:before, .SCHEDULED_DOWN:before { 
+		color: #AD1457;
+	}
+	.CUSTOM_STATE_1:before {
+		color: #FFEB3B;
+	} 

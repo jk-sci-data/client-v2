@@ -1,70 +1,104 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
+import { AppContext } from "./AppContext";
 
 const LoginContext = createContext();
+const prefixUrl = process.env.REACT_APP_API_URL + "/api/auth";
 
 function LoginProvider({ children }) {
-    const accessToken = "12344";
-    const username = "Test username";
-    const prefixUrl = process.env.REACT_APP_API_URL + "/api/auth";
-    const [authenticated, setAuthenticated] = useState(null);
-    const [account, setAccount] = useState({});
+    const ctx = useContext(AppContext);
+    const [authorized, setAuthorized] = useState(null);
+
+    const authorize = async () => {
+        const response = await fetch(`${prefixUrl}/authorize-user`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+            },
+            mode: 'cors',
+            credentials: "include"
+        });
+        if (!response.ok) {
+            console.info("Login invalid");
+            ctx.setAccount(() => null);
+            return false;
+        }
+        const data = await response.json();
+        console.log("account data", data);
+        ctx.setAccount(() => ({
+            userId: data.userId,
+            username: data.username,
+            orgId: data.orgId,
+            accountId: data.accountId,
+            roles: data.roles,
+        }));
+        return true;
+    }
+
+    const handleSignUp = async (username, password, orgId, email, phoneNumber, isMain,) => {
+        const response = await fetch(`${prefixUrl}/signup`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                username, 
+                password, 
+                orgId, 
+                email,
+                phoneNumber, 
+                isMain
+            })
+        })
+        console.log(response);
+        return response;
+    }
 
     const handleLogin = async (username, password) => {
-        // Make a POST request to the backend /login endpoint
-        const response = await fetch(`${prefixUrl}/login`, {
-            method: 'POST',
-            mode: "cors",
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
-        console.log(response);
-        if (response.ok) {
+        let success = false;
+        try {
+            const response = await fetch(`${prefixUrl}/login`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                mode: 'cors',
+                body: JSON.stringify({ username, password }),
+                credentials: "include"
+            });
+            console.log("response", response);
             const data = await response.json();
-            console.log(data);
-            // Login successful, enable the profile and logout buttons
-
-            localStorage.setItem("accessToken", data.accessToken);
-            localStorage.setItem("refreshToken", data.refreshToken);
-            localStorage.setItem("username", username);
-
-            alert('Login successful!');
-        }
-    };
-
-    const validateSession = async () => {
-        console.log("is this even startring?")
-        const accessToken = sessionStorage.getItem("accessToken") ?? localStorage.getItem("accessToken");
-        if (!accessToken)
-            return false;
-        
-        const response = await fetch(`${prefixUrl}/profile`, {
-            method: 'GET',
-            mode: "cors",
-            credentials: 'include',
-            headers: {
-                'Authorization': `Bearer ${accessToken}` // Replace with the actual access token received after login
+            console.log('Response data:', data);
+            if (data['accessToken']) {
+                if (!ctx) {
+                    console.error("appcontext is missing. will not set accessToken :(")
+                }
+                console.log("new accessToken", data['accessToken']);
+                ctx?.setAccessToken(data['accessToken']);
+                success = true;
+            } else {
+                alert("Login failed.");
+                throw new Error("Login failed. No access token found.");
             }
-        });
-        console.log(response);
-        if (response.ok) {
-            // Profile access successful
-            const data = await response.json();
-            console.log(data);
-            //alert('Profile access successful! Message from server: ' + data.message);
-            return true;
-        } 
-        ["accessToken", "refreshToken", "username"].forEach((k) => localStorage.removeItem(k));
-        return false;
+            // Handle the response data or perform further actions here
+        } catch (error) {
+            alert("Login failed.");
+            ctx?.setAccessToken(null);
+            console.error('Error:', error);
+        }
+        return success;
     };
 
-    const handleLogout = async (event) => {
+    const handleLogout = async () => {
         const response = await fetch(`${prefixUrl}/logout`, {
             method: 'POST',
             mode: "cors",
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+            }
         });
 
         if (response.ok) {
@@ -75,32 +109,31 @@ function LoginProvider({ children }) {
                     s.removeItem(t);
                 })
             });
-            return;
+            setLoggedIn(false);
+            setAccount(null);
+            return true;
         }
 
         // Logout failed, show an error message
         alert('Logout failed.');
-
+        return false;
     }
 
-
-    React.useEffect(() => {
-        console.log("login useeffect")
-        validateSession().then((r) => {
-            console.log("session validation", r);
-            setAuthenticated(r.success === true);
-            setAccount({
-                "accessToken": sessionStorage.getItem("accessToken") ?? localStorage.getItem("accessToken"),
-                "refreshToken": sessionStorage.getItem("refreshToken") ?? localStorage.getItem("refreshToken"),
-                "username": sessionStorage.getItem("username") ?? localStorage.getItem("username"),
-            })
-        }).catch((err) => console.error("validation failed", err))
+    useEffect(() => {
+        console.log("login useeffect called to authorize");
+        authorize().then(r => {
+            setAuthorized(r);
+        });
     }, []);
-
+    
     const value = {
-        accessToken, username,
-        handleLogin, handleLogout, validateSession,
-        authenticated, account
+        username: ctx?.username,
+        account: ctx?.account,
+        loggedIn: ctx?.loggedIn,
+        authorized,
+        handleLogin, 
+        handleLogout,
+        handleSignUp
     };
 
     return <LoginContext.Provider value={value}>

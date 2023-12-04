@@ -2,13 +2,19 @@
   "name": "react-package",
   "baseUrl": "./",
   "alias": {
-    "common.js": "./common.js"
+    "common.js": "./common.js",
+    "components": "./components",
+    "contexts": "./contexts",
+    "pages": "./pages"
   },
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html --public-url ./ --no-scope-hoist"
   },
   "dependencies": {
+    "@mui/material": "^5.14.10",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "papaparse": "^5.4.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -16,10 +22,17 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@parcel/packager-raw-url": "^2.8.1",
     "@parcel/transformer-sass": "^2.8.1",
+    "@parcel/transformer-webmanifest": "^2.8.1",
     "browserslist": "4.19.3",
+    "buffer": "^5.7.1",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0",
     "parcel": "2.8.1",
     "parcel-reporter-static-files-copy": "^1.3.4",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5"
   }
 }

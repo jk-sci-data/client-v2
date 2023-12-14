@@ -1,9 +1,10 @@
 import React from "react";
-import TitleContainer from "components/TitleContainer";
-import InputRegular from "components/InputRegular";
-import InputRegular2 from "components/InputRegular2";
-import InputRegular3 from "components/InputRegular3";
-import InputRegular4 from "components/InputRegular4";
+import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
+import InputNameWithBubble from "components/InputNameWithBubble";
+import InputName from "components/InputName";
+import InputInsideWords from "components/InputInsideWords";
+
+
 import CategoryTitle3 from "components/CategoryTitle3";
 import UploadedItem from "components/UploadedItem";
 import CategoryContainer2 from "components/CategoryContainer2";
@@ -32,11 +33,34 @@ function Certificate(props) {
   return (
     <MainApp>
       <div className="main_container-8">
-        <TitleContainer>{titleContainerProps.children}</TitleContainer>
+        <TitleWithBubbleBox
+                title="资质证照"
+                bubbleContent="Bubble Content for 资质证照"
+                />  
+
         <div className="main-content-7">
-        
+              <div className="form-list-wrap">
+                    <InputNameWithBubble Name="经营资质类型" bubbleContent="Bubble Content for" />
+                    <input type="text" name="必填" placeholder="必填"></input>
+                </div>
+                <div className="form-list-wrap">
+                    <InputName Name="公司成立时间" bubbleContent="Bubble Content for" />
+                    <input type="date" id="dateInput" name="dateInput"></input>
+                </div>
+                <div className="form-list-wrap">
+                    <InputName Name="注册资本" bubbleContent="Bubble Content for" />  
+                    <InputInsideWords rightContent="元" />
+                </div>
+                <div className="form-list-wrap">
+                    <InputName Name="员工总数" bubbleContent="Bubble Content for" />
+                    <InputInsideWords rightContent="人" />
+                </div>
+                <div className="form-list-wrap">
+                    <InputName Name="公司占地面积" bubbleContent="Bubble Content for" />
+                    <InputInsideWords rightContent="平方米" />
+                </div>
           <div className="category_container-4">
-            <CategoryTitle3
+            <CategoryTitle3 
               categorytitle={categoryTitle3Props.categorytitle}
               className={categoryTitle3Props.className}
             />

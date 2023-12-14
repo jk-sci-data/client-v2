@@ -1,0 +1,63 @@
+/* Style the container to position relative */
+.custom-select 
+  position: relative
+  display: inline-block
+
+
+/* Hide the default <select> dropdown arrow */
+.custom-select select
+  display: none
+
+
+/* Style the custom dropdown button */
+.select-btn
+  min-width: 271px
+  display: inline-block
+  position: relative
+  padding: 10px
+  font-size: 16px
+  cursor: pointer
+  border: 1px solid #414042
+  border-radius: 4px
+
+.select-btn img
+  width: 32px
+
+.select-btn .arrow
+  position: absolute
+  right:5px
+  top: 5px
+  
+/* Style the dropdown content (hidden by default) */
+.select-options
+  position: absolute
+  top: 100%
+  left: 43%
+  right: 0
+  z-index: 1
+  display: none
+  background-color: #fff
+  border: 1px solid #000000
+  border-radius: 4px
+
+
+/* Style the dropdown options (links inside the dropdown) */
+.select-options div
+  display: block
+  padding: 5px 4px 5px 12px
+  text-decoration: none
+  color: #7d7d7d
+
+
+/* Change color on hover */
+.select-options div:hover
+  background-color: #ddd
+
+
+/* Show the dropdown when the button is clicked */
+.input-select.active .select-options
+  display: block
+
+
+
+ 

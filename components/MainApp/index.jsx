@@ -20,7 +20,7 @@ export default function MainApp({ children, requireLogin = true }) {
                 </div>
                 <div style={{ flexGrow: "1", display: "flex", flexFlow: "row nowrap", justifyContent: "center", padding: "1.2em" }}>
                     {(requireLogin && !loggedIn)
-                        ? loginWiondowData && <FormProvider><LoginWiondow {...loginWiondowData} /></FormProvider>
+                        ?children
                         : children
                     }
                 </div>

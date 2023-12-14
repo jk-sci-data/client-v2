@@ -5,11 +5,15 @@ import "./Right.sass";
 function Right() {
   return (
     <div className="right">
-      <div className="preview_container">
-        <IconRegular8 />
-        <div className="preview notosanssc-normal-shark-16px">预览</div>
-      </div>
-      <img className="icon_regular-101" src="/img/component-1-21@2x.png" alt="icon_regular" />
+      <a href="#" className="preview-link">
+        <div className="preview_container">
+          <IconRegular8 />
+          <div className="preview notosanssc-normal-shark-16px">预览</div>
+        </div>
+      </a>
+      <a href="#" className="image-link">
+        <img className="icon_regular-101" src="/img/component-1-21@2x.png" alt="icon_regular" />
+      </a>
     </div>
   );
 }

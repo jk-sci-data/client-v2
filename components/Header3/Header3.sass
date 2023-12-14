@@ -1,16 +1,6 @@
 @import '../../variables'
 
-.header-1,
-.header-2,
-.header-3,
-.header-4,
-.header-5,
-.header-6,
-.header-7,
-.header-8,
-.header-9,
-.header-10,
-.header-11
+.header-1, .header-2, .header-3, .header-4, .header-5, .header-6, .header-7, .header-8, .header-9, .header-10, .header-11
   align-items: center
   background-color: $fillicon
   box-shadow: 0px 2px 3px 1px #00000026
@@ -22,17 +12,7 @@
   position: relative
   width: 1280px
 
-.username_container,
-.username_container-1,
-.username_container-2,
-.username_container-3,
-.username_container-4,
-.username_container-5,
-.username_container-6,
-.username_container-7,
-.username_container-8,
-.username_container-9,
-.username_container-10
+.username_container, .username_container-1, .username_container-2, .username_container-3, .username_container-4, .username_container-5, .username_container-6, .username_container-7, .username_container-8, .username_container-9, .username_container-10
   align-items: center
   display: flex
   gap: 20px
@@ -41,35 +21,197 @@
   position: relative
   width: 167px
 
-.username141,
-.username141-1,
-.username141-2,
-.username141-3,
-.username141-4,
-.username141-5,
-.username141-6,
-.username141-7,
-.username141-8,
-.username141-9,
-.username141-10
+.username141, .username141-1, .username141-2, .username141-3, .username141-4, .username141-5, .username141-6, .username141-7, .username141-8, .username141-9, .username141-10
   letter-spacing: 0
   line-height: 24px
   position: relative
   white-space: nowrap
   width: fit-content
 
-.vector,
-.vector-1,
-.vector-2,
-.vector-3,
-.vector-4,
-.vector-5,
-.vector-6,
-.vector-7,
-.vector-8,
-.icon-user,
-.vector-9
+.vector, .vector-1, .vector-2, .vector-3, .vector-4, .vector-5, .vector-6, .vector-7, .vector-8, .icon-user, .vector-9
   height: 30px
   min-width: 30px
   position: relative
 
+.dropdown
+  position: relative
+  display: inline-block
+
+.dropbtn
+  background-color: #3498db
+  color: white
+  padding: 10px
+  font-size: 16px
+  border: none
+  cursor: pointer
+
+.dropdown-content
+  display: none
+  position: absolute
+  background-color: #f9f9f9
+  min-width: 160px
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2)
+  z-index: 1
+
+.dropdown-content a
+  color: black
+  padding: 12px 16px
+  text-decoration: none
+  display: block
+
+.dropdown-content a:hover
+  background-color: #f1f1f1
+
+.show
+  display: block
+
+.login-area
+  position: relative
+
+.login-area img 
+    margin-left: 12px
+    width: 22px
+
+
+.login-area button 
+    background: unset
+
+#login-box
+  box-shadow: 0px 1px 5px #00000026
+  width: 282px
+  z-index: 1
+  border-radius: 10px
+  position: absolute
+  right: 20px
+  background-color: #ffffff
+  padding: 20px
+
+#login-box .closed
+  right: 0
+  position: absolute
+  background-color: unset
+
+#login-box .closed img
+  width: 32px
+  height: 32px
+
+// Core styles/functionality
+.tab input
+  position: absolute
+  opacity: 0
+  z-index: -1
+
+.tab__content
+  max-height: 0
+  overflow: hidden
+  transition: all 0.35s
+
+.tab input:checked ~ .tab__content
+  max-height: 10rem
+
+// Visual styles
+.accordion
+  background: #F2F3F4
+  border-radius: 0.5rem
+  overflow: hidden
+
+.tab__label, .tab__close
+  display: flex
+  cursor: pointer
+
+.tab__label
+  justify-content: space-between
+  padding: 0 5px
+  margin: 0
+
+.tab__label::after
+    font-size: 13px
+    padding-left: 8px
+    height: 22px
+    border-radius: 50%
+    width: 22px
+    color: #fff
+    background: #a6a7aa
+    content: "❯"
+    transition: all .35s
+    transform: rotate(90deg)
+
+
+
+.tab input:checked + .tab__label::after
+  transform: rotate(270deg)
+
+.tab__close
+  justify-content: flex-end
+  padding: 0.5rem 1rem
+  font-size: 0.75rem
+
+.accordion--radio
+  --theme: var(--secondary)
+
+label.tab__label p img
+    width:22px
+    height: 22px
+
+.tab__label p
+   font-size: 12px
+   margin-bottom: 0
+
+.tab__content .list p
+    margin-bottom: 0
+
+.list 
+    margin-top: 10px
+    padding: 10px
+    margin-bottom: 5px
+    background: #fff
+    width: 100%
+    display: table
+
+.list-right 
+    width: 35%
+    display: table-cell
+
+.list-right a 
+    font-size: 12px
+    display: block
+    color:  #444444
+    border-radius: 50px
+    padding: 8px 20px
+    background: #f2f3f4
+    border: 2px solid #a6a7aa
+
+.list-left p.first 
+  font-weight: bold
+
+.list-left p.second 
+    font-size: 12px
+
+.top-area
+  width: 100%
+  border-bottom: 2px solid #D8EAEF
+  margin-top: 30px
+  margin-bottom: 10px
+  display: table
+  line-height: 28px
+  text-align: center
+  background-color: #fff
+
+.top-area a 
+    margin: 0 auto 20px auto
+    width: 142px
+    font-size: 12px
+    display: block
+    color: #444444
+    border-radius: 50px
+    padding: 6px 30px
+    background: #f2f3f4
+    border: 2px solid #a6a7aa
+
+.login-out img 
+    width: 28px
+
+.login-out 
+    margin-top: 20px
+    text-align: center
+    color: #A6A7AA

@@ -22,7 +22,7 @@ function SubNavContainer(props) {
   const {sideNavSettings} = React.useContext(SideNavContext);
 
   return (
-    <div className="subnav_container-28">
+    <div className="subnav_container-28"　>
       <div className="text-124 notosanssc-bold-tundora-26px">{props.label}</div>
       <img className="line-4-17" src={sideNavSettings.lineImg} alt="Line 4" />
       <div className="subnav-28"> {

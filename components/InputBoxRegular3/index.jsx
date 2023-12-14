@@ -5,10 +5,16 @@ function InputBoxRegular3(props) {
   const { placeholder } = props;
 
   return (
-    <div className="input-box_regular-5">
-      <div className="placeholder-5 valign-text-middle notosanssc-normal-quick-silver-20px">{placeholder}</div>
-      <img className="expand_btn-1" src="/img/expandbox@2x.png" alt="expand_btn" />
-    </div>
+     <select name="choose">
+      <option value="">必填</option>
+      <option value="choose1">1</option>
+      <option value="choose2">2</option>
+      <option value="choose3">3</option>
+      <option value="choose5">4</option>
+      <option value="choose6">5</option>
+      <option value="choose7">6</option>
+    </select>
+  
   );
 }
 

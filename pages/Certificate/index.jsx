@@ -34,28 +34,7 @@ function Certificate(props) {
       <div className="main_container-8">
         <TitleContainer>{titleContainerProps.children}</TitleContainer>
         <div className="main-content-7">
-          <div className="column_container-5">
-            <InputRegular
-              inputSubtitleContainer8Props={inputRegularProps.inputSubtitleContainer8Props}
-              inputBoxRegularProps={inputRegularProps.inputBoxRegularProps}
-            />
-            <InputRegular2
-              inputSubtitleContainer9Props={inputRegular2Props.inputSubtitleContainer9Props}
-              inputBoxRegular2Props={inputRegular2Props.inputBoxRegular2Props}
-            />
-            <InputRegular3
-              inputSubtitleContainer9Props={inputRegular31Props.inputSubtitleContainer9Props}
-              inputBoxRegular4Props={inputRegular31Props.inputBoxRegular4Props}
-            />
-            <InputRegular3
-              inputSubtitleContainer9Props={inputRegular32Props.inputSubtitleContainer9Props}
-              inputBoxRegular4Props={inputRegular32Props.inputBoxRegular4Props}
-            />
-            <InputRegular4
-              inputSubtitleContainer8Props={inputRegular4Props.inputSubtitleContainer8Props}
-              inputBoxRegular4Props={inputRegular4Props.inputBoxRegular4Props}
-            />
-          </div>
+        
           <div className="category_container-4">
             <CategoryTitle3
               categorytitle={categoryTitle3Props.categorytitle}

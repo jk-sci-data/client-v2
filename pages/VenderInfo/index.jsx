@@ -15,6 +15,7 @@ import "./VenderInfo.sass";
 function VederInfo() {
   return (
     <MainApp>
+  
       <div className="main_container">
             <div className="cont-2">
               <TitleWithBubbleBox

@@ -4,7 +4,7 @@ import "./AccountInfoList.sass";
 import AccountInfoItem from "components/AccountInfoItem";
 import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
 import Note from "components/Note";
-import IconMore from "../../dist/img/icon-more.png";
+import MoreWithAButton from "components/MoreWithAButton";
 import MainApp from "components/MainApp";
 
 const accountInfoData = [
@@ -19,28 +19,32 @@ const accountInfoData = [
 function AccountInfoList() {
   return (
     <MainApp>
-      <div className="main_container" style={{ width: "100%", alignItems: "unset" }}> 
-         <TitleWithBubbleBox
-          title="账户信息"
-          bubbleContent="Bubble Content for 账户信息"
-          />  
+         
+        <div className="main_container" style={{ width: '100%' }}>
+          <div className="cont-main">
+            <TitleWithBubbleBox
+            title="账户信息" 
+            bubbleContent="Bubble Content for 账户信息"
+            />  
 
-          <Note content="修改权限，请联系账户管理员" />
-
-        {accountInfoData.map((item, index) => (
-          <AccountInfoItem
-            key={index}
-            title={item.title}
-            name={item.name}
-            linkText={item.linkText}
-            linkHref={item.linkHref}
-          />
-        ))}
-        <div className="main-bottom ">
-          <a href='#' className="more">更多<img src={IconMore} alt="more"/></a>
-          <a href='#' className="confirm">确认账号权限</a>
+            <Note content="修改权限，请联系账户管理员" />
+            </div>
+            {accountInfoData.map((item, index) => (
+              <AccountInfoItem
+                key={index}
+                title={item.title}
+                name={item.name}
+                linkText={item.linkText}
+                linkHref={item.linkHref}
+              />
+            ))}
+            <div style={{ marginTop: '24px' }}></div>
+            < MoreWithAButton
+                  confirmText="确认账号权限"
+                />
         </div>
-      </div>
+      
+     
     </MainApp>
   );
 }

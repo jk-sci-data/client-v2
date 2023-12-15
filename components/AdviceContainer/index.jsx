@@ -1,7 +1,7 @@
 import React from "react";
 import BtnText3 from "../BtnText3";
 import "./AdviceContainer.sass";
-
+import IconMore from "../../dist/img/icon-more.png";
 function AdviceContainer(props) {
   const { text30, btnText3Props } = props;
 

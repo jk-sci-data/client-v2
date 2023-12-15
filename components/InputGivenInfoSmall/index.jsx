@@ -8,7 +8,7 @@ function InputGivenInfoSmall(props) {
 
   return (
     <article className="input_given-info_small">
-      <InputSubtitleContainer>{inputSubtitleContainerProps.children}</InputSubtitleContainer>
+      <InputSubtitleContainer>{inputSubtitleContainerProps.children}11</InputSubtitleContainer>
       <BtnText62>{btnText6Props.children}</BtnText62>
     </article>
   );

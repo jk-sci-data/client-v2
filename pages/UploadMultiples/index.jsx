@@ -3,6 +3,7 @@ import TitleContainer from "components/TitleContainer";
 import CategoryTitle2 from "components/CategoryTitle2";
 import UploadWindowLarge from "components/UploadWindowLarge";
 import AdviceContainer from "components/AdviceContainer";
+import MoreWithAButton from "components/MoreWithAButton";
 import "./UploadMultiples.sass";
 import { ExcelParserContext, ExcelParserProvider, FileContext, FileProvider } from "contexts";
 import MainApp from "components/MainApp";
@@ -120,10 +121,15 @@ function UploadMultiples(props) {
           <ExcelParserProvider>
             <ParserField />
           </ExcelParserProvider>
-          <AdviceContainer
-            text30={adviceContainerProps.text30}
-            btnText3Props={adviceContainerProps.btnText3Props}
-          />
+          <div style={{ width: '100%', display: 'flex' }}>
+            <AdviceContainer
+              text30={adviceContainerProps.text30}
+              btnText3Props={adviceContainerProps.btnText3Props}
+            />
+              < MoreWithAButton
+                  confirmText="单个上传产品信息"
+                />
+            </div>
         </div>
       </div>
     </MainApp>

@@ -19,7 +19,14 @@ import InputSmall2 from "components/InputSmall2";
 import UploadWindowMedium from "components/UploadWindowMedium";
 import CategoryContainer from "components/CategoryContainer";
 import UpdatedDateContainer from "components/UpdatedDateContainer";
+import Word from "components/Word";
+import Right from "components/Right";
+import Note from "components/Note";
+import Right from "components/Right";
+import Btn7 from "components/Btn7";
+
 import BtnContainer from "components/BtnContainer";
+import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
 import "./InquiryInquieyItem.sass";
 import MainApp from "components/MainApp";
 
@@ -64,8 +71,13 @@ function InquiryInquieyItem(props) {
 
   return (
     <MainApp>
-      <div className="main_container-2">
-        <TitleContainer>{titleContainerProps.children}</TitleContainer>
+       <div className="main_container-2">
+      <div className="cont-main">
+            <TitleWithBubbleBox
+              title="报价单信息"
+              bubbleContent="Bubble Content for 报价单信息"
+              />  
+          </div>
         <div className="main-content-2">
           <div className="product_-info-box">
             <div className="category_container">
@@ -74,7 +86,7 @@ function InquiryInquieyItem(props) {
                 <div className="flex-col">
                   <div className="flex-row-1">
                     <div className="input_giveninfo_small-container">
-                      <InputGivenInfoSmall
+                      <InputGivenInfoSmall 
                         inputSubtitleContainerProps={inputGivenInfoSmall1Props.inputSubtitleContainerProps}
                         btnText6Props={inputGivenInfoSmall1Props.btnText6Props}
                       />
@@ -200,19 +212,40 @@ function InquiryInquieyItem(props) {
             </div>
             <div className="category_container-1">
               <CategoryTitle4 categorytitle={categoryTitle42Props.categorytitle} />
-              <div className="column_container-1">
-                <InputSmall inputSubtitleContainerProps={inputSmallProps.inputSubtitleContainerProps} />
-                <InputSmall2 inputSubtitleContainer2Props={inputSmall2Props.inputSubtitleContainer2Props} />
-              </div>
-              <UploadWindowMedium uploadWindowSmallProps={uploadWindowMediumProps.uploadWindowSmallProps} />
+              <div className="input_giveninfo_small-container-1">
+                    <InputGivenInfoSmall4
+                      inputSubtitleContainerProps={inputGivenInfoSmall49Props.inputSubtitleContainerProps}
+                      btnText7Props={inputGivenInfoSmall49Props.btnText7Props}
+                    />
+                    <InputGivenInfoSmall6
+                      inputSubtitleContainer2Props={inputGivenInfoSmall62Props.inputSubtitleContainer2Props}
+                      btnText7Props={inputGivenInfoSmall62Props.btnText7Props}
+                    />
+                  </div>
+                  <div className="input_giveninfo_small-container-1">
+                    <InputGivenInfoSmall7
+                      inputSubtitleContainer4Props={inputGivenInfoSmall73Props.inputSubtitleContainer4Props}
+                      btnText7Props={inputGivenInfoSmall73Props.btnText7Props}
+                    />
+                    <InputGivenInfoSmall6
+                      inputSubtitleContainer2Props={inputGivenInfoSmall63Props.inputSubtitleContainer2Props}
+                      btnText7Props={inputGivenInfoSmall63Props.btnText7Props}
+                    />
+                  </div>
             </div>
-            <CategoryContainer
-              categoryTitle4Props={categoryContainerProps.categoryTitle4Props}
-              uploadWindowLargeProps={categoryContainerProps.uploadWindowLargeProps}
-            />
-            <UpdatedDateContainer />
+            <Note content="上传产品证书" />
+            <div className="uploaded-item">
+            <div className="left">
+              <Word />
+              <div className="document-name notosanssc-normal-black-16px">经营许可证.DOCX</div>
+            </div>
+            <Right />
+            
+        </div>
           </div>
-          <BtnContainer btn2Props={btnContainerProps.btn2Props} />
+          <div className="btn_container" style={{ width: '100%',  justifyContent: 'center', display: 'flex',  }}>
+          <Btn7 />
+          </div>
         </div>
       </div>
     </MainApp>

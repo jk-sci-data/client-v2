@@ -6,7 +6,15 @@ import FramelessButton42 from "components/FramelessButton42";
 import HistorySubNav from "components/HistorySubNav";
 import CategoryTitle22 from "components/CategoryTitle22";
 import ProductHistoryItem from "components/ProductHistoryItem";
-import NavPagenumber from "components/NavPagenumber";
+import Btn3 from "components/Btn3";
+import SearchBox from "components/SearchBox";
+import DropdownButtonList from "components/DropdownButtonList";
+import DropdownButtonListTwo from "components/DropdownButtonListTwo";
+import Pagination from "components/Pagination";
+import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
+
+
+
 import "./History.sass";
 import MainApp from "components/MainApp";
 
@@ -17,10 +25,10 @@ function History(props) {
     searchContainerProps,
     btnFramelessProps,
     btnFrameless21Props,
-    btnFrameless22Props,
+    btnFrameless22Props, 
     historySubNavProps,
     categoryTitle1Props,
-    productHistoryItem1Props,
+    productHistoryItem1Props, 
     productHistoryItem2Props,
     categoryTitle2Props,
     productHistoryItem3Props,
@@ -31,13 +39,15 @@ function History(props) {
   return (
     <MainApp>
       <div className="main_container-4">
-        <TitleContainer>{titleContainerProps.children}</TitleContainer>
+      <div className="cont-main">
+            <TitleWithBubbleBox
+              title="历史记录"
+              bubbleContent="Bubble Content for 历史记录"
+              />  
+          </div>
         <div className="main-content-4">
           <div className="content-1">
-            <Frame437
-              buttonProps={searchContainerProps.buttonProps}
-              searchBar2Props={searchContainerProps.searchBar2Props}
-            />
+       
             <div className="search_sub-nav-1">
               <div className="overlap-group-45">
                 <img className="line-6-1" src={line6} alt="Line 6" />
@@ -49,7 +59,33 @@ function History(props) {
               </div>
             </div>
             <div className="ory_container">
-              <HistorySubNav number={historySubNavProps.number} button32Props={historySubNavProps.button32Props} />
+            <div className="frame-full">
+            <HistorySubNav number={8} />
+                  <DropdownButtonListTwo
+                    icon={<img src="/img/icon-more.png" style={{ width: "19px" }} alt="Icon" />}
+                    name="最近3个月"
+                    items={[
+                      { label: '最近6个月', link: '#' },
+                      { label: '最近9个月', link: '#' },
+                    ]}
+                  />
+              </div>
+              <div className="frame-full">
+             
+   
+
+                <Btn3 />
+                <DropdownButtonList
+                    icon={<img src="/img/component-1-8@2x.png" style={{ width: "19px" }} alt="Icon" />}
+                    name="按加入时间排列"
+                    items={[
+                      { label: '按时间顺序排列', link: '#' },
+                      { label: '按产品编号顺序排列', link: '#' },
+                    ]}
+                  />
+
+                <SearchBox />   
+              </div>
               <div className="ory_container">
                 <CategoryTitle22 categoryTitle3Props={categoryTitle1Props.categoryTitle3Props} />
                 <div className="history-column">
@@ -80,15 +116,9 @@ function History(props) {
                 </div>
               </div>
             </div>
+            <Pagination />
           </div>
-          <NavPagenumber
-            btn51Props={navPagenumberProps.btn51Props}
-            btn52Props={navPagenumberProps.btn52Props}
-            btn53Props={navPagenumberProps.btn53Props}
-            btn54Props={navPagenumberProps.btn54Props}
-            btn55Props={navPagenumberProps.btn55Props}
-            btn56Props={navPagenumberProps.btn56Props}
-          />
+         
         </div>
       </div>
     </MainApp>

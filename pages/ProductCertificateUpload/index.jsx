@@ -70,7 +70,7 @@ function ProductCertificateUpload(props) {
         上传
         </Btn22>
         <Btn7 />
-    </div>
+        </div>
         </div>
       </div>
     </MainApp>

@@ -1,5 +1,4 @@
 import React from "react";
-import BtnFrameless3 from "../BtnFrameless3";
 import "./TextItemContainer.sass";
 
 function TextItemContainer(props) {
@@ -12,7 +11,6 @@ function TextItemContainer(props) {
         <div className="text-item-item-1 valign-text-middle notosanssc-medium-well-read-16px">{number}</div>
         <div className="text-item-item-1 valign-text-middle notosanssc-medium-shark-16px">{text59}</div>
       </div>
-      <BtnFrameless3 />
     </div>
   );
 }

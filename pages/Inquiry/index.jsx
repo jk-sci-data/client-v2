@@ -6,7 +6,14 @@ import BtnFrameless4 from "components/BtnFrameless4";
 import CategoryTitle5 from "components/CategoryTitle5";
 import InquiryItem from "components/InquiryItem";
 import CategoryTitle6 from "components/CategoryTitle6";
-import NavPagenumber from "components/NavPagenumber";
+import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
+import Btn3 from "components/Btn3";
+import BtnFrameless3 from "components/BtnFrameless3/";
+import RadioButtonList from "components/RadioButtonList/";
+import SearchBox from "components/SearchBox";
+import DropdownButtonList from "components/DropdownButtonList";
+
+import Pagination from "components/Pagination";
 import "./Inquiry.sass";
 import MainApp from "components/MainApp";
 
@@ -29,22 +36,45 @@ function Inquiry(props) {
     inquiryItem4Props,
     inquiryItem5Props,
     inquiryItem6Props,
-    navPagenumberProps,
+   
   } = props;
 
   return (
     <MainApp>
       <div className="main_container-3">
-        <TitleContainer>{titleContainerProps.children}</TitleContainer>
+      <div className="cont-main">
+            <TitleWithBubbleBox
+              title="报价管理"
+              bubbleContent="Bubble Content for 报价管理"
+              />  
+          </div>
         <div className="main-content-3">
           <div className="content">
-            <div className="top_sub-nav">
-              <TextItemContainer number={textItemContainerProps.number} text59={textItemContainerProps.text59} />
-              <div className="btn-item_container-1">
-                <BtnOption22 />
+            <div className="top_sub-nav position-re">
+              <div className="frame-full position-ab-one">
+              <TextItemContainer number={2} text59="个询价" />
+              <BtnOption22 />
+              </div>
+              <div className="btn-item_container-1 position-ab-two">
+              <RadioButtonList/>
+              <BtnFrameless3 />
+               
                 <BtnFrameless4 />
               </div>
             </div>
+            <div className="frame-full">
+                <Btn3 />
+                <DropdownButtonList
+                    icon={<img src="/img/component-1-8@2x.png" style={{ width: "19px" }} alt="Icon" />}
+                    name="按加入时间排列"
+                    items={[
+                      { label: '按时间顺序排列', link: '#' },
+                      { label: '按产品编号顺序排列', link: '#' },
+                    ]}
+                  />
+
+                <SearchBox />   
+              </div>
             <div className="inquiry_container">
               <div className="inquiry-menu_container-1">
                 <div className="flex-row-2 notosanssc-medium-granite-gray-16px">
@@ -118,15 +148,9 @@ function Inquiry(props) {
                 />
               </div>
             </div>
+            <Pagination />
           </div>
-          <NavPagenumber
-            btn51Props={navPagenumberProps.btn51Props}
-            btn52Props={navPagenumberProps.btn52Props}
-            btn53Props={navPagenumberProps.btn53Props}
-            btn54Props={navPagenumberProps.btn54Props}
-            btn55Props={navPagenumberProps.btn55Props}
-            btn56Props={navPagenumberProps.btn56Props}
-          />
+        
         </div>
       </div>
     </MainApp>

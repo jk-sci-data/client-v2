@@ -6,11 +6,9 @@ function PromptContainer() {
     <div className="prompt_container">
       <div className="flex-container notosanssc-normal-hippie-blue-16px">
         <div className="text-27">
-          <span className="notosanssc-normal-hippie-blue-16px">上传后需填写证书类型与产品编号，以覆盖文件名。</span>
+          <span className="notosanssc-normal-hippie-blue-16px">了解更多关于<a href="#">产品证书命名格式</a></span>
         </div>
-        <div className="text-27">
-          <span className="notosanssc-normal-hippie-blue-16px">上传后将覆盖同名证书。</span>
-        </div>
+
       </div>
     </div>
   );

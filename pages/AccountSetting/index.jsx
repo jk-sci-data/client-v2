@@ -25,12 +25,15 @@ function AccountSetting() {
     <div>
        <MainApp>
         <div className="main_container" style={{ width: "100%", alignItems: "unset" }}>
-          <TitleWithBubbleBox
-            title="账号权限"
-            bubbleContent="Bubble Content for 账号权限"
-            />  
-            <Note content="修改权限，请联系账户管理员" />
-            <div>
+          <div className="cont-main">
+            <TitleWithBubbleBox
+              title="账号权限"
+              bubbleContent="Bubble Content for 账号权限"
+              />  
+          
+              <Note content="修改权限，请联系账户管理员" />
+          </div>
+          <div>
               {accountSettingItems.map((item, index) => (
                 <AccountSettingItem
                   key={index}
@@ -38,8 +41,9 @@ function AccountSetting() {
                   isOpen={item.isOpen}
                 />
               ))}
-            </div>
+          </div>
         </div>
+        
       </MainApp>
       
     </div>

@@ -29,7 +29,9 @@ import BtnContainer from "components/BtnContainer";
 import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
 import "./InquiryInquieyItem.sass";
 import MainApp from "components/MainApp";
-
+/* put the bubblebox on this page
+TitleWithBubbleBox/
+*/
 function InquiryInquieyItem(props) {
   const {
     titleContainerProps,

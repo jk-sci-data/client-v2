@@ -2,9 +2,14 @@ import React from 'react'
 
 import "./AccountInfoList.sass";
 import AccountInfoItem from "components/AccountInfoItem";
+import TextItemContainer from "components/TextItemContainer";
 import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
 import Note from "components/Note";
 import MoreWithAButton from "components/MoreWithAButton";
+import Btn3 from "components/Btn3";
+import SearchBox from "components/SearchBox";
+import DropdownButtonList from "components/DropdownButtonList";
+import BtnOption22 from "components/BtnOption22";
 import MainApp from "components/MainApp";
 
 const accountInfoData = [
@@ -38,10 +43,38 @@ function AccountInfoList() {
                 linkHref={item.linkHref}
               />
             ))}
-            <div style={{ marginTop: '24px' }}></div>
-            < MoreWithAButton
+         
+            <div className="top_sub-nav"  style={{ width: "100%", height:"60px" }}>
+              <div className="frame-full position-ab-one">
+              <div style={{ paddingTop: 10, display: 'flex' }}>
+              <TextItemContainer number={2} text59="个询价" />
+              <div style={{ marginRight: '10px' }}></div>
+              <BtnOption22 />
+              </div>
+               
+              < MoreWithAButton
                   confirmText="确认账号权限"
                 />
+              </div>
+              <div className="btn-item_container-1 position-ab-two">
+            
+              </div>
+            </div>
+            <div className="frame-full">
+                <Btn3 />
+                <DropdownButtonList
+                    icon={<img src="/img/component-1-8@2x.png" style={{ width: "19px" }} alt="Icon" />}
+                    name="按加入时间排列"
+                    items={[
+                      { label: '按时间顺序排列', link: '#' },
+                      { label: '按产品编号顺序排列', link: '#' },
+                    ]}
+                  />
+
+                <SearchBox />   
+              </div>
+
+
         </div>
       
      

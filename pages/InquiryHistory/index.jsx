@@ -17,7 +17,9 @@ import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
 
 import "./InquiryHistory.sass";
 import MainApp from "components/MainApp";
-
+/*
+import SearchBox DropdownButtonList DropdownButtonListTwo";
+ */
 function InquiryHistory(props) {
   const {
     line6,

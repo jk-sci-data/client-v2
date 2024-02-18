@@ -1,17 +1,18 @@
 import React from "react";
 import "./InputBoxSmall.sass";
 
-import { InputContext, FormContext } from "../../contexts";
+import { InputContext } from "contexts";
 
 function InputBoxSmall(props) {
   const { className } = props;
 
   const inputCtx = React.useContext(InputContext) || {};
-  const formCtx = React.useContext(FormContext) || {};
-  const formData = formCtx.formData || {};
-  const onInput = formCtx.handleInputChange || (() => {});
+  const {name, onChange, formData} = inputCtx;
+  const value = formData[name];
+  const onInput = onChange ?? (() => {});
+  
   return <div className={`input-box_small ${className || ""}`}>
-    <input name={inputCtx.name} value={formData[inputCtx.name] || ""} onInput={onInput}
+    <input name={name} value={value} onInput={onInput}
       style={{ background: "none", border: "none", height: "100%", width: "100%" }} />
   </div>;
 }

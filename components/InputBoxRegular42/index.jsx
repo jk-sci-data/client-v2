@@ -1,14 +1,15 @@
 import React from "react";
 import "./InputBoxRegular42.sass";
-
-import { InputContext, FormContext } from "../../contexts";
-
+import useForm from "hooks/useForm";
+ 
+//todo: add back InputProvider
 function InputBoxRegular42(props) {
-  const { icon_Regular, inputPlaceholder } = props;
+  const { icon_Regular, inputPlaceholder, name, form } = props;
 
-  const { name, value } = React.useContext(InputContext) || {};
-  const { handleInputChange } = React.useContext(FormContext) || {};
+  console.log("Inputboxregular42-props", props)
+  const value = form.data[name];
 
+  const handleInputChange = form.onChange;
   return (
     <article className="input-box_regular">
       <img className="icon_regular" src={icon_Regular} alt="icon_regular" />
@@ -22,6 +23,6 @@ function InputBoxRegular42(props) {
       />
     </article>
   );
-}
+} 
 
 export default InputBoxRegular42;

@@ -5,7 +5,8 @@
     "common.js": "./common.js",
     "components": "./components",
     "contexts": "./contexts",
-    "pages": "./pages"
+    "pages": "./pages",
+    "hooks": "./hooks"
   },
   "scripts": {
     "start": "parcel index.html",

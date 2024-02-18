@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext, useEffect } from "react";
 import InputBoxRegular42 from "../InputBoxRegular42";
 import BtnCheckbox22 from "../BtnCheckbox22";
 import BtnText from "../BtnText";
@@ -6,13 +6,18 @@ import Btn82 from "../Btn82";
 import BtnText2 from "../BtnText2";
 import "./LoginWiondow.sass";
 
-import { LoginContext, FormContext, InputProvider } from "contexts";
+import { InputProvider } from "contexts";
+import { AppContext } from "contexts";
+import useForm from "hooks/useForm";
+import useLogin from "hooks/useLogin";
 
 function LoginWiondow(props) {
-  const { handleLogin, handleSignUp } = useContext(LoginContext) || {};
-  const { formData } = useContext(FormContext) || {};
-
-  
+  const globals = useContext(AppContext) ?? {};
+  console.log("globals", globals)
+  const form = useForm({ "username": "", "password": "" });
+  const login = globals.loginInfo ?? {}; //instance of useLogin()
+  const { account, loggedIn } = login;
+  .0
   const {
     text7,
     text8,
@@ -25,6 +30,24 @@ function LoginWiondow(props) {
     btnText2Props,
   } = props;
 
+  console.log("login formdata", form.data);
+
+  const handleLoginClick = (evt) => {
+    console.log("login clicked");
+    evt.preventDefault();
+    login.handleLogin(form.data /** {username, password} */);
+
+  };
+
+  useEffect(() => {
+    if (loggedIn) {
+      console.log("loggedIn!", loggedIn);
+    }
+    else {
+      console.log("not loggedin", loggedIn);
+    }
+  }, [loggedIn])
+  /**
   const handleLoginClick = (evt) => {
     console.log("login clicked");
     evt.preventDefault();
@@ -39,9 +62,10 @@ function LoginWiondow(props) {
       // window.location.href = redirectedFrom || '/';
     });
   }
+   */
 
 
-  return ( 
+  return (
     <div className="login-wiondow">
       <div className="login_container">
         <div className="upper">
@@ -52,19 +76,19 @@ function LoginWiondow(props) {
           <div className="lower_container">
             <div className="input-section_container">
               <div className="input_container">
-                <InputProvider value={{ name: "username", value: formData?.username || "" }}>
-                  <InputBoxRegular42
-                    icon_Regular={inputBoxRegular421Props.icon_Regular}
-                    inputPlaceholder={inputBoxRegular421Props.inputPlaceholder}
-                  />
-                </InputProvider>
-                <InputProvider value={{ name: "password", value: formData?.password || "" }}>
-                  <InputBoxRegular42
-                    icon_Regular={inputBoxRegular422Props.icon_Regular}
-                    inputPlaceholder={inputBoxRegular422Props.inputPlaceholder}
-                    inputType="password"
-                  />
-                </InputProvider>
+                <InputBoxRegular42
+                  icon_Regular={inputBoxRegular421Props.icon_Regular}
+                  inputPlaceholder={inputBoxRegular421Props.inputPlaceholder}
+                  name={"username"}
+                  form={form}
+                />
+                <InputBoxRegular42
+                  icon_Regular={inputBoxRegular422Props.icon_Regular}
+                  inputPlaceholder={inputBoxRegular422Props.inputPlaceholder}
+                  inputType="password"
+                  name="password"
+                  form={form}
+                />
               </div>
               <div className="password-option_container">
                 <div className="forget-password">
@@ -88,7 +112,7 @@ function LoginWiondow(props) {
         src={ofjfkpofghh4Esmwcdjkd0Nj1}
         alt="OFJFkPofGhH4esMWcDJKd0nj 1"
       />
-      
+
     </div>
   );
 }

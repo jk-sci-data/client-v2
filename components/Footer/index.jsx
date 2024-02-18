@@ -7,7 +7,8 @@ import "./Footer.sass";
 import { AppContext } from "../../contexts";
 
 function Footer(props) {
-  const { footer8Data } = useContext(AppContext);
+  const globals = useContext(AppContext);
+  const { footer8Data } = globals.constants;
   const {
     className,
     qrcodeContainerProps,

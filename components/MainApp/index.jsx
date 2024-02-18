@@ -7,7 +7,8 @@ import LoginWiondow from "components/LoginWiondow";
 
 
 export default function MainApp({ children, requireLogin = true }) {
-    const { productInfoData, loggedIn, loginWiondowData } = useContext(AppContext);
+    const globals = useContext(AppContext);
+    const { productInfoData, loggedIn, loginWiondowData } = globals.constants;
     const { header3Props } = productInfoData;
 
     console.log("loginwindowdata", loginWiondowData)

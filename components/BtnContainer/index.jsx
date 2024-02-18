@@ -3,7 +3,7 @@ import Btn22 from "../Btn22";
 import Btn7 from "../Btn7";
 import "./BtnContainer.sass";
 
-import { InputContext } from "../../contexts";
+import { InputContext } from "contexts";
 
 function BtnContainer(props) {
   const { btn2Props } = props;

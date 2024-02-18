@@ -16,8 +16,8 @@ import AccountInfo from "pages/AccountInfo";
 import { AppContext, AppProvider, FormProvider } from "contexts";
 
 function AppRouter() {
-    const ctx = useContext(AppContext) || {};
-
+    const globals = useContext(AppContext) || {};
+    const ctx = globals.constants;
     return (ctx &&
         <Router>
             <Switch>

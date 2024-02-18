@@ -25,7 +25,7 @@ import MainApp from "../MainApp";
 import { AppContext } from "../../contexts";
 
 function ProductInfoEditaddProduct(props) {
-  const { productInfoEditaddProductData } = useContext(AppContext);
+  const { productInfoEditaddProductData } = useContext(AppContext)?.constants;
   const {
     prompt_Text,
     frame381Props,

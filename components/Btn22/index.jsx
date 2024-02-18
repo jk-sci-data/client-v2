@@ -3,10 +3,9 @@ import "./Btn22.sass";
 
 /** Submit button on ProductEdit form */
 function Btn22(props) {
-  const { children } = props;
-
+  const {children, ...args} = props;
   return (
-    <button className="btn-4" onClick={props.onClick || (() => {})}>
+    <button className="btn-4" {...args}>
       <div className="text_label-87 valign-text-middle notosanssc-medium-white-16px">{children}</div>
     </button>
   );

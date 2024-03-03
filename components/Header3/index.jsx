@@ -32,13 +32,16 @@ function Header3(props) {
   const { logoContainerProps } = props;
 
   const { account, authorized } = React.useContext(LoginContext) || {};
-
+  console.log("header3 authorized?", authorized);
   return (
     <header className="header-1" style={{ width: "100%" }}>
       <LogoContainer jK={logoContainerProps.jK} className={logoContainerProps.className} />
-      {(authorized) ? <LoggedIn username={account?.username ?? "Unknown username"} />
-        : (authorized === false) ? <LoggedOut />
-          : "Authenticating..."
+      {
+        (authorized) 
+          ? <LoggedIn username={account?.username ?? "Unknown username"} />
+        : (authorized === false) 
+          ? <LoggedOut />
+        : "Authenticating..."
       }
     </header>
   );

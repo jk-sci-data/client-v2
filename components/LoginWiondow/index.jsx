@@ -16,6 +16,7 @@ function LoginWiondow(props) {
   console.log("globals", globals)
   const form = useForm({ "username": "", "password": "" });
   const login = globals.loginInfo ?? {}; //instance of useLogin()
+  console.log("logininfo", login)
   const { account, loggedIn } = login;
   .0
   const {

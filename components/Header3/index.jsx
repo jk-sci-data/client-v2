@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import LogoContainer from "../LogoContainer";
 import "./Header3.sass";
 
-import { LoginContext } from "../../contexts";
+import { AppContext } from "../../contexts";
 import Login from "../Login";
 
 function LoggedIn({ username }) {
@@ -30,18 +30,20 @@ function LoggedOut() {
 
 function Header3(props) {
   const { logoContainerProps } = props;
+  const { loginInfo } = useContext(AppContext);
+  const { account, loggedIn } = loginInfo;
 
-  const { account, authorized } = React.useContext(LoginContext) || {};
-  console.log("header3 authorized?", authorized);
+  //const { account, authorized } = React.useContext(LoginContext) || {};
+  console.log("header3 authorized?", loggedIn);
   return (
     <header className="header-1" style={{ width: "100%" }}>
       <LogoContainer jK={logoContainerProps.jK} className={logoContainerProps.className} />
       {
-        (authorized) 
+        (loggedIn)
           ? <LoggedIn username={account?.username ?? "Unknown username"} />
-        : (authorized === false) 
-          ? <LoggedOut />
-        : "Authenticating..."
+          : (loggedIn === false)
+            ? <LoggedOut />
+            : "Authenticating..."
       }
     </header>
   );

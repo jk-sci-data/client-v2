@@ -8,9 +8,9 @@ export default function useLogin(props) {
     const doAuthorize = props.doAuthorize ?? false;
 
     const [loggedIn, setLoggedIn] = useState(null);
-    const [accessToken, setAccessToken] = useState(() => {
-        return localStorage.getItem("accessToken");
-    });
+    const [accessToken, setAccessToken] = useState(
+        localStorage.getItem("accessToken")
+    );
     const loginFetch = useFetch();
     const signupFetch = useFetch();
     const authFetch = useFetch();
@@ -29,12 +29,6 @@ export default function useLogin(props) {
         localStorage.setItem("accessToken", accessToken);
     }, [accessToken]);
 
-    useEffect(() => {
-        if (loggedIn === true) {
-            onLogin && onLogin();
-        }
-    }, [loggedIn]);
-
     /** authorizes user to ensure accessToken and cookies are still valid */
     const authorize = () => {
         if (!accessToken) {
@@ -42,7 +36,7 @@ export default function useLogin(props) {
             return;
         }
         
-        authFetch.doFetch(`${prefixUrl}/authorize-user`, {
+        authFetch.run(`${prefixUrl}/authorize-user`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -50,27 +44,35 @@ export default function useLogin(props) {
             },
             mode: 'cors',
             credentials: "include"
+        }, (res) => {
+            console.log("account data", res);
+            console.log("authfetch.data", authFetch.data);
+            setLoggedIn(true);
+        }, (err) => {
+            console.info("Login invalid", err);
+            console.log("authfetch.error", authFetch.error);
+            setAccessToken(null);
         });
     }
 
-    useEffect(() => {
-        const {loading, error, data} = authFetch;
-        if (loading)
-            return;
-        if (error) {
-            console.info("Login invalid");
-            setAccessToken(null);
-            return;
-        }
-        if (data) {
-            console.log("account data", data);
-            setLoggedIn(true);
-        }
-    }, [authFetch.loading]);
+    // useEffect(() => {
+    //     const {loading, error, data} = authFetch;
+    //     if (loading)
+    //         return;
+    //     if (error) {
+    //         console.info("Login invalid");
+    //         setAccessToken(null);
+    //         return;
+    //     }
+    //     if (data) {
+    //         console.log("account data", data);
+    //         setLoggedIn(true);
+    //     }
+    // }, [authFetch.loading]);
 
     const handleSignUp = (formData) => {
         const {username, password, orgId, email, phoneNumber, isMain} = formData;
-        signupFetch.doFetch(`${prefixUrl}/signup`, {
+        signupFetch.run(`${prefixUrl}/signup`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -84,23 +86,28 @@ export default function useLogin(props) {
                 phoneNumber, 
                 isMain
             })
-        })
+        }, (res) => {
+            console.log("signup success", res, signupFetch.data);
+        }, (err) => {
+            console.log("signup error", err, signupFetch.error);
+        }
+        )
     };
 
-    useEffect(() => {
-        const {data, error, loading} = signupFetch;
-        if (loading)
-            return;
-        if (error)
-            console.log("signup error", error);
-        if (data)
-            console.log("signup success", signupFetch.data);
-    }, [signupFetch.loading]);
+    // useEffect(() => {
+    //     const {data, error, loading} = signupFetch;
+    //     if (loading)
+    //         return;
+    //     if (error)
+    //         console.log("signup error", error);
+    //     if (data)
+    //         console.log("signup success", signupFetch.data);
+    // }, [signupFetch.loading]);
 
 
     const handleLogin = (formData) => {
         const { username, password } = formData;
-        loginFetch.doFetch(`${prefixUrl}/login`, {
+        loginFetch.run(`${prefixUrl}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -142,7 +149,7 @@ export default function useLogin(props) {
     }
 
     const handleLogout = () => {
-        logoutFetch.doFetch(`${prefixUrl}/logout`, {
+        logoutFetch.run(`${prefixUrl}/logout`, {
             method: 'POST',
             mode: "cors",
             credentials: 'include',
@@ -154,21 +161,25 @@ export default function useLogin(props) {
             alert('Logout successful!'); 
             setLoggedIn(false);     
             removeTokens();
+            console.log("logoutFetch.data", logoutFetch.data)
+        }, (err) => {
+            console.log("logout error", err);
+            return;
         });
     }
 
 
-    useEffect(() => {
-        const {data, error, loading} = logoutFetch;
-        if (loading)
-            return;
-        if (error) {
-            console.log("logout error", error);
-            return;
-        }
-        console.log("logout:", data);     
+    // useEffect(() => {
+    //     const {data, error, loading} = logoutFetch;
+    //     if (loading)
+    //         return;
+    //     if (error) {
+    //         console.log("logout error", error);
+    //         return;
+    //     }
+    //     console.log("logout:", data);     
         
-    }, [logoutFetch.loading]);
+    // }, [logoutFetch.loading]);
     
     useEffect(() => {
         if (doAuthorize)

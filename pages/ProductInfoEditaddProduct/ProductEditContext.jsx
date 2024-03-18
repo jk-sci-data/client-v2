@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { AppContext } from "contexts/AppContext";
 import useForm from "hooks/useForm.jsx";
 import useFetch from "hooks/useFetch.jsx";
@@ -6,7 +6,8 @@ import useFetch from "hooks/useFetch.jsx";
 const ProductEditContext = createContext();
 
 function ProductEditProvider({ children }) {
-    const { productInfoEditaddProductData } = useContext(AppContext) || {};
+    const { constants } = useContext(AppContext) || {};
+    const { productInfoEditaddProductData } = constants || {};
 
     const searchParams = new URLSearchParams(window.location.search);
     const productId = searchParams.get("id");
@@ -18,6 +19,7 @@ function ProductEditProvider({ children }) {
     const postFetch = useFetch();
     const getFetch = useFetch();
     const form = useForm();
+    const formData = form.data;
 
     const handleFileUpload = (evt) => {
       console.log("todo; handle upload");
@@ -26,7 +28,7 @@ function ProductEditProvider({ children }) {
     const handleSaveBtn = async (evt) => {
       /** todo: validate form info is valid */
       console.log("save button clicked", formData);
-      postFetch.doFetch(postUrl, {
+      postFetch.run(postUrl, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
@@ -46,7 +48,7 @@ function ProductEditProvider({ children }) {
   
     useEffect(() => {
       console.log("this is the apiurl", getUrl);
-      getFetch.doFetch(getUrl, {
+      getFetch.run(getUrl, { //todo: fix this
         method: 'GET',
         headers: {
           'Accept': 'application/json',

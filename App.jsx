@@ -1,6 +1,6 @@
 import "./App.sass";
 import React, { useContext } from "react";
-import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from "pages/Login";
 import InquiryHistory from "pages/InquiryHistory";
 import ProductCertificateUpload from "pages/ProductCertificateUpload";
@@ -14,58 +14,68 @@ import Certificate from "pages/Certificate";
 import VenderInfo from "pages/VenderInfo";
 import AccountInfo from "pages/AccountInfo";
 import { AppContext, AppProvider, FormProvider } from "contexts";
+import Signup from "pages/Signup";
+
+function LoginWrapper(props) {
+    return (
+        <FormProvider>
+            <Login {...props} />
+        </FormProvider>
+    );
+}
+
+function SignupWrapper(props) {
+    return (
+        <FormProvider>
+            <Signup {...props} />
+        </FormProvider>
+    );
+}
+
+function InquiryInquieyItemWrapper(props) {
+    return (
+        <FormProvider>
+            <InquiryInquieyItem {...props} />
+        </FormProvider>
+    );
+}
+
+function ProductInfoEditaddProductWrapper(props) {
+    return (
+        <FormProvider>
+            <ProductInfoEditaddProduct {...props} />
+        </FormProvider>
+    );
+}
+
+function VenderInfoWrapper(props) {
+    return (
+        <FormProvider>
+            <VenderInfo {...props} />
+        </FormProvider>
+    );
+}
 
 function AppRouter() {
     const globals = useContext(AppContext) || {};
     const ctx = globals.constants;
     return (ctx &&
         <Router>
-            <Switch>
-                <Route path="/login">
-                    <FormProvider>
-                        <Login {...ctx.loginData} />
-                    </FormProvider>
-                </Route>
-                <Route path="/inquiry-history">
-                    <InquiryHistory {...ctx.inquiryHistoryData} />
-                </Route>
-                <Route path="/product-certificate-upload">
-                    <ProductCertificateUpload {...ctx.productCertificateUploadData} />
-                </Route>
-                <Route path="/inquiry-item">
-                    <FormProvider>
-                        <InquiryInquieyItem {...ctx.inquiryInquieyItemData} />
-                    </FormProvider>
-                </Route>
-                <Route path="/inquiry">
-                    <Inquiry {...ctx.inquiryData} />
-                </Route>
-                <Route path="/history">
-                    <History {...ctx.historyData} />
-                </Route>
-                <Route path="/upload-multiples">
-                    <UploadMultiples {...ctx.uploadMultiplesData} />
-                </Route>
-                <Route path="/product-info-edit-add-product">
-                    <FormProvider>
-                        <ProductInfoEditaddProduct {...ctx.productInfoEditaddProductData} />
-                    </FormProvider>
-                </Route>
-                <Route path="/product-info">
-                    <ProductInfo {...ctx.productInfoData} />
-                </Route>
-                <Route path="/certificate">
-                    <Certificate {...ctx.certificateData} />
-                </Route>
-                <Route path="/vendor-info">
-                    <FormProvider>
-                        <VenderInfo {...ctx.venderInfoData} />
-                    </FormProvider>
-                </Route>
-                <Route path="/:path(|account-info)">
-                    <AccountInfo {...ctx.accountInfoData} />
-                </Route>
-            </Switch>
+            <Routes>
+                <Route path="/login" element={<LoginWrapper {...ctx.loginData} />} />
+                <Route path="/signup" element={<SignupWrapper {...ctx.loginData} />} />
+                <Route path="/inquiry-history" element={<InquiryHistory {...ctx.inquiryHistoryData} />} />
+                <Route path="/product-certificate-upload" element={<ProductCertificateUpload {...ctx.productCertificateUploadData} />} />
+                <Route path="/inquiry-item" element={<InquiryInquieyItemWrapper {...ctx.inquiryInquieyItemData} />} />
+                <Route path="/inquiry" element={<Inquiry {...ctx.inquiryData} />} />
+                <Route path="/history" element={<History {...ctx.historyData} />} />
+                <Route path="/upload-multiples" element={<UploadMultiples {...ctx.uploadMultiplesData} />} />
+                <Route path="/product-info-edit-add-product" element={<ProductInfoEditaddProductWrapper {...ctx.productInfoEditaddProductData} />} />
+                <Route path="/product-info" element={<ProductInfo {...ctx.productInfoData} />} />
+                <Route path="/certificate" element={<Certificate {...ctx.certificateData} />} />
+                <Route path="/vendor-info" element={<VenderInfoWrapper {...ctx.venderInfoData} />} />
+                <Route path="/:path(|account-info)" element={<AccountInfo {...ctx.accountInfoData} />} />
+            </Routes>
         </Router>
     );
 }

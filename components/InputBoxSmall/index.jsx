@@ -7,9 +7,9 @@ function InputBoxSmall(props) {
   const { className } = props;
 
   const inputCtx = React.useContext(InputContext) || {};
-  const {name, onChange, formData} = inputCtx;
-  const value = formData[name];
-  const onInput = onChange ?? (() => {});
+  const {name, form} = inputCtx;
+  const value = form.data[name] ?? "";
+  const onInput = form.onChange ?? (() => {});
   
   return <div className={`input-box_small ${className || ""}`}>
     <input name={name} value={value} onInput={onInput}

@@ -5,17 +5,14 @@ import BtnText from "../BtnText";
 import Btn82 from "../Btn82";
 import BtnText2 from "../BtnText2";
 import "./LoginWiondow.sass";
-
-import { InputProvider } from "contexts";
 import { AppContext } from "contexts";
 import useForm from "hooks/useForm";
 import useLogin from "hooks/useLogin";
 
 function LoginWiondow(props) {
-  const globals = useContext(AppContext) ?? {};
-  console.log("globals", globals)
+  const {loginInfo} = useContext(AppContext) ?? {};
   const form = useForm({ "username": "", "password": "" });
-  const login = globals.loginInfo ?? {}; //instance of useLogin()
+  const login = loginInfo ?? {}; //instance of useLogin()
   console.log("logininfo", login)
   const { account, loggedIn } = login;
   .0

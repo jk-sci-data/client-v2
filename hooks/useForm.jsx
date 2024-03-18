@@ -1,17 +1,18 @@
 import { useState } from "react";
 
-export default function useForm(init={}) {
-    const [data, setData] = useState(init);
+export default function useForm(init=null) {
+    const [data, setData] = useState(init || {});
 
     const setValue = (key, value) => setData((prev) => ({
       ...prev,
       [key]: value
     }));
 
-    const handleChange = (e) => {
+    const handleChange = (e, inputName=null) => {
         const {name, value} = e.target;
-        console.log("form.handleChange called", name, value)
-        setValue(name, String(value ?? ""));
+        inputName = inputName ?? name;
+        console.log("form.handleChange called", inputName, value)
+        setValue(inputName, String(value ?? ""));
     };
   
     return {

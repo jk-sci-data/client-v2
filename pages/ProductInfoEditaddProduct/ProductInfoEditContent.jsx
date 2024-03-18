@@ -32,8 +32,8 @@ export default function ProductInfoEditContent(props) {
     form,
     handleSaveBtn,
     handleCancelBtn,
-  } = useContext(ProductEditContext);
-
+  } = useContext(ProductEditContext) || {};
+  console.log("product form", form);
   const {
     prompt_Text,
     frame381Props,
@@ -81,6 +81,7 @@ export default function ProductInfoEditContent(props) {
     frame382Props2,
   } = productInfoEditaddProductData;
 
+  //InputProvider is necessary because Input children are nested
   return (
     <div className="main_container-6">
       <TitleContainer className={frame381Props.className}>{frame381Props.children}</TitleContainer>

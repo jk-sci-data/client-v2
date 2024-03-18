@@ -5,7 +5,7 @@ import ProductInfoEditContent from "./ProductInfoEditContent";
 function ProductInfoEditaddProduct(props) {
   return (
     <MainApp>
-      <ProductEditProvider>
+      <ProductEditProvider {...props}>
         <ProductInfoEditContent />
       </ProductEditProvider>
     </MainApp>

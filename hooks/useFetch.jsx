@@ -23,18 +23,24 @@ export default function useFetch() {
     };
 
     //wrapper for global fetch(). 
-    const fetchFunc = (resource, options) => fetch(resource, { ...options, signal: abortController.current.signal }).then(async (res) => {
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
+    const fetchFunc = (resource, options) => fetch(resource, { ...options, signal: abortController.current.signal }).then(
+        async (res) => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+
+            const contentType = res.headers.get('Content-Type');
+            let data;
+
+            if (contentType && contentType.includes('application/json')) {
+                data = await res.json();
+            } else {
+                data = await res.text();
+            }
+
+            return data;
         }
-        try {
-            const objData = await res.json();
-            return objData;
-        } catch (err) {
-            const txtData = await res.text();
-            return txtData;
-        }
-    });
+    );
 
     /**
      * 
@@ -74,7 +80,8 @@ export default function useFetch() {
         data: asyncRunner.data,
         loading: asyncRunner.loading,
         error: asyncRunner.error,
+        success: asyncRunner.success,
         run, runAll, abort,
-        doFetch: run, doFetchAll: runAll, //todo: replace all refs with run, then remove
+        /** doFetch: run, doFetchAll: runAll, //todo: replace all refs with run, then remove */
     };
 }

@@ -1,3 +1,4 @@
+//Main header used in MainApp
 import React, { useContext } from "react";
 import LogoContainer from "../LogoContainer";
 import "./Header3.sass";
@@ -39,11 +40,9 @@ function Header3(props) {
     <header className="header-1" style={{ width: "100%" }}>
       <LogoContainer jK={logoContainerProps.jK} className={logoContainerProps.className} />
       {
-        (loggedIn)
-          ? <LoggedIn username={account?.username ?? "Unknown username"} />
-          : (loggedIn === false)
-            ? <LoggedOut />
-            : "Authenticating..."
+        (loginInfo.loading) ? "Authenticating..."
+        : (loggedIn) ? <LoggedIn username={account?.username ?? "Unknown username"} />
+        : <LoggedOut />
       }
     </header>
   );

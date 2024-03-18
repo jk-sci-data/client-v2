@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Generic hook for handling async functions in a React component
@@ -8,10 +8,10 @@ import { useState } from 'react';
  *    loading {boolean} -- true if the async run is executing and not yet completed, false otherwise
  */
 export default function useAsync() {
-    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [response, setResponse] = useState(null);
 
+    const { data, success, func } = response || {};
     /**
      * 
      * @param {function} asyncFunc -- main function to be executed
@@ -32,24 +32,47 @@ export default function useAsync() {
         if (onError && typeof onError !== 'function') {
             throw new TypeError(`Expected null or function for argument 3 (onError), but received ${typeof onError}`);
         }
-        
+
         setLoading(true);
-        setData(null);
-        setError(null);
+        setResponse(null);
 
         asyncFunc(...args)
             .then((res) => {
-                setData(res);
-                if (onSuccess) onSuccess(res);
-            }) // Handle successful response
+                setResponse((prev) => ({
+                    "data": res,
+                    "success": true,
+                    "func": onSuccess || (() => { })
+                }));
+            })
             .catch((e) => {
-                setError(e);
-                if (onError) onError(e);
+                setResponse((prev) => ({
+                    "data": e,
+                    "success": false,
+                    "func": onError || (() => { })
+                }));
             })
             .finally(() => {
                 setLoading(false);
             });
     };
 
-    return { data, loading, error, run };
+    useEffect(() => {
+        if(response) {
+            try {
+                func(data);
+            } 
+            catch(err) {
+                console.error("Error executing useAsync callback");
+                throw err;
+            }
+        }
+    }, [response]);
+
+    return { 
+        run, 
+        loading, 
+        success: success ?? null,
+        data: (success === true) ? data : null,
+        error: (success === false) ? null : data
+    };
 }

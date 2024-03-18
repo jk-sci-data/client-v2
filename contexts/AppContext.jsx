@@ -10,7 +10,6 @@ const AppContext = createContext();
  * @returns 
  */
 function AppProvider({ children }) {
-
     //holds an Object exported from AnimaApp. This needs to be cleaned up.
     let constants = (() => {
         const logoContainer1Data = {
@@ -6132,12 +6131,12 @@ function AppProvider({ children }) {
     })();
 
     const loginInfo = useLogin({
-        doAuthorize: false
+        doAuthorize: true
     });
 
     const value = {
         constants,
-        loginInfo,
+        loginInfo
     }
 
     return (

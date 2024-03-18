@@ -86,7 +86,7 @@ function SignupWindow(props) {
       <div className="row">
         <div className="login_container col-lg-6">
           <div className="upper">
-            <div className="text-7 valign-text-middle">创建帐号</div>
+            <div className="text-7 valign-text-middle">账号注册</div>
             <div className="text-8 valign-text-middle">{text8}</div>
           </div>
           <div className="lower">
@@ -135,7 +135,7 @@ function SignupWindow(props) {
                     {errMsg}
                   </div>
                   <div className="input-btn_container" style={{"marginTop": "1.2em"}}>
-                    <Btn82 onClick={handleSignupClick} disabled={loginInfo?.loading ?? false}>{"创建帐号"}</Btn82>
+                    <Btn82 onClick={handleSignupClick} disabled={loginInfo?.loading ?? false}>{"注册"}</Btn82>
                     <BtnText2 onClick={redirectLogin}>{"账号密码登录"}</BtnText2>
                   </div>
                 </div>

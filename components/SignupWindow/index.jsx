@@ -82,7 +82,7 @@ function SignupWindow(props) {
   }, [loginInfo.result])
 
   return (
-    <div className="login-wiondow container">
+    <div className="container">
       <div className="row">
         <div className="login_container col-lg-6">
           <div className="upper">

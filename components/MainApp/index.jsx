@@ -24,7 +24,7 @@ export default function MainApp({ children, requireLogin = true }) {
                     <div className="col-lg-3" style={{ padding: "1.2em", width: "fit-content" }}>
                         <SideNavMenu />
                     </div>
-                    <div className="col-lg-9" style={{ flexGrow: "1", display: "flex", flexFlow: "row nowrap", justifyContent: "center", padding: "1.2em" }}>
+                    <div className="col-lg-9" style={{ flexGrow: "1", display: "flex", flexFlow: "row nowrap", padding: "1.2em" }}>
                         {children}
                     </div>
                 </div>

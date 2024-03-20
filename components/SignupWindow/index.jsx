@@ -144,13 +144,13 @@ function SignupWindow(props) {
             
           </div>
         </div>
-      </div>
-      <div className="col-lg-6">
-        <img
-          className="ofj-fk-pof-gh-h4es-m-wc-dj-kd0nj-1"
-          src={ofjfkpofghh4Esmwcdjkd0Nj1}
-          alt="OFJFkPofGhH4esMWcDJKd0nj 1"
-        />
+        <div className="col-lg-6">
+          <img
+            className="ofj-fk-pof-gh-h4es-m-wc-dj-kd0nj-1"
+            src={ofjfkpofghh4Esmwcdjkd0Nj1}
+            alt="OFJFkPofGhH4esMWcDJKd0nj 1"
+          />
+        </div>
       </div>
     </div>
   );

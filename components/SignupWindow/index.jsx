@@ -82,66 +82,63 @@ function SignupWindow(props) {
   }, [loginInfo.result])
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="login_container col-lg-6">
-          <div className="upper">
-            <div className="text-7 valign-text-middle">账号注册</div>
-            <div className="text-8 valign-text-middle">{text8}</div>
-          </div>
-          <div className="lower">
-            <div className="lower_container">
-              <div className="input-section_container">
-                <div className="input_container">
-                  <InputBoxRegular42
-                    icon_Regular={"/img/component-1@2x.png" /*inputBoxRegular421Props.icon_Regular*/}
-                    inputPlaceholder={"请输入邮箱" /*inputBoxRegular421Props.inputPlaceholder*/}
-                    name="username"
-                    form={form}
-                    required
-                  />
-                  <InputBoxRegular42
-                    icon_Regular={"/img/component-1@2x.png" /*inputBoxRegular421Props.icon_Regular*/}
-                    inputPlaceholder={"请输入邮箱" /*inputBoxRegular421Props.inputPlaceholder*/}
-                    inputType="email"
-                    name="email"
-                    form={form}
-                    required
-                  />
-                  <InputBoxRegular42
-                    icon_Regular={"/img/component-1@2x.png" /*inputBoxRegular421Props.icon_Regular*/}
-                    inputPlaceholder={"请输入电话" /*inputBoxRegular421Props.inputPlaceholder*/}
-                    inputType="tel"
-                    name="phone_number"
-                    form={form}
-                  />
-                  <InputBoxRegular42
-                    icon_Regular={inputBoxRegular422Props.icon_Regular}
-                    inputPlaceholder={inputBoxRegular422Props.inputPlaceholder}
-                    inputType="password"
-                    name="password"
-                    form={form}
-                    required
-                  />
-                  <InputBoxRegular42
-                    icon_Regular={"/img/component-1@2x.png"}
-                    inputPlaceholder={"请再次输入密码"}
-                    inputType="password"
-                    name="password2"
-                    form={form}
-                    required
-                  />
-                  <div style={{color:"red", fontSize:"80%", textAlign:"center", height:"1.6em"}}>
-                    {errMsg}
-                  </div>
-                  <div className="input-btn_container" style={{"marginTop": "1.2em"}}>
-                    <Btn82 onClick={handleSignupClick} disabled={loginInfo?.loading ?? false}>{"注册"}</Btn82>
-                    <BtnText2 onClick={redirectLogin}>{"账号密码登录"}</BtnText2>
-                  </div>
+    <div className="login-wiondow">
+      <div className="login_container" style={{"width": "360px"}}>
+        <div className="upper">
+          <div className="text-7 valign-text-middle">{text7}</div>
+          <div className="text-8 valign-text-middle">{text8}</div>
+        </div>
+        <div className="lower">
+          <div className="lower_container">
+            <div className="input-section_container">
+              <div className="input_container">
+                <InputBoxRegular42
+                  icon_Regular={"/img/component-1@2x.png" /*inputBoxRegular421Props.icon_Regular*/}
+                  inputPlaceholder={"请输入邮箱" /*inputBoxRegular421Props.inputPlaceholder*/}
+                  name="username"
+                  form={form}
+                  required
+                />
+                <InputBoxRegular42
+                  icon_Regular={"/img/component-1@2x.png" /*inputBoxRegular421Props.icon_Regular*/}
+                  inputPlaceholder={"email@jk-sci.com" /*inputBoxRegular421Props.inputPlaceholder*/}
+                  inputType="email"
+                  name="email"
+                  form={form}
+                  required
+                />
+                <InputBoxRegular42
+                  icon_Regular={"/img/component-1@2x.png" /*inputBoxRegular421Props.icon_Regular*/}
+                  inputPlaceholder={"Phone Number" /*inputBoxRegular421Props.inputPlaceholder*/}
+                  inputType="tel"
+                  name="phone_number"
+                  form={form}
+                />
+                <InputBoxRegular42
+                  icon_Regular={inputBoxRegular422Props.icon_Regular}
+                  inputPlaceholder={inputBoxRegular422Props.inputPlaceholder}
+                  inputType="password"
+                  name="password"
+                  form={form}
+                  required
+                />
+                <InputBoxRegular42
+                  icon_Regular={"/img/component-1@2x.png"}
+                  inputPlaceholder={"Confirm Password"}
+                  inputType="password"
+                  name="password2"
+                  form={form}
+                  required
+                />
+                <div style={{color:"red", fontSize:"80%", textAlign:"center", height:"1.6em"}}>
+                  {errMsg}
+                </div>
+                <div className="input-btn_container" style={{"marginTop": "1.2em"}}>
+                  <Btn82 onClick={handleSignupClick} disabled={loginInfo?.loading ?? false}>{"Sign Up"}</Btn82>
+                  <BtnText2 onClick={redirectLogin}>{"Already have an account"}</BtnText2>
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
         <div className="col-lg-6">

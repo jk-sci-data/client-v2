@@ -11,7 +11,6 @@ import InputRegular9 from "components/InputRegular9";
 import InputRegular10 from "components/InputRegular10";
 import Btn22 from "components/Btn22";
 import Note from "components/Note";
-import select from "components/select";
 import MainApp from "components/MainApp";
 import "./VenderInfo.sass";
 import bubble from "../../dist/img/bubble.png";

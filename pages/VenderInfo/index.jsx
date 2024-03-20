@@ -52,7 +52,7 @@ function VenderInfo(props) {
   return (
     <MainApp>
       <div className="main_container" style={{width:'100%'}}>
-        <div className="cont-2  mb-3">
+        <div className="cont-2 mb-3 ml-5">
           <TitleContainer className={titleContainerProps.className}>{titleContainerProps.children}</TitleContainer>
           <Note content="基本信息" />
           <div className="cont-2">
@@ -81,10 +81,7 @@ function VenderInfo(props) {
                 <div className="text-172 notosanssc-normal-white-20px">
                   <span className="notosanssc-normal-well-read-20px">{spanText1}</span>
                   <span className="notosanssc-normal-shark-20px">{spanText2}</span>
-                  <div className="bubble-box">
-                      <img src={bubble} alt="bubble" />
-                      <div className="bubble-content">负责人姓名介绍</div>
-                  </div>
+
                 </div>
               </div>
               <div className="t_column">
@@ -206,10 +203,7 @@ function VenderInfo(props) {
                   <span className="notosanssc-normal-well-read-20px">*</span>
                   <span className="notosanssc-normal-shark-20px">受益人</span>
                 </div>
-                <div className="bubble-box">
-                      <img src={bubble} alt="bubble" />
-                      <div className="bubble-content">受益人介绍</div>
-                </div>
+              
               </div>
               <div className="input-box_regular-3">
                 <input className="placeholder-3 valign-text-middle notosanssc-normal-quick-silver-20px"
@@ -222,10 +216,7 @@ function VenderInfo(props) {
                 <div className="subtitle-32 notosanssc-normal-white-20px">
                   <span className="notosanssc-normal-well-read-20px">*</span>
                   <span className="notosanssc-normal-shark-20px">开户银行</span>
-                  <div className="bubble-box">
-                      <img src={bubble} alt="bubble" />
-                      <div className="bubble-content">开户银行介绍</div>
-                </div>
+                 
                 </div>
               </div>
               <div className="input-box_regular-3">
@@ -239,10 +230,7 @@ function VenderInfo(props) {
                 <div className="subtitle-32 notosanssc-normal-white-20px">
                   <span className="notosanssc-normal-well-read-20px">*</span>
                   <span className="notosanssc-normal-shark-20px">银行账号</span>
-                  <div className="bubble-box">
-                      <img src={bubble} alt="bubble" />
-                      <div className="bubble-content">银行账号介绍</div>
-                </div>
+                 
                 </div>
               </div>
               <div className="input-box_regular-3">

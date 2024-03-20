@@ -8,7 +8,7 @@ import "./LoginWiondow.sass";
 import { AppContext } from "contexts";
 import useForm from "hooks/useForm";
 import useLogin from "hooks/useLogin";
-import { Link } from 'react-router-dom';
+
 function LoginWiondow(props) {
   const {loginInfo} = useContext(AppContext) ?? {};
   const form = useForm({ "username": "", "password": "" });
@@ -100,7 +100,7 @@ function LoginWiondow(props) {
                 </div>
               </div>
               <div className="input-btn_container mt-4">
-                <Btn82><Link to="/vendor-info">{btn82Props.children}</Link></Btn82>
+                <Btn82>{btn82Props.children}</Btn82>
                 <BtnText2>{btnText2Props.children}</BtnText2>
               </div>
             </div>

@@ -241,7 +241,7 @@ function VenderInfo(props) {
             </div>
         </div>
         
-        <Btn22 onClick={() => console.log("click successful")}>{btn22Props.children}</Btn22>
+        <div style={{ margin: '0 auto' }}><Btn22 onClick={() => console.log("click successful")}>{btn22Props.children}</Btn22></div>
       </div>
     </MainApp>
   );

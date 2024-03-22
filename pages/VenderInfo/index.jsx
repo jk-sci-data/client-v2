@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TitleContainer from "components/TitleContainer";
 import InputRegular5 from "components/InputRegular5";
 import InputBoxRegular from "components/InputBoxRegular";
@@ -9,8 +9,7 @@ import InputRegular7 from "components/InputRegular7";
 import InputRegular8 from "components/InputRegular8";
 import InputRegular9 from "components/InputRegular9";
 import InputRegular10 from "components/InputRegular10";
-
-
+import Btn22 from "components/Btn22";
 import MainApp from "components/MainApp";
 import "./VenderInfo.sass";
 
@@ -28,7 +27,7 @@ function VenderInfo(props) {
     inputRegular10Props,
     btn22Props
   } = props;
-
+  
   const [inputText, setInputText] = useState(''); 
   const [radioOptions, setRadioOptions] = useState([]); 
   const handleInputChange = (event) => {
@@ -92,7 +91,6 @@ function VenderInfo(props) {
                       placeholder="请输入全名"
                       value={inputText}
                       onChange={handleInputChange}
-                      // You can also add an onKeyDown handler to submit on Enter key press
                       onKeyDown={(e) => e.key === 'Enter' && handleAddOption()}
                     />
                   </div>
@@ -228,7 +226,10 @@ function VenderInfo(props) {
                 <div className="subtitle-32 notosanssc-normal-white-20px">
                   <span className="notosanssc-normal-well-read-20px">*</span>
                   <span className="notosanssc-normal-shark-20px">银行账号</span>
-
+                  <div className="bubble-box">
+                      <img src={bubble} alt="bubble" />
+                      <div className="bubble-content">银行账号介绍</div>
+                </div>
                 </div>
               </div>
               <div className="input-box_regular-3">

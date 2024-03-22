@@ -97,10 +97,10 @@ function LoginWiondow(props) {
                   <div className="text-10 valign-text-middle notosanssc-normal-granite-gray-16px">{text10}</div>
                 </div>
               </div>
-            </div>
-            <div className="input-btn_container">
-              <Btn82 onClick={handleLoginClick}>{btn82Props.children}</Btn82>
-              <BtnText2>{btnText2Props.children}</BtnText2>
+              <div className="input-btn_container mt-4">
+                <Btn82>{btn82Props.children}</Btn82>
+                <BtnText2>{btnText2Props.children}</BtnText2>
+              </div>
             </div>
           </div>
         </div>

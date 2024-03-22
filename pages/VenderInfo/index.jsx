@@ -10,7 +10,6 @@ import InputRegular8 from "components/InputRegular8";
 import InputRegular9 from "components/InputRegular9";
 import InputRegular10 from "components/InputRegular10";
 import Btn22 from "components/Btn22";
-import Note from "components/Note";
 import MainApp from "components/MainApp";
 import "./VenderInfo.sass";
 
@@ -40,8 +39,8 @@ function VenderInfo(props) {
   
   return (
     <MainApp>
-      <div className="main_container" style={{width:'100%'}}>
-        <div className="cont-2 mb-3 ml-5">
+      <div className="main_container-9">
+        <div className="cont-2">
           <TitleContainer className={titleContainerProps.className}>{titleContainerProps.children}</TitleContainer>
           <div className="cont-2">
             <InputRegular5
@@ -53,7 +52,6 @@ function VenderInfo(props) {
                 <div className="text-172 notosanssc-normal-white-20px">
                   <span className="notosanssc-normal-well-read-20px">{spanText1}</span>
                   <span className="notosanssc-normal-shark-20px">{spanText2}</span>
-
                 </div>
               </div>
               <div className="t_column">
@@ -109,52 +107,8 @@ function VenderInfo(props) {
               inputBoxRegularProps={inputRegular10Props.inputBoxRegularProps}
             />
           </div>
-          <Note content="银行信息" />
-            <div className="input_regular-10">
-              <div className="input_subtitle_container-20">
-                <div className="subtitle-32 notosanssc-normal-white-20px">
-                  <span className="notosanssc-normal-well-read-20px">*</span>
-                  <span className="notosanssc-normal-shark-20px">受益人</span>
-                </div>
-              
-              </div>
-              <div className="input-box_regular-3">
-                <input className="placeholder-3 valign-text-middle notosanssc-normal-quick-silver-20px"
-                  style={{ border: "none", backgroundColor: "trasnparent", color:"#303030"}} placeholder="必填"
-                />
-              </div>
-            </div>
-            <div className="input_regular-10">
-              <div className="input_subtitle_container-20">
-                <div className="subtitle-32 notosanssc-normal-white-20px">
-                  <span className="notosanssc-normal-well-read-20px">*</span>
-                  <span className="notosanssc-normal-shark-20px">开户银行</span>
-                 
-                </div>
-              </div>
-              <div className="input-box_regular-3">
-                <input className="placeholder-3 valign-text-middle notosanssc-normal-quick-silver-20px"
-                  style={{ border: "none", backgroundColor: "trasnparent", color:"#303030"}} placeholder="必填"
-                />
-              </div>
-            </div>
-            <div className="input_regular-10">
-              <div className="input_subtitle_container-20">
-                <div className="subtitle-32 notosanssc-normal-white-20px">
-                  <span className="notosanssc-normal-well-read-20px">*</span>
-                  <span className="notosanssc-normal-shark-20px">银行账号</span>
-                 
-                </div>
-              </div>
-              <div className="input-box_regular-3">
-                <input className="placeholder-3 valign-text-middle notosanssc-normal-quick-silver-20px"
-                  style={{ border: "none", backgroundColor: "trasnparent", color:"#303030"}} placeholder="必填"
-                />
-              </div>
-            </div>
         </div>
-        
-        <div style={{ margin: '0 auto' }}><Btn22 onClick={() => console.log("click successful")}>{btn22Props.children}</Btn22></div>
+        <Btn22 onClick={() => console.log("click successful")}>{btn22Props.children}</Btn22>
       </div>
     </MainApp>
   );

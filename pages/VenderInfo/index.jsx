@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TitleContainer from "components/TitleContainer";
 import InputRegular5 from "components/InputRegular5";
 import InputBoxRegular from "components/InputBoxRegular";
@@ -9,7 +9,8 @@ import InputRegular7 from "components/InputRegular7";
 import InputRegular8 from "components/InputRegular8";
 import InputRegular9 from "components/InputRegular9";
 import InputRegular10 from "components/InputRegular10";
-import Btn22 from "components/Btn22";
+
+
 import MainApp from "components/MainApp";
 import "./VenderInfo.sass";
 
@@ -27,7 +28,7 @@ function VenderInfo(props) {
     inputRegular10Props,
     btn22Props
   } = props;
-  
+
   const [inputText, setInputText] = useState(''); 
   const [radioOptions, setRadioOptions] = useState([]); 
   const handleInputChange = (event) => {
@@ -53,7 +54,7 @@ function VenderInfo(props) {
       <div className="main_container" style={{width:'100%'}}>
         <div className="cont-2 mb-3 ml-5">
           <TitleContainer className={titleContainerProps.className}>{titleContainerProps.children}</TitleContainer>
-          <Note content="基本信息" />
+       
           <div className="cont-2">
             <InputRegular5
               inputSubtitleContainer9Props={inputRegular51Props.inputSubtitleContainer9Props}
@@ -91,6 +92,7 @@ function VenderInfo(props) {
                       placeholder="请输入全名"
                       value={inputText}
                       onChange={handleInputChange}
+                      // You can also add an onKeyDown handler to submit on Enter key press
                       onKeyDown={(e) => e.key === 'Enter' && handleAddOption()}
                     />
                   </div>
@@ -193,7 +195,7 @@ function VenderInfo(props) {
               inputBoxRegularProps={inputRegular10Props.inputBoxRegularProps}
             />
           </div>
-          <Note content="银行信息" />
+
             <div className="input_regular-10">
               <div className="input_subtitle_container-20">
                 <div className="subtitle-32 notosanssc-normal-white-20px">
@@ -226,10 +228,7 @@ function VenderInfo(props) {
                 <div className="subtitle-32 notosanssc-normal-white-20px">
                   <span className="notosanssc-normal-well-read-20px">*</span>
                   <span className="notosanssc-normal-shark-20px">银行账号</span>
-                  <div className="bubble-box">
-                      <img src={bubble} alt="bubble" />
-                      <div className="bubble-content">银行账号介绍</div>
-                </div>
+
                 </div>
               </div>
               <div className="input-box_regular-3">
@@ -239,8 +238,8 @@ function VenderInfo(props) {
               </div>
             </div>
         </div>
-        
-        <Btn22 onClick={() => console.log("click successful")}>{btn22Props.children}</Btn22>
+        <button className="btn-4" style={{ margin: '0 auto'}}><div className="text_label-87 valign-text-middle notosanssc-medium-white-16px">保存</div></button>
+
       </div>
     </MainApp>
   );

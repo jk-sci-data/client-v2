@@ -43,6 +43,7 @@ function VenderInfo(props) {
     footerProps,
   } = props;
   console.log("vendorInfo", props);
+  
   return (
     <div className="container-center-horizontal">
       <div className="vender-info screen">

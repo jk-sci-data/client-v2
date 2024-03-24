@@ -13,7 +13,7 @@ import "components/RadioButtonList";
 import "components/InquiryItem";
 import "./Inquiry.sass";
 import MainApp from "components/MainApp";
-
+import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
 
 function Inquiry() {
    const [selectAll, setSelectAll] = useState(false);
@@ -127,7 +127,12 @@ function Inquiry() {
     <MainApp>
       <div className="main_container-3">
         <div className="cont-main">
-        
+        <div className="cont-main">
+            <TitleWithBubbleBox
+              title="报价管理"
+              bubbleContent="Bubble Content for 报价管理"
+              />  
+          </div>
           </div>
           <div className="main-content-3">
             <div className="content">

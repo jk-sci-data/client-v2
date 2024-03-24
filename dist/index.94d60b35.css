@@ -12074,6 +12074,58 @@ select {
   width: 50px;
 }
 
+.main-title {
+  color: #000;
+  margin-bottom: 0;
+  font-family: Noto Sans SC, Helvetica;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.main-title .bubble-box img {
+  vertical-align: baseline;
+  width: 22px;
+  height: 22px;
+  margin-left: 5px;
+}
+
+.bubble-box {
+  display: inline-block;
+  position: relative;
+}
+
+.bubble-box:hover .bubble-content {
+  display: block;
+}
+
+.bubble-box .bubble-content {
+  color: #fff;
+  z-index: 1;
+  background-color: #3e3e3e;
+  border-radius: 8px;
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  display: none;
+  position: absolute;
+  top: 120%;
+  left: 52%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 4px #0003;
+}
+
+.bubble-box .bubble-content:before {
+  content: "";
+  border: 8px solid #0000;
+  border-bottom-color: #3e3e3e;
+  position: absolute;
+  bottom: 100%;
+  left: 52%;
+  transform: translateX(-50%);
+}
+
 ul.each-one {
   justify-content: center;
   align-items: center;

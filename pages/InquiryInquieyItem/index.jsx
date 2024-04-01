@@ -1,219 +1,293 @@
 import React from "react";
-import TitleContainer from "components/TitleContainer";
-import CategoryTitle4 from "components/CategoryTitle4";
-import InputGivenInfoSmall from "components/InputGivenInfoSmall";
-import InputGivenInfoSmall2 from "components/InputGivenInfoSmall2";
-import InputGivenInfoSmall3 from "components/InputGivenInfoSmall3";
-import InputGivenInfoSmall4 from "components/InputGivenInfoSmall4";
-import InputGivenInfoSmall5 from "components/InputGivenInfoSmall5";
-import InputGivenInfoLarge from "components/InputGivenInfoLarge";
-import InputGivenInfoSmall6 from "components/InputGivenInfoSmall6";
-import InputGivenInfoSmall7 from "components/InputGivenInfoSmall7";
-import InputGivenInfoSmall8 from "components/InputGivenInfoSmall8";
-import InputGivenInfoSmall9 from "components/InputGivenInfoSmall9";
-import InputGivenInfoSmall10 from "components/InputGivenInfoSmall10";
-import InputSubtitleContainer2 from "components/InputSubtitleContainer2";
-import BtnText72 from "components/BtnText72";
-import InputSmall from "components/InputSmall";
-import InputSmall2 from "components/InputSmall2";
-import UploadWindowMedium from "components/UploadWindowMedium";
-import CategoryContainer from "components/CategoryContainer";
-import UpdatedDateContainer from "components/UpdatedDateContainer";
-import BtnContainer from "components/BtnContainer";
 import "./InquiryInquieyItem.sass";
 import MainApp from "components/MainApp";
-
-function InquiryInquieyItem(props) {
-  const {
-    titleContainerProps,
-    categoryTitle41Props,
-    inputGivenInfoSmall1Props,
-    inputGivenInfoSmall2Props,
-    inputGivenInfoSmall3Props,
-    inputGivenInfoSmall41Props,
-    inputGivenInfoSmall42Props,
-    inputGivenInfoSmall5Props,
-    inputGivenInfoLarge1Props,
-    inputGivenInfoLarge2Props,
-    inputGivenInfoSmall43Props,
-    inputGivenInfoSmall44Props,
-    inputGivenInfoSmall45Props,
-    inputGivenInfoSmall61Props,
-    inputGivenInfoSmall71Props,
-    inputGivenInfoSmall72Props,
-    inputGivenInfoSmall46Props,
-    inputGivenInfoSmall8Props,
-    inputGivenInfoSmall47Props,
-    inputGivenInfoSmall48Props,
-    inputGivenInfoSmall9Props,
-    inputGivenInfoSmall10Props,
-    inputGivenInfoSmall49Props,
-    inputGivenInfoSmall62Props,
-    inputGivenInfoSmall73Props,
-    inputGivenInfoSmall63Props,
-    inputGivenInfoSmall2Props2,
-    inputSubtitleContainer2Props,
-    btnText72Props,
-    categoryTitle42Props,
-    inputSmallProps,
-    inputSmall2Props,
-    uploadWindowMediumProps,
-    categoryContainerProps,
-    btnContainerProps
-  } = props;
+import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
+import YListContent from "components/YListContent";
+import Note from "components/Note";
+import AddList from 'components/AddList';
+import bubble from "../../dist/img/bubble.png";
+import add from "../../dist/img/add.png";
+function InquiryInquieyItem() {
 
   return (
     <MainApp>
-      <div className="main_container-2">
-        <TitleContainer>{titleContainerProps.children}</TitleContainer>
-        <div className="main-content-2">
-          <div className="product_-info-box">
-            <div className="category_container">
-              <CategoryTitle4 categorytitle={categoryTitle41Props.categorytitle} />
-              <div className="column_container">
-                <div className="flex-col">
-                  <div className="flex-row-1">
-                    <div className="input_giveninfo_small-container">
-                      <InputGivenInfoSmall
-                        inputSubtitleContainerProps={inputGivenInfoSmall1Props.inputSubtitleContainerProps}
-                        btnText6Props={inputGivenInfoSmall1Props.btnText6Props}
-                      />
-                      <InputGivenInfoSmall2
-                        inputSubtitleContainer4Props={inputGivenInfoSmall2Props.inputSubtitleContainer4Props}
-                        btnText6Props={inputGivenInfoSmall2Props.btnText6Props}
-                      />
-                      <InputGivenInfoSmall3
-                        subtitle={inputGivenInfoSmall3Props.subtitle}
-                        btnText6Props={inputGivenInfoSmall3Props.btnText6Props}
-                      />
+       <div className="main_container inquiryitem-wrap" style={{ width: '100%' }}>
+          <div className="cont-main">
+            <TitleWithBubbleBox title="报价单信息" bubbleContent="Bubble Content for 报价单信息"/>  
+            <div className="main-content-2 pt-4">
+              <Note content="基本信息" />
+              <div className="col-lg-12">
+                <div className="row">
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="56356735735"
+                      subtitleText="询价单号"
+                      label="项目需求"
+                    />
                     </div>
-                    <div className="input_giveninfo_small-container">
-                      <InputGivenInfoSmall4
-                        inputSubtitleContainerProps={inputGivenInfoSmall41Props.inputSubtitleContainerProps}
-                        btnText7Props={inputGivenInfoSmall41Props.btnText7Props}
-                      />
-                      <InputGivenInfoSmall4
-                        inputSubtitleContainerProps={inputGivenInfoSmall42Props.inputSubtitleContainerProps}
-                        btnText7Props={inputGivenInfoSmall42Props.btnText7Props}
-                      />
-                      <InputGivenInfoSmall5 btnText7Props={inputGivenInfoSmall5Props.btnText7Props} />
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="56356735735"
+                      subtitleText="到达时间"
+                      label="项目需求"
+                    />
                     </div>
-                  </div>
-                  <InputGivenInfoLarge
-                    inputSubtitleContainerProps={inputGivenInfoLarge1Props.inputSubtitleContainerProps}
-                    btnText7Props={inputGivenInfoLarge1Props.btnText7Props}
-                  />
-                  <InputGivenInfoLarge
-                    inputSubtitleContainerProps={inputGivenInfoLarge2Props.inputSubtitleContainerProps}
-                    btnText7Props={inputGivenInfoLarge2Props.btnText7Props}
-                  />
-                  <div className="input_giveninfo_small-container-1">
-                    <InputGivenInfoSmall4
-                      inputSubtitleContainerProps={inputGivenInfoSmall43Props.inputSubtitleContainerProps}
-                      btnText7Props={inputGivenInfoSmall43Props.btnText7Props}
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="3583573563"
+                      subtitleText="产品编号"
+                      label="3583573563"
                     />
-                    <InputGivenInfoSmall4
-                      inputSubtitleContainerProps={inputGivenInfoSmall44Props.inputSubtitleContainerProps}
-                      btnText7Props={inputGivenInfoSmall44Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="6943673"
+                      subtitleText="CAS"
+                      label="6943673"
                     />
-                  </div>
-                  <div className="input_giveninfo_small-container-1">
-                    <InputGivenInfoSmall4
-                      inputSubtitleContainerProps={inputGivenInfoSmall45Props.inputSubtitleContainerProps}
-                      btnText7Props={inputGivenInfoSmall45Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-12 mb-4">
+                    <YListContent
+                      bubbleContent="Bis(tertbutylperoxyisopropyl)benzenewrtgadfafc,fawrgtqfgasdfasdffafddf, 96%"
+                      subtitleText="英文名称"
+                      label="Bis(tertbutylperoxyisopropyl)benzenewrtgadfafc,fawrgtqfgasdfasdffafddf, 96%"
                     />
-                    <InputGivenInfoSmall6
-                      inputSubtitleContainer2Props={inputGivenInfoSmall61Props.inputSubtitleContainer2Props}
-                      btnText7Props={inputGivenInfoSmall61Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="3583573563"
+                      subtitleText="产品编号"
+                      label="3583573563"
                     />
-                  </div>
-                  <div className="input_giveninfo_small-container-1">
-                    <InputGivenInfoSmall7
-                      inputSubtitleContainer4Props={inputGivenInfoSmall71Props.inputSubtitleContainer4Props}
-                      btnText7Props={inputGivenInfoSmall71Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="6943673"
+                      subtitleText="CAS"
+                      label="6943673"
                     />
-                    <InputGivenInfoSmall7
-                      inputSubtitleContainer4Props={inputGivenInfoSmall72Props.inputSubtitleContainer4Props}
-                      btnText7Props={inputGivenInfoSmall72Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-12 mb-4">
+                    <YListContent
+                      bubbleContent="双[1-(叔丁基过氧)-1-甲基乙基]苯"
+                      subtitleText="中文名称"
+                      label="双[1-(叔丁基过氧)-1-甲基乙基]苯"
                     />
-                  </div>
-                  <div className="input_giveninfo_small-container-1">
-                    <InputGivenInfoSmall4
-                      inputSubtitleContainerProps={inputGivenInfoSmall46Props.inputSubtitleContainerProps}
-                      btnText7Props={inputGivenInfoSmall46Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="指标要求"
+                      label="项目需求"
                     />
-                    <InputGivenInfoSmall8
-                      inputSubtitleContainer3Props={inputGivenInfoSmall8Props.inputSubtitleContainer3Props}
-                      btnText7Props={inputGivenInfoSmall8Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="实际指标"
+                      label="项目需求"
                     />
-                  </div>
-                  <div className="input_giveninfo_small-container-1">
-                    <InputGivenInfoSmall4
-                      inputSubtitleContainerProps={inputGivenInfoSmall47Props.inputSubtitleContainerProps}
-                      btnText7Props={inputGivenInfoSmall47Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="无"
+                      subtitleText="特殊指标要求"
+                      label="无"
                     />
-                    <InputGivenInfoSmall4
-                      inputSubtitleContainerProps={inputGivenInfoSmall48Props.inputSubtitleContainerProps}
-                      btnText7Props={inputGivenInfoSmall48Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="数量"
+                      label="项目需求"
                     />
-                  </div>
-                  <div className="input_giveninfo_small-container-1">
-                    <InputGivenInfoSmall9
-                      subtitle={inputGivenInfoSmall9Props.subtitle}
-                      btnText7Props={inputGivenInfoSmall9Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="包装数量"
+                      label="项目需求"
                     />
-                    <InputGivenInfoSmall10
-                      inputSubtitleContainer6Props={inputGivenInfoSmall10Props.inputSubtitleContainer6Props}
-                      btnText7Props={inputGivenInfoSmall10Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="规格"
+                      label="项目需求"
                     />
-                  </div>
-                  <div className="input_giveninfo_small-container-1">
-                    <InputGivenInfoSmall4
-                      inputSubtitleContainerProps={inputGivenInfoSmall49Props.inputSubtitleContainerProps}
-                      btnText7Props={inputGivenInfoSmall49Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="包装单位"
+                      label="项目需求"
                     />
-                    <InputGivenInfoSmall6
-                      inputSubtitleContainer2Props={inputGivenInfoSmall62Props.inputSubtitleContainer2Props}
-                      btnText7Props={inputGivenInfoSmall62Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="无"
+                      subtitleText="小样需求"
+                      label="无"
                     />
-                  </div>
-                  <div className="input_giveninfo_small-container-1">
-                    <InputGivenInfoSmall7
-                      inputSubtitleContainer4Props={inputGivenInfoSmall73Props.inputSubtitleContainer4Props}
-                      btnText7Props={inputGivenInfoSmall73Props.btnText7Props}
+                    </div>
+                    <div className="col-lg-12 mb-4">
+                    <YListContent
+                      bubbleContent="无"
+                      subtitleText="小样需求"
+                      label="无"
                     />
-                    <InputGivenInfoSmall6
-                      inputSubtitleContainer2Props={inputGivenInfoSmall63Props.inputSubtitleContainer2Props}
-                      btnText7Props={inputGivenInfoSmall63Props.btnText7Props}
-                    />
-                  </div>
-                  <InputGivenInfoSmall
-                    inputSubtitleContainerProps={inputGivenInfoSmall2Props2.inputSubtitleContainerProps}
-                    btnText6Props={inputGivenInfoSmall2Props2.btnText6Props}
-                  />
-                  <div className="input_given-info_large">
-                    <InputSubtitleContainer2>{inputSubtitleContainer2Props.children}</InputSubtitleContainer2>
-                    <BtnText72 className={btnText72Props.className}>{btnText72Props.children}</BtnText72>
-                  </div>
+                    </div>
                 </div>
               </div>
-            </div>
-            <div className="category_container-1">
-              <CategoryTitle4 categorytitle={categoryTitle42Props.categorytitle} />
-              <div className="column_container-1">
-                <InputSmall inputSubtitleContainerProps={inputSmallProps.inputSubtitleContainerProps} />
-                <InputSmall2 inputSubtitleContainer2Props={inputSmall2Props.inputSubtitleContainer2Props} />
+              <Note content="报价" />
+              <div className="col-lg-12">
+                  <div className="row">
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="其他纯度"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="价格"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="单价"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="总价"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="运费"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="增值税"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="其他费用"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="交货周期"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="是否定制"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="项目需求"
+                      subtitleText="处理状态"
+                      label="项目需求"
+                    />
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                    <YListContent
+                      bubbleContent="rfqerqrq"
+                      subtitleText="备注"
+                      label="rfqerqrq"
+                    />
+                    </div>
+                    
+                    
+                  </div>
               </div>
-              <UploadWindowMedium uploadWindowSmallProps={uploadWindowMediumProps.uploadWindowSmallProps} />
-            </div>
-            <CategoryContainer
-              categoryTitle4Props={categoryContainerProps.categoryTitle4Props}
-              uploadWindowLargeProps={categoryContainerProps.uploadWindowLargeProps}
-            />
-            <UpdatedDateContainer />
+              <Note content="其他纯度" />
+              <div className="col-lg-12">
+                  <div className="row">
+                    <div className="col-lg-6 mb-4">
+                      <div className="d-flex">
+                        <div className="right-align-flex ">
+                          <div style={{ color: '#686868' }} className="subtitle notosanssc-normal-shark-20px mr-1">其他纯度</div>
+                        </div>
+                        <div className="text_label-123 valign-text-middle notosanssc-normal-shark-20px ml-3">
+                          <input></input>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-6 mb-4">
+                      <div className="d-flex">
+                        <div className="right-align-flex ">
+                          <div style={{ color: '#686868' }} className="subtitle notosanssc-normal-shark-20px mr-1">价格</div>
+                        </div>
+                        <div className="text_label-123 valign-text-middle notosanssc-normal-shark-20px ml-3">
+                          <input></input>
+                        </div>
+                      </div>
+                    </div>
+                      <div className="pl-3"><AddList label="增加其他浓度选项" /></div>
+                  </div>
+              </div>
+              <Note content="产品证书: SP（Specification sheet）" />
+              <div className="col-lg-12">
+                <div className="d-flex">
+                  <p>格式案例：“3513513_SP.PDF”</p>
+                  <div className="bubble-box">
+                    <img src={bubble} alt="bubble" />
+                    <div className="bubble-content">111</div>
+                  </div>
+                </div>
+                <AddList label="上传文档" />  
+                </div>
+               
+                <Note content="产品证书: COA ; SDS; 图片" />
+                <div className="col-lg-12">
+                  <div className="d-flex">
+                    <p>格式案例：“3513513_COA.DOCX”，“75555_COA.pdf”</p>
+                    <div className="bubble-box">
+                      <img src={bubble} alt="bubble" />
+                      <div className="bubble-content">123</div>
+                    </div>
+                  </div>
+                  <AddList label="上传文档" />
+                </div>  
+                
+                <div className="col-lg-12">
+                  <p>了解更多关于<a href="#">产品证书命名格式</a></p>
+                </div>
+                <div className="btn_container" style={{ width: '100%',  justifyContent: 'center', display: 'flex',  }}>
+                </div>
+                <div className="btn_container">
+                  <button className="btn-4">
+                    <div className="text_label-87 valign-text-middle notosanssc-medium-white-16px">保存</div>
+                  </button>
+                  <button className="btn-29">
+                    <div className="text_label-128 valign-text-middle notosanssc-medium-granite-gray-16px">返回</div>
+                  </button>
+                </div>
+              </div>
           </div>
-          <BtnContainer btn2Props={btnContainerProps.btn2Props} />
-        </div>
       </div>
     </MainApp>
   );

@@ -12828,6 +12828,12 @@ ul.each-one li input[type="radio"]:checked ~ label {
   color: #444;
 }
 
+.clickable {
+  cursor: pointer;
+  color: #00f;
+  text-decoration: underline;
+}
+
 .btn_frameless-4, .btn_frameless-5 {
   background-color: #fff;
   border-radius: 4px;
@@ -13334,7 +13340,7 @@ ul.each-one li input[type="radio"]:checked ~ label {
   align-items: center;
   width: 1280px;
   height: 76px;
-  margin-left: 4px;
+  margin-left: 0;
   display: flex;
   position: relative;
   box-shadow: 0 2px 3px 1px #00000026;

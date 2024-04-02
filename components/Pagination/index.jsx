@@ -1,8 +1,8 @@
 // Pagination.js
 import React from 'react';
 import "./pagination.sass";
-import BtnLast from "../../dist/img/btn_last.png";
-import BtnNext from "../../dist/img/btn_next.png";
+import BtnLast from "../../static/img/btn_last.png";
+import BtnNext from "../../static/img/btn_next.png";
 const Pagination = () => {
   return (
     <div className="pagination-section">

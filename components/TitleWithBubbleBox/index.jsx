@@ -1,7 +1,7 @@
 // TitleWithBubbleBox component
 import React from 'react';
 import "./TitleWithBubbleBox.sass";
-import bubble from "../../dist/img/bubble.png"; 
+import bubble from "../../static/img/bubble.png"; 
 
 const TitleWithBubbleBox = ({ title, bubbleContent }) => { 
   return (

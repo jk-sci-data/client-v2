@@ -1,5 +1,5 @@
 import React from 'react';
-import bubble from "../../dist/img/bubble.png";
+import bubble from "../../static/img/bubble.png";
 import './YListContent.sass'; 
 
 

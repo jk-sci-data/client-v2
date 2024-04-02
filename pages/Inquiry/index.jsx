@@ -15,6 +15,7 @@ import "./Inquiry.sass";
 import MainApp from "components/MainApp";
 import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
 
+
 function Inquiry() {
    const [selectAll, setSelectAll] = useState(false);
 
@@ -32,7 +33,23 @@ function Inquiry() {
           salesPerson: "齐姝燕",
           state: "已通过"
         },
-        
+        {
+          id: 5,
+          orderNumber: "45135151531",
+          productName: "双[1-(叔丁基过氧)-1-甲基乙基]苯甲基乙",
+          completeTime: "2023/6/27",
+          salesPerson: "齐姝燕",
+          state: "已通过"
+        },
+        ,
+        {
+          id: 7,
+          orderNumber: "45135151531",
+          productName: "双[1-(叔丁基过氧)-1-甲基乙基]苯甲基乙",
+          completeTime: "2023/6/27",
+          salesPerson: "齐姝燕",
+          state: "已通过"
+        },
         // More...
       ]
     },
@@ -138,7 +155,7 @@ function Inquiry() {
             <div className="content">
               <div className="col-lg-12" style={{flex: 0}}>
                 <div className="row">
-                  <div className="col-lg-4 d-flex">
+                  <div className="col-lg-4 d-flex"  style={{paddingLeft:0}}>
                     <TextItemContainer number={selectedItemCount} text59="个询价" />
                     <div className="btn_option2 ml-2">
                     <input type="checkbox" className="btn_checkbox-3" checked={selectAll} onChange={handleSelectAllChange}/>
@@ -147,6 +164,16 @@ function Inquiry() {
                   </div>
                   <div className="col-lg-8 d-flex justify-content-end">
                   <ul className='each-one'>
+                  <li>
+                      <input 
+                        type="radio" 
+                        id="all-option" 
+                        name="selector" 
+                        onChange={() => handleFilterChange('all-approved')} 
+                      />
+                      <label htmlFor="all-option">显示全部通过</label>
+                      <div className="check"></div>
+                    </li>
                     <li>
                       <input 
                         type="radio" 
@@ -175,14 +202,15 @@ function Inquiry() {
                       <div className="text_label-130 valign-text-middle notosanssc-medium-tundora-16px">删除</div>
                     </div>
                     <div className="btn_frameless-6">
-                      <div className="text_label-132 valign-text-middle notosanssc-medium-tundora-16px">更多</div>
+                      <a href="" className="text_label-132 valign-text-middle notosanssc-medium-tundora-16px">更多</a>
                       <img className="icon_regular-92" src="/img/icon-more.png" alt="more" />
                     </div>
                   </div>
                 </div>
               </div>
               <div className="frame-full">
-                  <Btn3 />
+                 
+                  <SearchBox placeholder="输入产品名称、产品编号、询价单号进行搜索" />
                   <DropdownButtonList
                       icon={<img src="/img/component-1-8@2x.png" style={{ width: "19px" }} alt="Icon" />}
                       name="按处理状态排列"
@@ -191,7 +219,7 @@ function Inquiry() {
                         { label: '按产品编号顺序排列', link: '#' },
                       ]}
                     />
-                  <SearchBox placeholder="输入产品名称、产品编号、询价单号进行搜索" />
+                   <Btn3 />
               </div>
               <div className="inquiry_container">
                 <div className="inquiry-menu_container-1">
@@ -219,8 +247,8 @@ function Inquiry() {
                           <input 
                             type="checkbox" 
                             className="btn_checkbox-3" 
-                            checked={item.selected || false} // Assuming each item has a 'selected' property
-                            onChange={() => handleCheckboxChange(index, item.id)} // Example onChange handler
+                            checked={item.selected || false} 
+                            onChange={() => handleCheckboxChange(index, item.id)} 
                           />
                           <div className="btn_text-14-1">
                             <div className="text_label-98 valign-text-middle order-number">{item.orderNumber}</div>

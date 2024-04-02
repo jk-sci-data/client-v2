@@ -1,7 +1,7 @@
 // BubbleBox component
 import React from 'react';
 import "./BubbleBox.sass";
-import bubble from "../../dist/img/bubble.png";
+import bubble from "../../static/img/bubble.png";
 
 const BubbleBox = ({ bubbleContent }) => {
   return (

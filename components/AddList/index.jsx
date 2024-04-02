@@ -1,5 +1,5 @@
 import React from 'react';
-import add from "../../dist/img/add.png";
+import add from "../../static/img/add.png";
 import "./AddList.sass";
 
 const AddList = ({ label }) => {

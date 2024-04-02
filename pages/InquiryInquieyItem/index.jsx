@@ -5,8 +5,8 @@ import TitleWithBubbleBox from "components/TitleWithBubbleBox/";
 import YListContent from "components/YListContent";
 import Note from "components/Note";
 import AddList from 'components/AddList';
-import bubble from "../../dist/img/bubble.png";
-import add from "../../dist/img/add.png";
+import bubble from "../../static/img/bubble.png";
+import add from "../../static/img/add.png";
 function InquiryInquieyItem() {
 
   return (

@@ -1,25 +1,42 @@
 // Pagination.js
 import React from 'react';
-import "./pagination.sass";
-import BtnLast from "../../static/img/btn_last.png";
+import "./pagination.sass"; // Make sure the path to your CSS file is correct
+import BtnLast from "../../static/img/btn_last.png"; // Update these paths as necessary
 import BtnNext from "../../static/img/btn_next.png";
-const Pagination = () => {
+
+const Pagination = ({
+  totalPages,
+  currentPage,
+  handlePreviousPage,
+  handleNextPage,
+  handlePageChange
+}) => {
+  // Generate page numbers for dynamic rendering
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
-    <div className="pagination-section">
-      <ul className="pagination first">
-        <li><a href="#"><img src={BtnLast} alt="BtnLast" /></a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li><a href="#">7</a></li>
-        <li><a href="#">8</a></li>
-        <li><a href="#">9</a></li>
-        <li><a href="#"><img src={BtnNext} alt="BtnNext" /></a></li>
-      </ul>
-    </div>
+    totalPages > 1 && (
+      <div className="pagination-section">
+        <ul className="pagination">
+          <li onClick={handlePreviousPage}>
+            <img src={BtnLast} alt="Previous Page" />
+          </li>
+          {pageNumbers.map(number => (
+            <li key={number} className={currentPage === number ? 'active' : ''}>
+              <a onClick={(e) => { e.preventDefault(); handlePageChange(number); }} href="!#">
+                {number}
+              </a>
+            </li>
+          ))}
+          <li onClick={handleNextPage}>
+            <img src={BtnNext} alt="Next Page" />
+          </li>
+        </ul>
+      </div>
+    )
   );
 };
 

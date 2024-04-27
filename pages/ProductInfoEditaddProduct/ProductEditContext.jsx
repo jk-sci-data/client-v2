@@ -61,9 +61,10 @@ function ProductEditProvider({ children }) {
   
     useEffect(() => {
       const {data, error} = getFetch;
-      if (data) {
-        form.setData(data[0]['data']);
-        setFetchedData(data[0]['data']);
+      const dataEntry = data?.[0]?.['data'];
+      if (dataEntry) {
+        form.setData(dataEntry);
+        setFetchedData(dataEntry);
       }
   
       if (error)

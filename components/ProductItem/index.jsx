@@ -25,7 +25,7 @@ function ProductItem(props) {
   });
   return (
     <article className={`product-item-1 ${className || ""}`}>
-      <div className="left_container" style={{ flexGrow: "1" }}>
+      <div className="left_container" style={{ flex: "1", maxWidth:"100%" }}>
         <BtnCheckbox22 style={{ width: "1em" }} />
         <div className="product_content-1">
           <div className="product_image">

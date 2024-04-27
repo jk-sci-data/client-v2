@@ -1,0 +1,55 @@
+
+.pagination-section 
+  width: 100%
+  margin: 0
+  display: grid
+  place-items: center
+
+.pagination.first 
+  list-style-type: none
+  display: flex
+
+.pagination.first a 
+  background: #fff
+  color: #444444
+  text-decoration: none
+  padding: 0.5rem 1rem
+  border: 1px solid #A6A7AA
+
+.pagination li img
+  margin: 0 14px 
+  cursor: pointer
+  
+.pagination
+  display: flex
+  justify-content: center
+  list-style-type: none
+  padding: 10px 20px
+
+  li
+    margin: 0 5px
+    transition: background 0.3s
+
+    a
+      text-decoration: none
+      display: inline-block
+      padding: 10px 20px
+      color:#B02C38
+    
+      border: 1px solid red
+      border-radius: 4px
+      transition: background 0.3s, color 0.3s
+
+      &:hover
+        background: #B02C38
+        color: #fff
+
+    &.active a
+      background: #B02C38
+      color: #fff
+
+    &:first-child a,
+    &:last-child a
+      border: none
+      padding:0 2rem
+

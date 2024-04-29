@@ -1,8 +1,7 @@
-// Pagination.js
 import React from 'react';
-import "./pagination.sass"; // Make sure the path to your CSS file is correct
-import BtnLast from "../../static/img/btn_last.png"; // Update these paths as necessary
-import BtnNext from "../../static/img/btn_next.png";
+import "./pagination.sass"; 
+import BtnLast from "static/img/btn_last.png"; 
+import BtnNext from "static/img/btn_next.png";
 
 const Pagination = ({ totalPages, currentPage, handlePreviousPage, handleNextPage, handlePageChange }) => {
   const pageNumbers = [];

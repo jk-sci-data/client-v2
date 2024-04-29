@@ -54,7 +54,7 @@ export default function ProductInfoTable({ data }) {
         </div>
       </div>
       <div style={{ width: "100%" }}>
-        <CategoryTitle5 props={"Search results"} />
+        <CategoryTitle5 text={"Search results"} />
         <div className="product-column">
           {data.filter((d, i) => i >= minIndex && i < maxIndex)
             .map((d, i) => {

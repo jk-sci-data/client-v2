@@ -23,7 +23,6 @@ function ProductInfo(props) {
     searchbar2Props,
   } = props;
 
-  //const [searchTerm, setSearchTerm] = useState("");
   const [data, setData] = useState(null);
   const form = useForm();
 
@@ -52,7 +51,8 @@ function ProductInfo(props) {
       casNumber: d['cas'] || "???",
       productNumber: d['product_number'] || "???",
       sizeNumber: d['size'] || "???",
-      productId: d['product_id'] || "######"
+      productId: d['product_id'] || "######",
+      selected: false //determines if checkbox is active
     }));
 
     return items;

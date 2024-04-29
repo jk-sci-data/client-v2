@@ -6,7 +6,8 @@
     "components": "./components",
     "contexts": "./contexts",
     "pages": "./pages",
-    "hooks": "./hooks"
+    "hooks": "./hooks",
+    "static": "./static"
   },
   "scripts": {
     "start": "parcel index.html",

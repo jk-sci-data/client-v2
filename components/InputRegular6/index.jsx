@@ -7,10 +7,10 @@ function InputRegular6(props) {
   const { inputSubtitleContainer2Props, inputBoxRegularProps } = props;
 
   return (
-    <div className="input_regular-6">
+    <label className="input_regular-6">
       <InputSubtitleContainer2>{inputSubtitleContainer2Props.children}</InputSubtitleContainer2>
       <InputBoxRegular>{inputBoxRegularProps.children}</InputBoxRegular>
-    </div>
+    </label>
   );
 }
 

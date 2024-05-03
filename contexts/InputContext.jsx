@@ -10,12 +10,13 @@ const InputContext = createContext();
  * `children` 
  */
 function InputProvider(props) {
-    console.log("inputprovider props", props)
+    console.log("props field", props.field);
     return (
         <InputContext.Provider value={{
             ...props.value,
             name: props.name,
-            form: props.form //has properties form.data and form.onChange
+            form: props.form, //has properties form.data and form.onChange
+            field: props.field
         }}>
             {props.children}
         </InputContext.Provider>

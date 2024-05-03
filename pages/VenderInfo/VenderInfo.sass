@@ -95,10 +95,33 @@
   white-space: nowrap
   width: fit-content
 
-select
+
+.select-field
+  padding: 0px
+  width: fit-content
+  height: fit-content
+  border: none
+  background-color: transparent
+
+
+select,
+.select-field__control
   color: #757575
+  background-color: #fff
   border-radius: 4px
   width: 354px
   height: 47px
   padding-left: 8px
   font-size: 20px
+  appearance: none
+  box-sizing: border-box
+  align-items: center
+  cursor: pointer
+  white-space: pre
+  border-width: 1px
+  border-style: solid
+  border-color: #444
+  border-image: initial
+  
+  &:not(:-internal-select-author-button)
+    appearance: none

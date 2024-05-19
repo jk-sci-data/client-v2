@@ -1,9 +1,12 @@
 import { createContext, useState, useEffect } from "react";
 import { SideNavProvider } from "./SideNavContext";
 import useLogin from "hooks/useLogin";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const AppContext = createContext();
 
+const queryClient = new QueryClient()
 /**
  * 
  * Stores global app data, intended to be visible at all levels of the Component tree
@@ -6130,19 +6133,21 @@ function AppProvider({ children }) {
         }
     })();
 
-    const loginInfo = useLogin({
-        doAuthorize: true
-    });
 
     const value = {
         constants,
-        loginInfo
+        queryClient
     }
 
     return (
-        <AppContext.Provider value={value}>
-            <SideNavProvider>{children}</SideNavProvider>
-        </AppContext.Provider>
+        <QueryClientProvider client={queryClient}>
+            <AppContext.Provider value={value}>
+                <SideNavProvider>
+                    {children}
+                </SideNavProvider>
+            </AppContext.Provider>
+            <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
     );
 }
 

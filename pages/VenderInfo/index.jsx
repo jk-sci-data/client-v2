@@ -15,7 +15,7 @@ import MainApp from "components/MainApp";
 import { InputProvider } from "contexts/InputContext";
 import Select from 'react-select';
 import useCountryStateCity from "./useCountryStateCity";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
@@ -75,6 +75,19 @@ function VenderInfo(props) {
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
   };
+
+  const {data: vendorData} = useQuery({
+    queryKey: ["vendor-info", vendorId],
+    queryFn: async () => {
+      //todo;
+    },
+    enabled: false //make true
+  })
+  const {mutateAsync: submitForm} = useMutation({
+    mutationFn: ({formData}) => {
+      //todo
+    }
+  });
 
   return (
     <MainApp>

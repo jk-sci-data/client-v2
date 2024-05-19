@@ -1,28 +1,26 @@
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import BtnCheckbox from "../BtnCheckbox";
 import "./BtnOption.sass";
+import { useWatch } from "react-hook-form";
 
-import { FormContext, InputContext } from "../../contexts";
+import { InputContext } from "../../contexts";
 function BtnOption(props) {
-  const { option1 } = props; 
+  const { value, option1 } = props; 
 
-  const {name} = React.useContext(InputContext) || {};
-  const {formData, updateFormData} = React.useContext(FormContext) || {};
-  const value = props.value || option1; //`value` is the database name or id, `option1` is the label
-  const checked = (() => {
-    if ([name, formData].includes(undefined)) {
-      return false;
-    }
-    return formData[name] == value;
-  })();
+  const {field, form} = useContext(InputContext) || {};
 
+  const formValue = useWatch({
+    control: form?.control,
+    name: field?.name
+  });
+  
   const onClick = () => {
-    if (updateFormData && name)
-    updateFormData(name, value)
+      form?.setValue(field?.name, value);
   };
 
+  const checked = value === formValue;
   return (
-    <article className="btn_option" onClick={onClick} name={name} value={value}>
+    <article className="btn_option" onClick={onClick} >
       <BtnCheckbox checked={checked}/>
       <div className="option-1 notosanssc-normal-black-16px">{option1}</div>
     </article>

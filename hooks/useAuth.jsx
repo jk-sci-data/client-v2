@@ -4,16 +4,19 @@ import jwt from 'jsonwebtoken';
 
 const prefixUrl = process.env.REACT_APP_API_URL + "/api/auth";
 
-export default function useLogin(props) {
-    const doAuthorize = props.doAuthorize ?? false;
+export default function useAuth(props) {
+    const doAuthorize = props?.doAuthorize ?? false;
 
-    const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
-    const [result, setResult] = useState(null);
+    const [accessToken, _setAccessToken] = useState(localStorage.getItem("accessToken"));
+    const setAccessToken = (tok) => {
+        _setAccessToken(tok);
+        localStorage.setItem("accessToken", tok);
+    }
 
-    const { data: accountData, isLoading: isAuthorizing } = useQuery({
+    const { data: accountData, isLoading: isAuthorizing, refetch: handleAuthorize } = useQuery({
         queryKey: ['authorize', accessToken],
         queryFn: async () => {
-            if (!accessToken) return null;
+            if (!accessToken) throw new Error("No accessToken found.");
             const response = await fetch(`${prefixUrl}/authorize-user`, {
                 method: 'GET',
                 headers: {
@@ -30,14 +33,14 @@ export default function useLogin(props) {
         },
         enabled: doAuthorize && !!accessToken,
         onError: (error) => {
-            console.error("Invalid access token:", error);
+            console.error(error);
         }
     });
     const loggedIn = useMemo(() => {
         return !!accountData;
     }, [accountData]);
 
-    const { data: signUpResult, mutateAsync: handleSignUp, isLoading: isSigningUp } = useMutation({
+    const { data: signUpResult, error: signUpError, mutateAsync: handleSignUp, isLoading: isSigningUp } = useMutation({
         mutationFn: async (formData) => {
             const { username, password, orgId, email, phoneNumber, isMain } = formData;
             const response = await fetch(`${prefixUrl}/signup`, {
@@ -58,15 +61,14 @@ export default function useLogin(props) {
             if (!response.ok) {
                 throw new Error("Signup failed");
             }
-            setResult({ success: true, method: "handleSignUp" });
+            return response;
         },
         onError: (error) => {
             console.error("Signup error:", error);
-            setResult({ success: false, method: "handleSignUp" });
         }
     });
 
-    const { data: signUpAdminResult, mutateAsync: handleSignUpAdmin, isLoading: isSigningUpAdmin } = useMutation({
+    const { data: signUpAdminResult, error: signUpAdminError, mutateAsync: handleSignUpAdmin, isLoading: isSigningUpAdmin } = useMutation({
         mutationFn: async (formData) => {
             const { username, password, orgId, email, phoneNumber, isMain } = formData;
             const response = await fetch(`${prefixUrl}/signup-admin`, {
@@ -105,15 +107,14 @@ export default function useLogin(props) {
             }
             const data_1 = await response_1.json();
             console.log("Assign role done:", data_1);
-            setResult({ success: true, method: "handleSignUpAdmin" });
+            return true;
         },
         onError: (error) => {
             console.error("Admin signup error:", error);
-            setResult({ success: false, method: "handleSignUpAdmin" });
         }
     });
 
-    const { data: loginResult, mutateAsync: handleLogin, isLoading: isLoggingIn } = useMutation({
+    const { mutate: handleLogin, isLoading: isLoggingIn, isError: isLoginError, error: loginError } = useMutation({
         mutationFn: async (formData) => {
             const { username, password } = formData;
             const response = await fetch(`${prefixUrl}/login`, {
@@ -132,15 +133,18 @@ export default function useLogin(props) {
             if (!data?.['accessToken']) {
                 throw new Error("Login failed. No access token found.");
             }
-            setAccessToken(data['accessToken']);
             return data;
+        },
+        onSuccess: (data) => {
+            console.log("Login success", data);
+            setAccessToken(data['accessToken']);
         },
         onError: (error) => {
             console.error("Login error:", error);
         }
     });
 
-    const { data: logoutResult, mutateAsync: handleLogout } = useMutation({
+    const { data: logoutResult, error: logoutError, mutateAsync: handleLogout } = useMutation({
         mutationFn: async () => {
             const response = await fetch(`${prefixUrl}/logout`, {
                 method: 'POST',
@@ -175,9 +179,10 @@ export default function useLogin(props) {
     }, [accessToken]);
 
     useEffect(() => {
+        /*
         if (doAuthorize && accessToken) {
             console.log("Authorizing...");
-        }
+        }*/
     }, [accessToken]);
 
     const loading = isAuthorizing || isSigningUp || isSigningUpAdmin || isLoggingIn;
@@ -186,10 +191,9 @@ export default function useLogin(props) {
         account,
         loading,
         loggedIn,
-        handleLogin,
-        handleLogout,
-        handleSignUp,
-        handleSignUpAdmin,
-        result,
+        handleLogin, loginError,
+        handleLogout, logoutError,
+        handleSignUp, signUpError,
+        handleSignUpAdmin, signUpAdminError
     };
 }

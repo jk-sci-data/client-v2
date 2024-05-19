@@ -6,21 +6,36 @@ import PromptContainer from "components/PromptContainer";
 import "./ProductCertificateUpload.sass";
 import MainApp from "components/MainApp";
 import useFileUpload from "hooks/useFileUpload";
+import { DevTool } from "@hookform/devtools";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { InputProvider } from "contexts/InputContext";
 
 function ProductCertificateUpload(props) {
   const { titleContainerProps, categoryTitle3Props, footerProps } = props;
-  const fileUpload = useFileUpload(process.env.REACT_APP_API_URL + "/api/files/upload-certificate");
-  const {handleUpload, handleFileChange} = fileUpload;
+
+  const { data: uploadResponse, mutateAsync: uploadFile } = useMutation({
+    mutationFn: async () => {
+      const res = await fetch(process.env.REACT_APP_API_URL + "/api/files/upload-certificate");
+      return res;
+    }
+  });
+
+  const { register, control } = useForm();
+
   return (
     <MainApp>
       <div className="main_container-1">
         <TitleContainer className={titleContainerProps.className}>{titleContainerProps.children}</TitleContainer>
         <div className="main-content-1">
           <CategoryTitle3 categorytitle={categoryTitle3Props.categorytitle} />
-          <UploadWindowLarge handleUpload={handleUpload} handleFileChange={handleFileChange}/>
+          <InputProvider field={register("file")} >
+            <UploadWindowLarge />
+          </InputProvider>
           <PromptContainer />
         </div>
       </div>
+      {true && <DevTool control={control} />}
     </MainApp>
   );
 }

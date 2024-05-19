@@ -1,11 +1,13 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useContext } from "react";
 import CategoryTitle5 from "components/CategoryTitle5";
 import ProductItem from "components/ProductItem";
 import "./ProductInfo.sass";
 import Pagination from "components/Pagination";
+import { ProductInfoContext } from "./ProductInfoContext";
 
-export default function ProductInfoTable({ data }) {
-  console.log("productinfotable data", data);
+export default function ProductInfoTable() {
+  const { fetchedData: data } = useContext(ProductInfoContext);
+
   const [pageConfig, setPageConfig] = useState({
     "page": 1,
     "size": 25,
@@ -42,6 +44,16 @@ export default function ProductInfoTable({ data }) {
   const handlePageChange = (pageNumber) => {
     setPageConfig((prev) => ({ ...prev, "page": pageNumber }));
   };
+
+
+  const tableData = (data || []).filter((d, i) => i >= minIndex && i < maxIndex).map((d, i) => {
+    console.log("tableData entry", d)
+    return (<div key={i} className="product-item_container">
+      <ProductItem entry={d.data} />
+    </div>
+    );
+  });
+
   return ((data?.length > 0) &&
     <div className="product_container">
       <div className="product-menu_container">
@@ -56,15 +68,7 @@ export default function ProductInfoTable({ data }) {
       <div style={{ width: "100%" }}>
         <CategoryTitle5 text={"Search results"} />
         <div className="product-column">
-          {data.filter((d, i) => i >= minIndex && i < maxIndex)
-            .map((d, i) => {
-              console.log("data entry", d);
-              return (
-                <div key={i} className="product-item_container">
-                  <ProductItem {...d} />
-                </div>
-              );
-            })}
+          {tableData}
         </div>
       </div>
       <Pagination

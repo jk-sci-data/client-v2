@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useMemo, useEffect, useRef, useContext } from "react";
 import TitleContainer from "components/TitleContainer";
 import TextItemContainer from "components/TextItemContainer";
 import BtnOption22 from "components/BtnOption22";
@@ -9,12 +9,11 @@ import Btn4 from "components/Btn4";
 import Searchbar2 from "components/Searchbar2";
 import "./ProductInfo.sass";
 import MainApp from "components/MainApp";
-import useAsync from "hooks/useAsync2";
-import useForm from "hooks/useForm";
 import ProductInfoTable from "./ProductInfoTable";
 import { InputContext, InputProvider } from "contexts/InputContext";
+import { ProductInfoContext, ProductInfoProvider } from "./ProductInfoContext";
 
-function ProductInfo(props) {
+function ProductInfoContent(props) {
   const {
     titleContainerProps,
     textItemContainerProps,
@@ -23,56 +22,21 @@ function ProductInfo(props) {
     searchbar2Props,
   } = props;
 
-  const [data, setData] = useState(null);
-  const form = useForm();
-
-  const dataFetch = useAsync(async (searchTerm) => {
-    console.log("dataFetching...", searchTerm);
-    const queryParams = new URLSearchParams({
-      "filter": `title eq '~~%${searchTerm}%'`
-    });
-
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/products?${queryParams.toString()}`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-      },
-      credentials: "include"
-    });
-
-    const resData = await res.json();
-    console.log("/api/product data", resData);
-
-    const items = resData.map((d) => ({
-      productName: d['title_en'] ?? d['title'] ?? "???",
-      productName2: d['title_cn'] || "",
-      casNumber: d['cas'] || "???",
-      productNumber: d['product_number'] || "???",
-      sizeNumber: d['size'] || "???",
-      productId: d['product_id'] || "######",
-      selected: false //determines if checkbox is active
-    }));
-
-    return items;
-  });
+  const ctx = useContext(ProductInfoContext) || {};
+  const {
+    tableData: data,
+    isLoading,
+    refetch: dataFetch,
+    form, searchTerm
+  } = ctx;
 
   useEffect(() => {
-    console.log("dataFetching", dataFetch);
-    if (dataFetch.loading) return;
+    console.log("tableData:", data);
+  }, [data]);
+  
+  console.log("productinfocontext", ctx);
 
-    setData(dataFetch.data || []);
-  }, [dataFetch.data, dataFetch.loading]);
-
-  const handleRefresh = (evt) => {
-    const searchTerm = (form.data['searchTerm'] ?? "").trim();
-    if (!searchTerm) {
-      console.error("No search term!");
-      return;
-    }
-    dataFetch.run([searchTerm]);
-  };
+  const { register, control } = form || {};
 
   const handlePressEnter = (evt) => {
     if (evt.key === "Enter") {
@@ -80,6 +44,13 @@ function ProductInfo(props) {
       handleRefresh();
     }
   }
+
+  const handleRefresh = () => {
+    const searchTermTrim = (searchTerm || "").trim();
+    console.log("handleRefresh called", searchTermTrim)
+    if (!searchTermTrim) return;
+    dataFetch({ queryKey: ['product-search', searchTermTrim] });
+  };
 
   return (
     <MainApp>
@@ -96,8 +67,8 @@ function ProductInfo(props) {
               </div>
             </div>
             <div className="middle_sub-nav">{/** search bar */}
-              <InputProvider form={form} name={"searchTerm"}>
-                <Btn3 onClick={handleRefresh} disabled={dataFetch.loading ?? false} />
+              <InputProvider form={form} field={register("searchTerm")}>
+                <Btn3 onClick={handleRefresh} disabled={isLoading ?? false} />
                 <Btn4 text_Label={btn4Props.text_Label} />
                 <Searchbar2 onKeyDown={handlePressEnter} style={{ flexGrow: 1 }} text_Label={searchbar2Props.text_Label} icon_Regular={searchbar2Props.icon_Regular} />
               </InputProvider>
@@ -110,4 +81,11 @@ function ProductInfo(props) {
   );
 }
 
+function ProductInfo(props) {
+  return (
+    <ProductInfoProvider>
+      <ProductInfoContent {...props} />
+    </ProductInfoProvider>
+  );
+}
 export default ProductInfo;

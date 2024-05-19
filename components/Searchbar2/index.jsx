@@ -3,7 +3,7 @@ import "./Searchbar2.sass";
 import { InputContext } from "contexts/InputContext";
 
 function Searchbar2(props) {
-  const { form, name } = useContext(InputContext) || {};
+  const { form, field } = useContext(InputContext) || {};
   const { text_Label, icon_Regular, style } = props;
 
 
@@ -13,8 +13,7 @@ function Searchbar2(props) {
         className="text_label-147 valign-text-middle notosanssc-normal-quick-silver-20px"
         placeholder={text_Label}
         style={{ width: "100%", border: "none", background: "transparent" }}
-        name={name}
-        onChange={form.onChange}
+        {...field}
         onKeyDown={props.onKeyDown || (() => { })}
       />
       <img className="icon_regular-99" src={icon_Regular} alt="icon_regular" />

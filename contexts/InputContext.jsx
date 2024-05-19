@@ -1,5 +1,4 @@
 import React, { createContext } from "react";
-import useForm from "hooks/useForm";
 
 const InputContext = createContext();
 
@@ -10,14 +9,8 @@ const InputContext = createContext();
  * `children` 
  */
 function InputProvider(props) {
-    console.log("props field", props.field);
     return (
-        <InputContext.Provider value={{
-            ...props.value,
-            name: props.name,
-            form: props.form, //has properties form.data and form.onChange
-            field: props.field
-        }}>
+        <InputContext.Provider value={props}>
             {props.children}
         </InputContext.Provider>
     );

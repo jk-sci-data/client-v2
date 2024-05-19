@@ -5,24 +5,11 @@ import RightContainer from "../RightContainer";
 import "./ProductItem.sass";
 
 function ProductItem(props) {
-  const { className } = props;
-  const {
-    productName,
-    productName2,
-    casNumber,
-    productNumber,
-    sizeNumber,
-    productId
-  } = props;
-  
-  console.log("productItem props", props, {
-    productName,
-    productName2,
-    casNumber,
-    productNumber,
-    sizeNumber,
-    productId
-  });
+  const { className, entry } = props;
+  console.log("entry data", entry, entry);
+  if (!entry) return null;
+  const packageSize = [entry['package'], entry['package_unit']].filter(s => s).join(" ");
+
   return (
     <article className={`product-item-1 ${className || ""}`}>
       <div className="left_container" style={{ flex: "1", maxWidth:"100%" }}>
@@ -31,14 +18,14 @@ function ProductItem(props) {
           <div className="product_image">
             <img className="icon_regular-100" src="/img/component-1-9@2x.png" alt="icon_regular" />
           </div>
-          <a href={`/product-info-edit-add-product?id=${productId}`} target="_blank">
-            <ProductName name={productName} subname={productName2} />
+          <a href={`/product-info-edit-add-product?sku=${entry['sku']}`} target="_blank">
+            <ProductName name={entry['title_en']} subname={entry['title_cn']} />
           </a>
         </div>
       </div>
       <div className="right_container" style={{ width: "fit-content" }}>
         {
-          [casNumber, productNumber, sizeNumber].map((item) => (
+          [entry['sku'], entry['cas'], packageSize].map((item) => (
             <article className={`btn_text-21-1`} style={{ width: "8em" }}>
               <div className="text_label-135 valign-text-middle notosanssc-normal-tundora-16px" style={{ width: "100%" }}>{item}</div>
             </article>

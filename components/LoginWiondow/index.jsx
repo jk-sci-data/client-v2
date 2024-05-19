@@ -6,16 +6,16 @@ import Btn82 from "../Btn82";
 import BtnText2 from "../BtnText2";
 import "./LoginWiondow.sass";
 import { AppContext } from "contexts";
-import useForm from "hooks/useForm";
-import useLogin from "hooks/useLogin";
+import { useForm } from "react-hook-form";
+import useAuth from "hooks/useAuth";
 import { Link } from 'react-router-dom';
+
 function LoginWiondow(props) {
-  const {loginInfo} = useContext(AppContext) ?? {};
-  const form = useForm({ "username": "", "password": "" });
-  const login = loginInfo ?? {}; //instance of useLogin()
-  console.log("logininfo", login)
-  const { account, loggedIn } = login;
-  .0
+  const form = useForm({defaultValues: { "username": "", "password": "" }});
+  const {register, control} = form;
+  
+  const {handleLogin, loggedIn} = useAuth();
+
   const {
     text7,
     text8,
@@ -28,12 +28,12 @@ function LoginWiondow(props) {
     btnText2Props,
   } = props;
 
-  console.log("login formdata", form.data);
+  console.log("login formdata", form.getValues());
 
   const handleLoginClick = (evt) => {
     console.log("login clicked");
     evt.preventDefault();
-    login.handleLogin(form.data /** {username, password} */);
+    handleLogin(form.getValues() /** {username, password} */);
 
   };
 
@@ -78,15 +78,13 @@ function LoginWiondow(props) {
                   <InputBoxRegular42
                     icon_Regular={inputBoxRegular421Props.icon_Regular}
                     inputPlaceholder={inputBoxRegular421Props.inputPlaceholder}
-                    name={"username"}
-                    form={form}
+                    field={register("username")}
                   />
                   <InputBoxRegular42
                     icon_Regular={inputBoxRegular422Props.icon_Regular}
                     inputPlaceholder={inputBoxRegular422Props.inputPlaceholder}
+                    field={register("password")}
                     inputType="password"
-                    name="password"
-                    form={form}
                   />
                 </div>
                 <div className="password-option_container">
@@ -100,7 +98,7 @@ function LoginWiondow(props) {
                 </div>
               </div>
               <div className="input-btn_container mt-4">
-                <Btn82><Link to="/vendor-info">{btn82Props.children}</Link></Btn82>
+                <Btn82 onClick={handleLoginClick}>{btn82Props.children}</Btn82>
                 <BtnText2>{btnText2Props.children}</BtnText2>
               </div>
             </div>

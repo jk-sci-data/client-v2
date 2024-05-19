@@ -7,9 +7,8 @@ import LoginWiondow from "components/LoginWiondow";
 
 
 export default function MainApp({ children, requireLogin = true }) {
-    const { constants, loginInfo } = useContext(AppContext);
+    const { constants } = useContext(AppContext);
     const { productInfoData, loginWiondowData } = constants;
-    //const { loggedIn } = loginInfo;
     const loggedIn = true;
     const { header3Props } = productInfoData;
 

@@ -1,12 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 import { SideNavProvider } from "./SideNavContext";
-import useLogin from "hooks/useLogin";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import useAuth from "hooks/useAuth";
 
 const AppContext = createContext();
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
+
 /**
  * 
  * Stores global app data, intended to be visible at all levels of the Component tree
@@ -6133,21 +6134,20 @@ function AppProvider({ children }) {
         }
     })();
 
-
+    const auth = useAuth();
     const value = {
         constants,
-        queryClient
-    }
+        queryClient,
+        auth
+    };
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <AppContext.Provider value={value}>
-                <SideNavProvider>
-                    {children}
-                </SideNavProvider>
-            </AppContext.Provider>
-            <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        <AppContext.Provider value={value}>
+            <QueryClientProvider client={queryClient}>
+                <SideNavProvider>{children}</SideNavProvider>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
+        </AppContext.Provider>
     );
 }
 

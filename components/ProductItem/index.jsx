@@ -18,7 +18,7 @@ function ProductItem(props) {
           <div className="product_image">
             <img className="icon_regular-100" src="/img/component-1-9@2x.png" alt="icon_regular" />
           </div>
-          <a href={`/product-info-edit-add-product?sku=${entry['sku']}`} target="_blank">
+          <a href={`/product-info-edit-add-product?id=${entry['product_id']}`} target="_blank">
             <ProductName name={entry['title_en']} subname={entry['title_cn']} />
           </a>
         </div>

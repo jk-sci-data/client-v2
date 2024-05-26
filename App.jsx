@@ -15,6 +15,7 @@ import VenderInfo from "pages/VenderInfo";
 import AccountInfo from "pages/AccountInfo";
 import { AppContext, AppProvider, FormProvider } from "contexts";
 import Signup from "pages/Signup";
+import useAuth from "hooks/useAuth";
 
 //todo: remove FormProvider
 function LoginWrapper(props) {

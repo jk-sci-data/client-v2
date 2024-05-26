@@ -2,12 +2,12 @@ import { useContext } from "react";
 import Header3 from "components/Header3";
 import SideNavMenu from "components/SideNavMenu";
 import Footer from "components/Footer";
-import { AppContext, FormProvider } from "contexts";
+import { AppContext } from "contexts";
 import LoginWiondow from "components/LoginWiondow";
 
 
 export default function MainApp({ children, requireLogin = true }) {
-    const { constants } = useContext(AppContext);
+    const { constants, auth } = useContext(AppContext);
     const { productInfoData, loginWiondowData } = constants;
     const loggedIn = true;
     const { header3Props } = productInfoData;
@@ -16,7 +16,7 @@ export default function MainApp({ children, requireLogin = true }) {
         <div style={{ display: "flex", flexFlow: "column nowrap", width: "100%" }}>
             <Header3 username141={header3Props.username141} logoContainerProps={header3Props.logoContainerProps} />
             { (requireLogin && !loggedIn)
-                ? loginWiondowData && <FormProvider>{"NOT LOGGED IN"}<LoginWiondow {...loginWiondowData} /></FormProvider>
+                ? loginWiondowData && <>{"NOT LOGGED IN"}<LoginWiondow {...loginWiondowData} /></>
                 :
                 <div style={{ display: "flex", flexFlow: "row nowrap" }}>
                     <div /*className="col-lg-3"*/ style={{ padding: "1.2em", width: "fit-content" }}>

@@ -11,8 +11,7 @@ function ProductEditProvider({ children }) {
   const { productInfoEditaddProductData } = constants || {};
 
   const searchParams = new URLSearchParams(window.location.search);
-  const productId = searchParams.get("id");
-  const sku = searchParams.get("sku");
+  const productId = searchParams.get("id"); //assume new product if no ID
 
   const form = useForm({
     defaultValues: {
@@ -57,9 +56,9 @@ function ProductEditProvider({ children }) {
   });
 
   const { data: fetchedData } = useQuery({
-    queryKey: ["product-info", sku],
+    queryKey: ["product-info", productId],
     queryFn: async () => {
-      const r = await fetch(process.env.REACT_APP_API_URL + `/api/product-info/${sku}`, {
+      const r = await fetch(process.env.REACT_APP_API_URL + `/api/product-info/${productId}`, {
         //todo: fix this -- get data based on sku
         method: 'GET',
         headers: {
@@ -71,7 +70,8 @@ function ProductEditProvider({ children }) {
       });
       return r.json();
     },
-    enabled: !!sku
+    enabled: !!productId,
+    retry: false
   });
 
   useEffect(() => {
@@ -86,19 +86,33 @@ function ProductEditProvider({ children }) {
 
   const { mutateAsync: saveFormData } = useMutation({
     mutationFn: async ({ formData, productId }) => {
-      const res = fetch(process.env.REACT_APP_API_URL + "/api/update-product-info", {
+      const res = await fetch(process.env.REACT_APP_API_URL + "/api/product-info/" + productId, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         },
         credentials: "include",
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify({ data: [{ ...formData, product_id: productId }] })
       });
       return res.json();
     }
   });
 
+  const { mutateAsync: saveNewFormData } = useMutation({
+    mutationFn: async ({ formData }) => {
+      const res = await fetch(process.env.REACT_APP_API_URL + "/api/product-info", {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        credentials: "include",
+        method: "POST",
+        body: JSON.stringify({ data: [{ ...formData }] })
+      });
+      return res.json();
+    }
+  });
 
   /*
   todo: make fileupload part of the form submission
@@ -115,8 +129,13 @@ function ProductEditProvider({ children }) {
 
   const handleSaveBtn = async (evt) => {
     /** todo: validate form info is valid */
+    const formData = form.getValues();
     console.log("save button clicked", formData);
-    const response = await saveFormData({ formData, productId });
+    let response;
+    if (productId)
+      response = await saveFormData({ formData, productId });
+    else
+      response = await saveNewFormData({ formData });
     console.log("save response", response);
   }
 

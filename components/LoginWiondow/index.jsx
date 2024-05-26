@@ -13,8 +13,8 @@ import { Link } from 'react-router-dom';
 function LoginWiondow(props) {
   const form = useForm({defaultValues: { "username": "", "password": "" }});
   const {register, control} = form;
-  
-  const {handleLogin, loggedIn} = useAuth();
+  const { auth } = useContext(AppContext);
+  const {handleLogin, loggedIn} = auth;
 
   const {
     text7,

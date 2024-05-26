@@ -105,7 +105,7 @@ export default function ProductInfoEditContent(props) {
                   />
                 </InputProvider>
                 <div className="input_small-container">
-                  <InputProvider field={register("product_name")}>
+                  <InputProvider field={register("sku")}>
                     <InputSmall
                       className={inputInformation21Props.className}
                       inputSubtitleContainerProps={inputInformation21Props.inputSubtitleContainerProps}

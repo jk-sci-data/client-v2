@@ -1,72 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TitleContainer from "components/TitleContainer";
 import CategoryTitle2 from "components/CategoryTitle2";
 import UploadWindowLarge from "components/UploadWindowLarge";
 import AdviceContainer from "components/AdviceContainer";
 import "./UploadMultiples.sass";
-import { ExcelParserContext, ExcelParserProvider, FileContext, FileProvider } from "contexts";
+import { InputProvider, FileContext, FileProvider } from "contexts";
 import MainApp from "components/MainApp";
+import useExcelParser from "hooks/useExcelParser";
+import { useForm } from "react-hook-form";
 
-function UploadField(props) {
-  const { handleFileChange, selectedFile } = React.useContext(FileContext);
-
-  const handleSubmit = async (evt) => {
-    if (!selectedFile) {
-      console.log("no file!");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', selectedFile);
-
-    try {
-      const response = await fetch('http://localhost:5000/api/update-products-by-file', {
-        method: 'POST',
-        body: formData,
-      });
-      console.log(response);
-      const json = await response.json();
-      console.log(json.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return (
-    <UploadWindowLarge />
-  )
-
-  return (
-    <div className="test" style={{ display: "flex", flexFlow: "column nowrap" }}>
-      <div>
-        <input type="file" name="file" onChange={handleFileChange} />
-      </div>
-      <div>
-        <button type="button" onClick={handleSubmit}>Submit</button>
-      </div>
-    </div>
-  )
-}
 
 function ParserField(props) {
-  const { handleFileChange, clearData, data } = React.useContext(ExcelParserContext) || {};
+  const {form} = props;
+  const { handleFileChange, clearData, data, jsonData } = useExcelParser(); //React.useContext(ExcelParserContext) || {};
+
+  const file = form.watch("file");
+  useEffect(() => {
+    handleFileChange(file);
+  }, [file]);
+
+  useEffect(() => {
+    console.log("jsondata", jsonData);
+  }, [jsonData]);
 
   const handleSubmit = async (evt) => {
-    const jsonData = data.slice(1).map(row => {
-      const jsonRow = {};
-      data[0].forEach((header, index) => {
-        jsonRow[header] = row[index];
-      });
-      return jsonRow;
-    });
-    console.log("TODO: implement api", jsonData);
-
-    const postUrl = process.env.REACT_APP_API_URL + "/api/update-product-info";
-    const response = await fetch(postUrl, {
+    const response = await fetch(process.env.REACT_APP_API_URL + "/api/product-info", {
       headers: {
         "Content-Type": "application/json"
       },
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify({ data: jsonData })
     });
     console.log(response);
@@ -75,7 +37,11 @@ function ParserField(props) {
   }
 
   if (!data) {
-    return <UploadWindowLarge handleUpload={handleFileChange} />
+    return (
+      <InputProvider field={form.register("file")}>
+        <UploadWindowLarge />
+      </InputProvider>
+    );
   }
 
   return (
@@ -108,6 +74,8 @@ function UploadMultiples(props) {
     adviceContainerProps,
   } = props;
 
+  const form = useForm();
+
   return (
     <MainApp>
       <div className="main_container-5">
@@ -117,9 +85,7 @@ function UploadMultiples(props) {
             categorytitle={categoryTitle2Props.categorytitle}
             btnProps={categoryTitle2Props.btnProps}
           />
-          <ExcelParserProvider>
-            <ParserField />
-          </ExcelParserProvider>
+          <ParserField form={form}/>
           <AdviceContainer
             text30={adviceContainerProps.text30}
             btnText3Props={adviceContainerProps.btnText3Props}
@@ -131,3 +97,49 @@ function UploadMultiples(props) {
 }
 
 export default UploadMultiples;
+
+
+
+function UploadField(props) {
+  const {form} = props;
+  const { handleFileChange, selectedFile } = React.useContext(FileContext);
+
+  const handleSubmit = async (evt) => {
+    if (!selectedFile) {
+      console.log("no file!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/update-products-by-file', {
+        method: 'POST',
+        body: formData,
+      });
+      console.log(response);
+      const json = await response.json();
+      console.log(json.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <InputProvider>
+      <UploadWindowLarge />
+    </InputProvider>
+  )
+
+  return (
+    <div className="test" style={{ display: "flex", flexFlow: "column nowrap" }}>
+      <div>
+        <input type="file" name="file" onChange={handleFileChange} />
+      </div>
+      <div>
+        <button type="button" onClick={handleSubmit}>Submit</button>
+      </div>
+    </div>
+  )
+}

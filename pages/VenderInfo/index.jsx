@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useMemo, useEffect, useContext } from "react";
 import TitleContainer from "components/TitleContainer";
 import InputRegular5 from "components/InputRegular5";
 import InputBoxRegular from "components/InputBoxRegular";
@@ -18,6 +18,9 @@ import useCountryStateCity from "./useCountryStateCity";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { AppContext } from "contexts/AppContext";
+
+const prefixUrl = process.env.REACT_APP_API_URL + "/api";
 
 function VenderInfo(props) {
   const {
@@ -31,11 +34,18 @@ function VenderInfo(props) {
     inputRegular53Props,
     inputRegular9Props,
     inputRegular10Props,
-    btn22Props,
-    vendorId
+    btn22Props
   } = props;
 
   const form = useForm();
+  const { auth } = useContext(AppContext);
+  console.log("this is auth", auth);
+
+  const vendorId = useMemo(() => {
+    const {account} = auth;
+    return account?.orgId;
+  }, [auth?.account]);
+
   const { register, control, handleSubmit } = form;
 
   const {
@@ -50,44 +60,64 @@ function VenderInfo(props) {
     setSelectedCityByCode
   } = useCountryStateCity();
 
-  const onSubmit = handleSubmit((formData) => {
-    console.log("formData\n", formData);
-  });
-
-  const radioOptions = [];
-  useEffect(() => {
-    //todo: fetch vendor info data
-  }, [vendorId]);
-
-  const handleAddOption = () => {
-    /*
-    if (inputText.trim() !== '' && !radioOptions.find(option => option.label === inputText)) {
-      const newOption = {
-        id: `option${radioOptions.length + 1}`,
-        label: inputText,
-      };
-      setRadioOptions([...radioOptions, newOption]);
-      setInputText('');
-    }
-    */
-  };
-
-  const handleRadioChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  const {data: vendorData} = useQuery({
-    queryKey: ["vendor-info", vendorId],
+  const { data: fetchedData } = useQuery({
+    queryKey: ["vendor-info", vendorId], 
     queryFn: async () => {
-      //todo;
+      const res = await fetch(`${prefixUrl}/vendor-info/${vendorId}`, {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",         
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth.accessToken}`
+        },
+      });
+      return res.json();
     },
-    enabled: false //make true
-  })
-  const {mutateAsync: submitForm} = useMutation({
-    mutationFn: ({formData}) => {
-      //todo
+    enabled: !!vendorId,
+    retry: false
+  });
+
+  useEffect(() => {
+    if (!fetchedData)
+      return;
+
+    const dataEntry = fetchedData?.[0]?.['data'];
+    if (dataEntry) {
+      form.reset(dataEntry);
+    }
+  }, [fetchedData]);
+
+
+  const { mutateAsync: saveFormData } = useMutation({
+    mutationFn: async ({ formData }) => {
+      if (!auth.accessToken) {
+        throw new Error("No accessToken");
+      }
+      const res = await fetch(`${prefixUrl}/vendor-info`, {
+        method: "PUT",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth.accessToken}`
+        },
+        body: JSON.stringify({ data: [{ ...formData, vendor_id: vendorId }] })
+      });
+      return res;
     }
   });
+
+  const onSubmit = async (evt) => {
+    const formData = form.getValues();
+    console.log("submitting formdata", formData);
+    const res = await saveFormData({formData});
+    console.log(res);
+  }
+
+  const handleAddOption = () => {};
+  const radioOptions = [];
 
   return (
     <MainApp>
@@ -102,11 +132,11 @@ function VenderInfo(props) {
                 inputBoxRegularProps={inputRegular51Props.inputBoxRegularProps}
               />
             </InputProvider>
-            <label class="input_regular-7">
-              <div class="input_subtitle_container-20">
-                <div class="subtitle-32 notosanssc-normal-white-20px">
-                  <span class="notosanssc-normal-well-read-20px">*</span>
-                  <span class="notosanssc-normal-shark-20px">经营性质</span>{/*business type */}
+            <label className="input_regular-7">
+              <div className="input_subtitle_container-20">
+                <div className="subtitle-32 notosanssc-normal-white-20px">
+                  <span className="notosanssc-normal-well-read-20px">*</span>
+                  <span className="notosanssc-normal-shark-20px">经营性质</span>{/*business type */}
                 </div>
               </div>
               <Controller control={control}
@@ -174,11 +204,11 @@ function VenderInfo(props) {
                 inputBoxRegularProps={inputRegular6Props.inputBoxRegularProps}
               />
             </InputProvider>
-            <label class="input_regular-7">
-              <div class="input_subtitle_container-20">
-                <div class="subtitle-32 notosanssc-normal-white-20px">
-                  <span class="notosanssc-normal-well-read-20px">*</span>
-                  <span class="notosanssc-normal-shark-20px">国家</span>
+            <label className="input_regular-7">
+              <div className="input_subtitle_container-20">
+                <div className="subtitle-32 notosanssc-normal-white-20px">
+                  <span className="notosanssc-normal-well-read-20px">*</span>
+                  <span className="notosanssc-normal-shark-20px">国家</span>
                 </div>
               </div>
               <Controller control={control}
@@ -199,11 +229,11 @@ function VenderInfo(props) {
                 )}
               />
             </label>
-            <label class="input_regular-7">
-              <div class="input_subtitle_container-20">
-                <div class="subtitle-32 notosanssc-normal-white-20px">
-                  <span class="notosanssc-normal-well-read-20px">*</span>
-                  <span class="notosanssc-normal-shark-20px">省</span>
+            <label className="input_regular-7">
+              <div className="input_subtitle_container-20">
+                <div className="subtitle-32 notosanssc-normal-white-20px">
+                  <span className="notosanssc-normal-well-read-20px">*</span>
+                  <span className="notosanssc-normal-shark-20px">省</span>
                 </div>
               </div>
               <Controller control={control}
@@ -226,11 +256,11 @@ function VenderInfo(props) {
                 )}
               />
             </label>
-            <label class="input_regular-7">
-              <div class="input_subtitle_container-20">
-                <div class="subtitle-32 notosanssc-normal-white-20px">
-                  <span class="notosanssc-normal-well-read-20px">*</span>
-                  <span class="notosanssc-normal-shark-20px">市</span>
+            <label className="input_regular-7">
+              <div className="input_subtitle_container-20">
+                <div className="subtitle-32 notosanssc-normal-white-20px">
+                  <span className="notosanssc-normal-well-read-20px">*</span>
+                  <span className="notosanssc-normal-shark-20px">市</span>
                 </div>
               </div>
               <Controller control={control}
@@ -252,11 +282,11 @@ function VenderInfo(props) {
                 )}
               />
             </label>
-            <label class="input_regular-7">
-              <div class="input_subtitle_container-20">
-                <div class="subtitle-32 notosanssc-normal-white-20px">
-                  <span class="notosanssc-normal-well-read-20px">*</span>
-                  <span class="notosanssc-normal-shark-20px">区</span>
+            <label className="input_regular-7">
+              <div className="input_subtitle_container-20">
+                <div className="subtitle-32 notosanssc-normal-white-20px">
+                  <span className="notosanssc-normal-well-read-20px">*</span>
+                  <span className="notosanssc-normal-shark-20px">区</span>
                 </div>
               </div>
               <select name="district">

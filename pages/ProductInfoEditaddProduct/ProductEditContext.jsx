@@ -6,6 +6,8 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 
 const ProductEditContext = createContext();
 
+const prefixUrl = process.env.REACT_APP_API_URL + "/api";
+
 function ProductEditProvider({ children }) {
   const { constants } = useContext(AppContext) || {};
   const { productInfoEditaddProductData } = constants || {};
@@ -58,8 +60,7 @@ function ProductEditProvider({ children }) {
   const { data: fetchedData } = useQuery({
     queryKey: ["product-info", productId],
     queryFn: async () => {
-      const r = await fetch(process.env.REACT_APP_API_URL + `/api/product-info/${productId}`, {
-        //todo: fix this -- get data based on sku
+      const r = await fetch(`${prefixUrl}/product-info/${productId}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -86,7 +87,7 @@ function ProductEditProvider({ children }) {
 
   const { mutateAsync: saveFormData } = useMutation({
     mutationFn: async ({ formData, productId }) => {
-      const res = await fetch(process.env.REACT_APP_API_URL + "/api/product-info/" + productId, {
+      const res = await fetch(`${prefixUrl}/product-info`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,

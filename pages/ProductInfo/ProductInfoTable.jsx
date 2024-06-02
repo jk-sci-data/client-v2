@@ -47,7 +47,6 @@ export default function ProductInfoTable() {
 
 
   const tableData = (data || []).filter((d, i) => i >= minIndex && i < maxIndex).map((d, i) => {
-    console.log("tableData entry", d)
     return (<div key={i} className="product-item_container">
       <ProductItem entry={d.data} />
     </div>

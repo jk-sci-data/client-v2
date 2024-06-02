@@ -19,9 +19,8 @@ function ProductInfoProvider({ children }) {
             const queryParams = new URLSearchParams({
                 "filter": `title eq '~~%${searchTerm}%'`
             });
-            console.log("product-serach url", `${process.env.REACT_APP_API_URL}/api/product-info?${queryParams.toString()}`);
 
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/product-info?${queryParams.toString()}`, {
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/product-info-list?${queryParams.toString()}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

@@ -6,7 +6,6 @@ import "./ProductItem.sass";
 
 function ProductItem(props) {
   const { className, entry } = props;
-  console.log("entry data", entry, entry);
   if (!entry) return null;
   const packageSize = [entry['package'], entry['package_unit']].filter(s => s).join(" ");
 

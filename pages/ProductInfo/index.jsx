@@ -34,8 +34,6 @@ function ProductInfoContent(props) {
     console.log("tableData:", data);
   }, [data]);
   
-  console.log("productinfocontext", ctx);
-
   const { register, control } = form || {};
 
   const handlePressEnter = (evt) => {

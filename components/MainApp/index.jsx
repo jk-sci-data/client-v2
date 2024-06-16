@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Header3 from "components/Header3";
 import SideNavMenu from "components/SideNavMenu";
 import Footer from "components/Footer";
@@ -12,6 +12,10 @@ export default function MainApp({ children, requireLogin = true }) {
     const loggedIn = true;
     const { header3Props } = productInfoData;
 
+    const { account } = auth;
+    useEffect(() => {
+        console.log("account info", account);
+    }, [account]);
     return (
         <div style={{ display: "flex", flexFlow: "column nowrap", width: "100%" }}>
             <Header3 username141={header3Props.username141} logoContainerProps={header3Props.logoContainerProps} />

@@ -6,6 +6,8 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 const ProductInfoContext = createContext();
 const showDevTool = false;
 
+const baseUrl = `${process.env.REACT_APP_API_URL}/api`;
+
 function ProductInfoProvider({ children }) {
     const form = useForm();
     
@@ -20,7 +22,7 @@ function ProductInfoProvider({ children }) {
                 "filter": `title eq '~~%${searchTerm}%'`
             });
 
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/product-info-list?${queryParams.toString()}`, {
+            const res = await fetch(`${baseUrl}/product-info-list?${queryParams.toString()}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -29,6 +31,10 @@ function ProductInfoProvider({ children }) {
                 },
                 credentials: "include"
             });
+            if (!res.ok) {
+                console.log("Failed to fetch");
+                return [];
+            }
             console.log("product-info fetched", res);
             return res.json();
         },

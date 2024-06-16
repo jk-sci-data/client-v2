@@ -1,10 +1,9 @@
 //Main header used in MainApp
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import LogoContainer from "../LogoContainer";
 import "./Header3.sass";
 
 import { AppContext } from "../../contexts";
-import useAuth from "hooks/useAuth";
 
 function LoggedIn({ username }) {
   //const {handleLogout} = useAuth();
@@ -33,14 +32,19 @@ function LoggedOut() {
 
 function Header3(props) {
   const { logoContainerProps } = props;
-  const { account, loggedIn, loading } = {} //useAuth({doAuthorize:true});
+  const { auth } = useContext(AppContext);
+
+  const { account, loading } = auth;
+  useEffect(() => {
+      console.log("account info", account);
+  }, [account]);
 
   return (
     <header className="header-1" style={{ width: "100%" }}>
       <LogoContainer jK={logoContainerProps.jK} className={logoContainerProps.className} />
       {
         (loading) ? "Authenticating..."
-        : (loggedIn) ? <LoggedIn username={account?.username ?? "Unknown username"} />
+        : (account) ? <LoggedIn username={account?.username ?? "Unknown username"} />
         : <LoggedOut />
       }
     </header>

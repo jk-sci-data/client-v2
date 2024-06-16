@@ -7,6 +7,10 @@ import "./Login.sass";
 function Login(props) {
   const { header22Props, loginWiondowProps, footerProps } = props;
 
+  const onLoginSuccess = () => {
+    //redirect to /account-info
+  };
+
   return (
     <div className="container-center-horizontal" style={{height:"fit-content", width:"100%"}}>
       <div className="login screen" style={{width:"100%", display:"flex", flexFlow:"column nowrap", justifyContent:"space-between", height:"100vh"}}>

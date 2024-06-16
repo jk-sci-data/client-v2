@@ -24,8 +24,8 @@ function ProductItem(props) {
       </div>
       <div className="right_container" style={{ width: "fit-content" }}>
         {
-          [entry['sku'], entry['cas'], packageSize].map((item) => (
-            <article className={`btn_text-21-1`} style={{ width: "8em" }}>
+          [entry['sku'], entry['cas'], packageSize].map((item, i) => (
+            <article key={i} className={`btn_text-21-1`} style={{ width: "8em" }}>
               <div className="text_label-135 valign-text-middle notosanssc-normal-tundora-16px" style={{ width: "100%" }}>{item}</div>
             </article>
           ))

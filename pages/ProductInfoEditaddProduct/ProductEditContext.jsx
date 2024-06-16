@@ -85,7 +85,7 @@ function ProductEditProvider({ children }) {
     }
   }, [fetchedData]);
 
-  const { mutateAsync: saveFormData } = useMutation({
+  const { mutateAsync: saveFormData, isPending: saveFormPending } = useMutation({
     mutationFn: async ({ formData, productId }) => {
       const res = await fetch(`${prefixUrl}/product-info`, {
         headers: {
@@ -100,9 +100,9 @@ function ProductEditProvider({ children }) {
     }
   });
 
-  const { mutateAsync: saveNewFormData } = useMutation({
+  const { mutateAsync: saveNewFormData, isPending: saveNewFormPending } = useMutation({
     mutationFn: async ({ formData }) => {
-      const res = await fetch(process.env.REACT_APP_API_URL + "/api/product-info", {
+      const res = await fetch(`${prefixUrl}/product-info`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,

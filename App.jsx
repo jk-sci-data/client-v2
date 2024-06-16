@@ -34,6 +34,7 @@ function AppRouter() {
                 <Route path="/product-info" element={<ProductInfo {...ctx.productInfoData} />} />
                 <Route path="/certificate" element={<Certificate {...ctx.certificateData} />} />
                 <Route path="/vendor-info" element={<VenderInfo {...ctx.venderInfoData} />} />
+                <Route path="/account-info" element={<AccountInfo {...ctx.accountInfoData} />} />
                 <Route path="/:path(|account-info)" element={<AccountInfo {...ctx.accountInfoData} />} />
             </Routes>
         </Router>

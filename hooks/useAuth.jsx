@@ -5,7 +5,7 @@ const prefixUrl = process.env.REACT_APP_API_URL + "/api/auth";
 
 export default function useAuth() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
-    const [loading, setLoading] = useState(false);
+    const [account, setAccount] = useState(null);
     const [error, setError] = useState(null);
 
     const setTokens = (data) => {
@@ -21,8 +21,40 @@ export default function useAuth() {
         setAccessToken(null);
     };
 
+    const [getUserIsLoading, setGetUserIsLoading] = useState(false);
+    const getUser = async () => {
+        setGetUserIsLoading(true);
+        setError(null);
+        try {
+            const response = await fetch(`${prefixUrl}/authorize-user`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                mode: 'cors',
+                credentials: "include"
+            });
+            return response;
+        } catch (error) {
+            setError(error);
+        } finally {
+            setGetUserIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (!accessToken) return;
+        console.log("validating accessToken", accessToken);
+        getUser().then((r) => {
+            console.log(r);
+            r.ok && setAccount(jwt.decode(accessToken));
+        });
+    }, [accessToken]);
+
+    const [loginIsLoading, setLoginIsLoading] = useState(false);
     const handleLogin = async (formData) => {
-        setLoading(true);
+        setLoginIsLoading(true);
         setError(null);
         try {
             const { username, password } = formData;
@@ -43,15 +75,17 @@ export default function useAuth() {
                 throw new Error("Login failed. No access token found.");
             }
             setTokens(data);
+            setAccount(jwt.decode(data['accessToken']));
         } catch (error) {
             setError(error);
         } finally {
-            setLoading(false);
+            setLoginIsLoading(false);
         }
     };
 
+    const [logoutIsLoading, setLogoutIsLoading] = useState(false);
     const handleLogout = async () => {
-        setLoading(true);
+        setLogoutIsLoading(true);
         setError(null);
         try {
             const response = await fetch(`${prefixUrl}/logout`, {
@@ -67,15 +101,17 @@ export default function useAuth() {
                 throw new Error("Logout failed");
             }
             removeTokens();
+            setAccount(null);
         } catch (error) {
             setError(error);
         } finally {
-            setLoading(false);
+            setLogoutIsLoading(false);
         }
     };
 
+    const [signUpIsLoading, setSignUpIsLoading] = useState(false);
     const handleSignUp = async (formData) => {
-        setLoading(true);
+        setSignUpIsLoading(true);
         setError(null);
         try {
             const { username, password, orgId, email, phoneNumber, isMain } = formData;
@@ -100,12 +136,12 @@ export default function useAuth() {
         } catch (error) {
             setError(error);
         } finally {
-            setLoading(false);
+            setSignUpIsLoading(false);
         }
     };
 
     const handleSignUpAdmin = async (formData) => {
-        setLoading(true);
+        setSignUpIsLoading(true);
         setError(null);
         try {
             const { username, password, orgId, email, phoneNumber, isMain } = formData;
@@ -148,22 +184,19 @@ export default function useAuth() {
         } catch (error) {
             setError(error);
         } finally {
-            setLoading(false);
+            setSignUpIsLoading(false);
         }
     };
 
-    const account = useMemo(() => {
-        return accessToken ? jwt.decode(accessToken) : null;
-    }, [accessToken]);
 
     return {
         account,
         accessToken,
-        loading,
+        loading: getUserIsLoading || loginIsLoading || logoutIsLoading || signUpIsLoading,
         error,
+        getUser,
         handleLogin,
         handleLogout,
-        handleSignUp,
-        handleSignUpAdmin
+        handleSignUp, handleSignUpAdmin
     };
 }

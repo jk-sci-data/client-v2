@@ -6,8 +6,14 @@ const prefixUrl = process.env.REACT_APP_API_URL + "/api/auth";
 export default function useAuth() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
     const [account, setAccount] = useState(null);
+    
     const [error, setError] = useState(null);
 
+    const [status, setStatus] = useState({
+        loginSuccess: null,
+        logoutSuccess: null
+    });
+    
     const setTokens = (data) => {
         localStorage.setItem("accessToken", data['accessToken']);
         setAccessToken(data['accessToken']);
@@ -45,9 +51,7 @@ export default function useAuth() {
 
     useEffect(() => {
         if (!accessToken) return;
-        console.log("validating accessToken", accessToken);
         getUser().then((r) => {
-            console.log(r);
             r.ok && setAccount(jwt.decode(accessToken));
         });
     }, [accessToken]);
@@ -76,8 +80,17 @@ export default function useAuth() {
             }
             setTokens(data);
             setAccount(jwt.decode(data['accessToken']));
+            setStatus(prev => ({
+                loginSuccess: true,
+                logoutSuccess: null
+            }));
         } catch (error) {
-            setError(error);
+            console.error("handleLogin error", error);
+            setError(error);            
+            setStatus(prev => ({
+                loginSuccess: false,
+                logoutSuccess: null
+            }));
         } finally {
             setLoginIsLoading(false);
         }
@@ -102,8 +115,16 @@ export default function useAuth() {
             }
             removeTokens();
             setAccount(null);
+            setStatus((prev) => ({
+                loginSuccess: null,
+                logoutSuccess: true
+            }));
         } catch (error) {
             setError(error);
+            setStatus((prev) => ({
+                loginSuccess: null,
+                logoutSuccess: false
+            }));
         } finally {
             setLogoutIsLoading(false);
         }
@@ -190,13 +211,13 @@ export default function useAuth() {
 
 
     return {
-        account,
-        accessToken,
+        account, accessToken,
         loading: getUserIsLoading || loginIsLoading || logoutIsLoading || signUpIsLoading,
         error,
+        loginSuccess: status.loginSuccess, 
+        logoutSuccess: status.logoutSuccess,
         getUser,
-        handleLogin,
-        handleLogout,
+        handleLogin, handleLogout,
         handleSignUp, handleSignUpAdmin
     };
 }

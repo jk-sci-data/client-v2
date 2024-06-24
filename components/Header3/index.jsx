@@ -2,16 +2,17 @@
 import React, { useEffect, useContext } from "react";
 import LogoContainer from "../LogoContainer";
 import "./Header3.sass";
+import {useNavigate} from "react-router-dom";
+import { AppContext } from "contexts";
 
-import { AppContext } from "../../contexts";
-
-function LoggedIn({ username }) {
-  //const {handleLogout} = useAuth();
-
+function LoggedIn({ username, handleLogout }) {
   return (
     <div style={{ display: "flex", flexFlow: "row nowrap", alignItems: "flex-end", marginRight: "0.5em" }}>
       <div className="username141 notosanssc-normal-black-16px" style={{ width: "8em" }}>
-        <a onClick={() => {console.log("handleLogout")}}>Logout</a>
+        <a onClick={() => {
+          console.log("handleLogout called");
+          handleLogout && handleLogout();
+        }}>Logout</a>
       </div>
       <div className="username141 notosanssc-normal-black-16px" style={{ width: "15em" }}>
         {username}
@@ -33,19 +34,27 @@ function LoggedOut() {
 function Header3(props) {
   const { logoContainerProps } = props;
   const { auth } = useContext(AppContext);
+  const navigate = useNavigate();
 
-  const { account, loading } = auth;
+  const { account, loading, handleLogout, logoutSuccess } = auth;
+
+
   useEffect(() => {
-      console.log("account info", account);
+    console.log("account info", account);
   }, [account]);
+
+  useEffect(() => {
+    if (logoutSuccess === true)
+      navigate("/login");
+  }, [logoutSuccess]);
 
   return (
     <header className="header-1" style={{ width: "100%" }}>
       <LogoContainer jK={logoContainerProps.jK} className={logoContainerProps.className} />
       {
         (loading) ? "Authenticating..."
-        : (account) ? <LoggedIn username={account?.username ?? "Unknown username"} />
-        : <LoggedOut />
+          : (account) ? <LoggedIn username={account?.username ?? "Unknown username"} handleLogout={handleLogout} />
+            : <LoggedOut />
       }
     </header>
   );

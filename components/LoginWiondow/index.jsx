@@ -7,14 +7,12 @@ import BtnText2 from "../BtnText2";
 import "./LoginWiondow.sass";
 import { AppContext } from "contexts";
 import { useForm } from "react-hook-form";
-import useAuth from "hooks/useAuth";
-import { Link } from 'react-router-dom';
 
 function LoginWiondow(props) {
   const form = useForm({defaultValues: { "username": "", "password": "" }});
   const {register, control} = form;
   const { auth } = useContext(AppContext);
-  const {handleLogin, loggedIn} = auth;
+  const {handleLogin, loginSuccess, error} = auth;
 
   const {
     text7,
@@ -26,25 +24,30 @@ function LoginWiondow(props) {
     btnTextProps,
     btn82Props,
     btnText2Props,
+    onLoginSuccess
   } = props;
 
-  console.log("login formdata", form.getValues());
 
   const handleLoginClick = (evt) => {
-    console.log("login clicked");
     evt.preventDefault();
     handleLogin(form.getValues() /** {username, password} */);
 
   };
 
   useEffect(() => {
-    if (loggedIn) {
-      console.log("loggedIn!", loggedIn);
+    console.log("loginSuccess value", loginSuccess);
+    if (loginSuccess === true) {
+      console.log("loggedIn!");
+      onLoginSuccess && onLoginSuccess();
     }
-    else {
-      console.log("not loggedin", loggedIn);
+    else if (loginSuccess === false) {
+      console.log("not loggedin");
     }
-  }, [loggedIn])
+  }, [loginSuccess]);
+
+  useEffect(() => {
+    console.log("login error", error);
+  }, [error]);
   /**
   const handleLoginClick = (evt) => {
     console.log("login clicked");
@@ -70,6 +73,7 @@ function LoginWiondow(props) {
           <div className="upper mt-5">
             <div className="text-7 valign-text-middle">{text7}</div>
             <div className="text-8 valign-text-middle">{text8}</div>
+            <div style={{color:"red", height:"1.2em"}}>{error?.message}</div>
           </div>
           <div className="lower">
             <div className="lower_container">

@@ -9,17 +9,14 @@ import LoginWiondow from "components/LoginWiondow";
 export default function MainApp({ children, requireLogin = true }) {
     const { constants, auth } = useContext(AppContext);
     const { productInfoData, loginWiondowData } = constants;
-    const loggedIn = true;
     const { header3Props } = productInfoData;
 
     const { account } = auth;
-    useEffect(() => {
-        console.log("account info", account);
-    }, [account]);
+    
     return (
         <div style={{ display: "flex", flexFlow: "column nowrap", width: "100%" }}>
             <Header3 username141={header3Props.username141} logoContainerProps={header3Props.logoContainerProps} />
-            { (requireLogin && !loggedIn)
+            { (requireLogin && !account)
                 ? loginWiondowData && <>{"NOT LOGGED IN"}<LoginWiondow {...loginWiondowData} /></>
                 :
                 <div style={{ display: "flex", flexFlow: "row nowrap" }}>

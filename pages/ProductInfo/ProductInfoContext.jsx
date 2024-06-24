@@ -14,12 +14,12 @@ function ProductInfoProvider({ children }) {
     const searchTerm = form?.watch("searchTerm", "");
 
     const { data: fetchedData, refetch, isLoading } = useQuery({
-        queryKey: ['product-search', searchTerm],
+        queryKey: ['product-search'/*, searchTerm*/],
         queryFn: async ({ queryKey }) => {
             console.log("product-search query called");
-            const [_key, searchTerm] = queryKey;
+            //const [_key, searchTerm] = queryKey;
             const queryParams = new URLSearchParams({
-                "filter": `title eq '~~%${searchTerm}%'`
+                "filter": `title_en eq '~~%${searchTerm}%' or title_cn eq '~~%${searchTerm}%'`
             });
 
             const res = await fetch(`${baseUrl}/product-info-list?${queryParams.toString()}`, {
